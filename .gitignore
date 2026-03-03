@@ -16,3 +16,6 @@
 /tcga_brca/data/my_dataset_feb_14.csv
 /tcga_brca/data/my_dataset_modified.csv
 
+.Rproj.user
+
+/data

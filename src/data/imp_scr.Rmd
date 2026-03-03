@@ -1,0 +1,27 @@
+---
+title: "imp_scr"
+output: html_document
+---
+
+```{r}
+leg.col <- c("red","orange","yellow","green","blue","gray")
+leg.txt <- c(expression(phantom() >= "99% confidence"),
+"95-99% confidence","90-95% confidence","80-90% confidence",
+"50-80% confidence",expression(paste(phantom() < "50% confidence")))
+par(las=1,mar=c(5,12,4,2),cex=1.1)
+x <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/imp.txt",header=TRUE)
+score <- x$Score
+vars <- x$Variable
+group <- x$Group
+barcol <- rep(leg.col[1],length(vars))
+barcol[group == "B"] <- leg.col[2]
+barcol[group == "C"] <- leg.col[3]
+barcol[group == "D"] <- leg.col[4]
+barcol[group == "E"] <- leg.col[5]
+barcol[group == "F"] <- leg.col[6]
+n <- 30 ### number of scores plotted
+barplot(rev(score[1:n]),names.arg=rev(vars[1:n]),
+col=rev(barcol[1:n]),horiz=TRUE,xlab="GUIDE importance scores")
+legend("bottomright",legend=leg.txt,fill=leg.col)
+
+```

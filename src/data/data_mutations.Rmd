@@ -1,0 +1,88 @@
+---
+title: "data_mutations"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+library(tidyr)
+library(janitor)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+```{r}
+data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+```
+
+```{r}
+colnames(data_mutations)
+```
+
+Dataframe for a CLL driver importance score
+```{r}
+mutation_matrix <- data_mutations %>% select(Hugo_Symbol, Tumor_Sample_Barcode, Consequence)
+
+mutation_matrix <- mutation_matrix %>%
+  mutate(value = 1) %>%
+  distinct(Tumor_Sample_Barcode, Hugo_Symbol, .keep_all = TRUE) %>%
+  pivot_wider(
+    names_from = Hugo_Symbol,
+    values_from = value,
+    values_fill = 0
+  )
+
+dim(mutation_matrix)
+```
+
+Change all commas to something else 
+```{r}
+mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub(",", "__", .)))
+mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub(" ", "__", .)))
+mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub("-", "_", .)))
+# This creates a small 5x6 slice of your matrix
+mutation_matrix[606:610, 1:6]
+unique(mutation_matrix$Consequence)
+
+
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "splice_region_variant__synonymous_variant"] <- "srvsv"
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "splice_acceptor_variant__coding_sequence_variant"] <- "savcsv"
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "missense_variant__splice_region_variant"] <- "mvsrv"
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "splice_acceptor_variant__non_coding_transcript_variant"] <- "savntv"
+
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "splice_acceptor_variant__coding_sequence_variant__intron_variant"] <- "savcsviv"
+
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "splice_region_variant__splice_polypyrimidine_tract_variant__intron_variant"] <- "srvsptviv"
+
+mutation_matrix$Consequence[mutation_matrix$Consequence == 
+  "intron_variant__non_coding_transcript_variant"] <- "ivnctv"
+```
+
+
+Save mutation matrix 
+```{r}
+write.table(mutation_matrix, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/mutation_matrix.txt", sep=" ", row.names = FALSE, quote = FALSE)
+
+str(mutation_matrix[, 1:5])
+
+
+
+
+```
+
+
+
+
+
+
