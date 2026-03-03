@@ -1,0 +1,111 @@
+---
+title: "data_clinical_patient"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+```{r}
+data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t")
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
+
+data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+
+```
+
+Column Names - clinical patient
+```{r}
+colnames(data_clinical_patient)
+```
+Column names - clinical sample 
+```{r}
+colnames(data_clinical_sample)
+```
+
+Left join datafram - clinical sample and clinical patient file
+```{r}
+patient_file <- left_join(data_clinical_sample, data_clinical_patient, by = "PATIENT_ID")
+
+#d1 <- left_join(patient_file, data_mutations, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
+#colnames(d1)
+#length(unique(d1$PATIENT_ID))
+#length(unique(d1$SAMPLE_ID))
+
+```
+
+Column names for patient_file 
+```{r}
+colnames(patient_file)
+```
+
+
+Save the patient file
+```{r}
+patient_file[] <- lapply(patient_file, function(x) {
+  if (is.character(x)) gsub(",", "_", x) else x
+  if (is.character(x)) gsub(" ", "_", x) else x
+})
+
+write.table(patient_file, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/patient_file.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
+
+
+Merge the file with the transposed hugo data 
+```{r}
+
+mutation_matrix <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/mutation_matrix.txt",header=TRUE, sep=" ")
+
+mutation_summary <- mutation_matrix %>%
+  group_by(Tumor_Sample_Barcode) %>%
+  summarise(
+    Consequence = paste(unique(Consequence), collapse = "; "),
+    .groups = "drop"
+  )
+
+mutation_matrix %>%
+  count(Tumor_Sample_Barcode) %>%
+  filter(n > 1)
+
+
+patient_mutation <- left_join(patient_file, mutation_matrix, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
+
+```
+
+
+Save the patient_mutation file 
+```{r}
+patient_mutation[] <- lapply(patient_mutation, function(x) {
+  if (is.character(x)) gsub(",", "_", x) else x
+  if (is.character(x)) gsub(" ", "_", x) else x
+})
+
+patient_mutation[is.na(patient_mutation)] <- NA
+
+# Just for now please 
+#patient_mutation <- patient_mutation %>% select(-CANCER_TYPE_DETAILED)
+
+write.table(patient_mutation, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/patient_mutation.txt", sep=" ", row.names = FALSE, quote = FALSE)
+
+patient_mutation[25]
+
+
+```
+
+
+
+
+
+
+
+
