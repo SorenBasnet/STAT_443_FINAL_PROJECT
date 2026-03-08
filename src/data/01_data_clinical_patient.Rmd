@@ -1,0 +1,194 @@
+--
+title: "data_clinical_patient"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+Read in data files
+```{r}
+data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t")
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
+data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+```
+
+Column Names - clinical patient
+```{r}
+colnames(data_clinical_patient)
+```
+
+Clinical patient file clean up
+```{r}
+# 1. Change in data
+data_clinical_patient[] <- lapply(data_clinical_patient, function(x) gsub("-", "_", x))
+data_clinical_patient[] <- lapply(data_clinical_patient, function(y) gsub(" ", "", y))
+data_clinical_patient[] <- lapply(data_clinical_patient, function(z) gsub(":", "_", z))
+
+# 2. Change in column names
+# names(data_clinical_patient) <- gsub(",", " ", names(data_clinical_patient))
+
+data_clinical_patient$OS_STATUS <- as.factor(data_clinical_patient$OS_STATUS)
+data_clinical_patient$COHORT <- as.factor(data_clinical_patient$COHORT)
+data_clinical_patient$IGHV_MUTATION_STATUS <- as.factor(data_clinical_patient$IGHV_MUTATION_STATUS)
+data_clinical_patient$TREATMENT_STATUS <- as.factor(data_clinical_patient$TREATMENT_STATUS)
+data_clinical_patient$PRIOR_TREATMENT_CATEGORY <- as.factor(data_clinical_patient$PRIOR_TREATMENT_CATEGORY)
+data_clinical_patient$TREATMENT_AFTER_SAMPLING <- as.factor(data_clinical_patient$TREATMENT_AFTER_SAMPLING)
+data_clinical_patient$EXPRESSION_CLUSTER <- as.factor(data_clinical_patient$EXPRESSION_CLUSTER)
+data_clinical_patient$FFS_STATUS <- as.factor(data_clinical_patient$FFS_STATUS)
+data_clinical_patient$FFS_MONTHS <- as.numeric(data_clinical_patient$FFS_MONTHS)
+
+data_clinical_patient$IGHV_MUTATION_STATUS[data_clinical_patient$IGHV_MUTATION_STATUS == ""] <- NA
+
+data_clinical_patient <- data_clinical_patient %>%
+  mutate(IGHV_MUTATION_STATUS = case_when(
+    IGHV_MUTATION_STATUS == "0" ~ NA_character_,
+    IGHV_MUTATION_STATUS == " " ~ NA_character_,
+    TRUE ~ IGHV_MUTATION_STATUS
+  ))
+
+data_clinical_patient$IGHV_MUTATION_STATUS <- as.factor(data_clinical_patient$IGHV_MUTATION_STATUS)
+
+
+data_clinical_patient$TREATMENT_STATUS[data_clinical_patient$TREATMENT_STATUS == ""] <- NA
+
+data_clinical_patient <- data_clinical_patient %>%
+  mutate(TREATMENT_STATUS = case_when(
+    TREATMENT_STATUS == "0" ~ NA_character_,
+    TREATMENT_STATUS == " " ~ NA_character_,
+    TRUE ~ TREATMENT_STATUS
+  ))
+
+data_clinical_patient$TREATMENT_STATUS <- as.factor(data_clinical_patient$TREATMENT_STATUS)
+data_clinical_patient$SEX <- as.factor(data_clinical_patient$SEX)
+
+
+
+#unique(data_clinical_patient$OS_STATUS)
+#unique(data_clinical_patient$COHORT)
+#unique(data_clinical_patient$IGHV_MUTATION_STATUS)
+#unique(data_clinical_patient$TREATMENT_STATUS) 
+#unique(data_clinical_patient$PRIOR_TREATMENT_CATEGORY)
+#unique(data_clinical_patient$TREATMENT_AFTER_SAMPLING) 
+#unique(data_clinical_patient$EXPRESSION_CLUSTER)
+#unique(data_clinical_patient$FFS_STATUS) 
+
+data_clinical_patient$AGE <- as.numeric(data_clinical_patient$AGE)
+data_clinical_patient$AGE_SAMPLING <- as.numeric(data_clinical_patient$AGE_SAMPLING)
+data_clinical_patient$OS_MONTHS <- as.numeric(data_clinical_patient$OS_MONTHS)
+data_clinical_patient$DEATH_DAYS <- as.numeric(data_clinical_patient$DEATH_DAYS)
+data_clinical_patient$IGHV_IDENTITY_PERCENTAGE <- as.numeric(data_clinical_patient$IGHV_IDENTITY_PERCENTAGE)
+
+
+
+summary(data_clinical_patient)
+```
+
+
+Write to interim data file
+```{r}
+write.table(data_clinical_patient, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/data_clinical_patient_march_7.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
+
+
+
+###############################################################################################
+
+###############################################################################################
+###############################################################################################
+###############################################################################################
+###############################################################################################
+
+###############################################################################################
+
+Column names - clinical sample 
+```{r}
+colnames(data_clinical_sample)
+```
+
+Left join dataframe - clinical sample and clinical patient file
+```{r}
+patient_file <- left_join(data_clinical_sample, data_clinical_patient, by = "PATIENT_ID")
+
+#d1 <- left_join(patient_file, data_mutations, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
+#colnames(d1)
+#length(unique(d1$PATIENT_ID))
+#length(unique(d1$SAMPLE_ID))
+
+```
+
+Column names for patient_file 
+```{r}
+colnames(patient_file)
+```
+
+
+Save the patient file
+```{r}
+patient_file[] <- lapply(patient_file, function(x) {
+  if (is.character(x)) gsub(",", "_", x) else x
+  if (is.character(x)) gsub(" ", "_", x) else x
+})
+
+write.table(patient_file, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/patient_file.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
+
+
+Merge the file with the transposed hugo data 
+```{r}
+
+mutation_matrix <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/mutation_matrix.txt",header=TRUE, sep=" ")
+
+mutation_summary <- mutation_matrix %>%
+  group_by(Tumor_Sample_Barcode) %>%
+  summarise(
+    Consequence = paste(unique(Consequence), collapse = "; "),
+    .groups = "drop"
+  )
+
+mutation_matrix %>%
+  count(Tumor_Sample_Barcode) %>%
+  filter(n > 1)
+
+
+patient_mutation <- left_join(patient_file, mutation_matrix, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
+
+```
+
+
+Save the patient_mutation file 
+```{r}
+patient_mutation[] <- lapply(patient_mutation, function(x) {
+  if (is.character(x)) gsub(",", "_", x) else x
+  if (is.character(x)) gsub(" ", "_", x) else x
+})
+
+patient_mutation[is.na(patient_mutation)] <- NA
+
+# Just for now please 
+#patient_mutation <- patient_mutation %>% select(-CANCER_TYPE_DETAILED)
+
+write.table(patient_mutation, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/patient_mutation.txt", sep=" ", row.names = FALSE, quote = FALSE)
+
+patient_mutation[25]
+
+
+```
+
+
+
+
+
+
+
+
