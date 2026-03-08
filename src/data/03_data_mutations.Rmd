@@ -10,6 +10,7 @@ library(gtsummary)
 library(kableExtra)
 library(tidyr)
 library(janitor)
+library(tidyverse)
 ```
 
 ```{r}
@@ -18,6 +19,8 @@ dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data
 
 ```{r}
 data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+tp53_subset <- data_mutations %>% filter(str_detect(data_mutations$Hugo_Symbol, "TP53"))
+unique(tp53_subset$Hugo_Symbol)
 ```
 
 ```{r}
@@ -45,6 +48,8 @@ Change all commas to something else
 mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub(",", "__", .)))
 mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub(" ", "__", .)))
 mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub("-", "_", .)))
+mutation_matrix <- mutation_matrix %>% mutate(across(where(is.character), ~ gsub("/", "_", .)))
+
 # This creates a small 5x6 slice of your matrix
 mutation_matrix[606:610, 1:6]
 unique(mutation_matrix$Consequence)
@@ -67,17 +72,17 @@ mutation_matrix$Consequence[mutation_matrix$Consequence ==
 
 mutation_matrix$Consequence[mutation_matrix$Consequence == 
   "intron_variant__non_coding_transcript_variant"] <- "ivnctv"
+
+
+mutation_matrix[is.na(mutation_matrix)] <- NA
 ```
 
 
 Save mutation matrix 
 ```{r}
-write.table(mutation_matrix, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/mutation_matrix.txt", sep=" ", row.names = FALSE, quote = FALSE)
+write.table(mutation_matrix, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/mutation_matrix_march_7.txt", sep=" ", row.names = FALSE, quote = FALSE)
 
 str(mutation_matrix[, 1:5])
-
-
-
 
 ```
 

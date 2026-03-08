@@ -1,0 +1,53 @@
+---
+title: "04_merge_01_02_03"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/"
+```
+
+Read in data files
+```{r}
+data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patient_march_7.txt"),header=TRUE, sep=" ")
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample_march_7.txt"), header=TRUE, sep=" ")
+data_mutations <- read.table(file.path(dataset_path,"mutation_matrix_march_7.txt"),header=TRUE, sep=" ")
+```
+
+Left join dataframe - clinical sample and clinical patient file
+```{r}
+patient_file <- left_join(data_clinical_sample, data_clinical_patient, by = "PATIENT_ID")
+```
+
+Left join dataframe - patient and mutation_matrix file
+```{r}
+mutation_summary <- data_mutations %>%
+  group_by(Tumor_Sample_Barcode) %>%
+  summarise(
+    Consequence = paste(unique(Consequence), collapse = "; "),
+    .groups = "drop"
+  )
+
+data_mutations %>%
+  count(Tumor_Sample_Barcode) %>%
+  filter(n > 1)
+
+patient_mutation <- left_join(patient_file_march_7, data_mutations, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
+
+head(patient_file)
+```
+
+
+
+
+
+```{r}
+write.table(patient_mutation, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/patient_mutation_march_7.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
