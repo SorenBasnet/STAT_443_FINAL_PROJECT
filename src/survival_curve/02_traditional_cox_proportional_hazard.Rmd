@@ -1,0 +1,66 @@
+---
+title: "traditional_cox_proportional_hazard"
+output: html_document
+---
+
+```{r}
+library(survival)
+library(survminer)
+library(dplyr)
+```
+
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/"
+```
+
+```{r}
+data_mutations <- read.table(file.path(dataset_path,"data_patient_mutation_march_8.txt"),header=TRUE, sep=" ")
+
+```
+
+
+```{r}
+data_mutations$OS_STATUS <- ifelse(data_mutations$OS_STATUS == "DECEASED", 1, 0)
+```
+
+
+```{r}
+str(data_mutations$OS_MONTHS)
+str(data_mutations$OS_STATUS)
+
+data_mutations$OS_MONTHS <- as.numeric(data_mutations$OS_MONTHS)
+data_mutations$OS_STATUS <- as.numeric(data_mutations$OS_STATUS)
+```
+
+```{r}
+table(data_mutations$OS_STATUS)
+```
+
+```{r}
+surv_object <- Surv(time = data_mutations$OS_MONTHS, event = data_mutations$OS_STATUS)
+```
+
+
+Cox proportional hazards model
+
+This estimates hazard ratios
+```{r}
+cox_model <- coxph(
+  surv_object ~ TP53BP2 + AGE + SEX,
+  data = data_mutations
+)
+
+summary(cox_model)
+
+ggforest(cox_model, data = data_mutations)
+```
+
+Forest plot 
+```{r}
+names(cox_model$model)
+ggforest(cox_model, data = data_mutations)
+```
+
+
+
