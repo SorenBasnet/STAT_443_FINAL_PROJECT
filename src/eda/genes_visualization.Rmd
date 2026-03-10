@@ -91,10 +91,7 @@ maf <- read.maf(
   removeDuplicatedVariants = FALSE
 )
 
-
 oncoplot(maf, top = 20)
-
-
 
 ```
 
