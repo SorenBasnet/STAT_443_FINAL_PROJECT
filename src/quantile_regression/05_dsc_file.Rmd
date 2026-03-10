@@ -1,0 +1,29 @@
+---
+title: "dsc_file"
+output: html_document
+---
+
+Dsc file for patient_file for quantile regression with FFS_MONTH as dependent variable
+```{r}
+z <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/patient_file.txt",header=TRUE)
+nvars <- ncol(z)
+write("patient_file.txt",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_file_quantile.txt")
+write("NA",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_file_quantile.txt",append=TRUE)
+write("2",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_file_quantile.txt",append=TRUE)
+roles <- rep("n",nvars)
+write.table(cbind(1:nvars,names(z),roles),file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_file_quantile.txt",
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+```
+
+DSC file for patient_mutation file for quanitile regression with FFS_MONTH as dependent variable
+```{r}
+z <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/data_patient_mutation_march_8.txt",header=TRUE)
+nvars <- ncol(z)
+write("data_patient_mutation_march_8.txt",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_mutation_quantile.txt")
+write("NA",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_mutation_quantile.txt",append=TRUE)
+write("2",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_mutation_quantile.txt",append=TRUE)
+roles <- rep("n",nvars)
+write.table(cbind(1:nvars,names(z),roles),file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/dsc_patient_mutation_quantile.txt",
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+
+```

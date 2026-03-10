@@ -1,0 +1,109 @@
+---
+title: "genes_visualization"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+```{r}
+data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+```
+
+```{r}
+colnames(data_mutations)
+```
+
+```{r}
+top_genes <- data_mutations %>%
+  count(Hugo_Symbol, sort = TRUE) %>%
+  head(30)
+
+ggplot(top_genes, aes(x = reorder(Hugo_Symbol, n), y = n)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  labs(
+    title = "Top Mutated Genes",
+    x = "Gene (Hugo Symbol)",
+    y = "Number of Mutations"
+  ) +
+  theme_minimal()
+```
+
+
+
+Mutation Per Person
+```{r}
+patient_mutations <- data_mutations %>%
+  count(Tumor_Sample_Barcode)
+
+ggplot(patient_mutations, aes(x = n)) +
+  geom_histogram(bins = 40, fill = "darkred") +
+  labs(
+    title = "Mutations per Patient",
+    x = "Number of Mutations",
+    y = "Patients"
+  ) +
+  theme_minimal()
+```
+
+Gene × Patient Heatmap
+
+```{r}
+library(tidyr)
+
+gene_patient <- data_mutations %>%
+  select(Tumor_Sample_Barcode, Hugo_Symbol) %>%
+  distinct() %>%
+  mutate(value = 1) %>%
+  pivot_wider(
+    names_from = Hugo_Symbol,
+    values_from = value,
+    values_fill = 0
+  )
+```
+
+Now convert to matrix and plot:
+
+```{r}
+library(pheatmap)
+
+mat <- as.matrix(gene_patient[,-1])
+rownames(mat) <- gene_patient$Tumor_Sample_Barcode
+
+pheatmap(mat)
+```
+
+
+This dont work 
+```{r}
+library(maftools)
+
+maf <- read.maf(
+  maf = "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022/data_mutations.txt",
+  removeDuplicatedVariants = FALSE
+)
+
+
+oncoplot(maf, top = 20)
+
+
+
+```
+
+
+Mutation along gene
+```{r}
+ggplot(data_mutations, aes(x = Protein_position)) +
+  geom_histogram(bins = 50) +
+  theme_minimal() +
+  labs(title = "Mutation Position Distribution")
+```
+
