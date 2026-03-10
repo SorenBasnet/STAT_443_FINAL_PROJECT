@@ -1,0 +1,68 @@
+---
+title: "quantile_regression"
+output: html_document
+---
+
+Action : 
+1) To go quantile regression on the patient data to see who survives and who does [CURRENT TASK]
+    - This objective might also help with the the infection rate 
+2) Then if that is successful, do quantile regression on the patient data along with genetic mutation matrix [PLANNED]
+
+Role,Variables from your list
+d (Dependent),FFS_MONTHS
+c (Categorical),"CLL_EPITYPE, TUMOR_MOLECULAR_SUBTYPE, IGHV_MUTATION_STATUS, U1_STATUS, IGLV3_21_R110, SEX"
+n (Numerical),"AGE, TMB_NONSYNONYMOUS, TUMOR_SAMPLE_PURITY, IGHV_IDENTITY_PERCENTAGE"
+x (Exclude),"PATIENT_ID, SAMPLE_ID, OS_STATUS, OS_MONTHS (to avoid leakage), CENTER"
+s (Split-only),Any genetic mutation columns (0/1) from your third file.
+
+Import required library
+
+```{r}
+
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+
+```
+
+Import required datasets
+
+```{r}
+
+patient_file <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/patient_file.txt", header = TRUE, sep=" ")
+mutation_matrix <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/mutation_matrix_march_7.txt", header=TRUE, sep=" ")
+
+```
+
+```{r}
+
+dim(patient_file)
+dim(mutation_matrix)
+
+```
+
+
+```{r}
+
+colnames(patient_file)
+
+```
+
+```{r}
+
+patient_mutation <- left_join(patient_file, mutation_matrix, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
+dim(patient_mutation)
+
+```
+
+Save the patient_mutation file 
+
+```{r}
+
+write.table(patient_mutation, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/processed/data_patient_mutation_march_8.txt", sep=" ", row.names = FALSE, quote = FALSE)
+
+```
+
+
+
+
