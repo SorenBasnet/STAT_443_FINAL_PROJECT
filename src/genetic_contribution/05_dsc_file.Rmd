@@ -1,0 +1,56 @@
+---
+title: "dsc_file"
+output: html_document
+---
+
+Dsc file for mutation matrix 
+Intended to see the importance score of each score
+```{r}
+z <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors/data_patient_mutation_march_8.txt",header=TRUE)
+nvars <- ncol(z)
+write("dsc_patient_mutation_march_10.txt",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors/dsc_patient_mutation_march_10.txt")
+write("NA",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors/dsc_patient_mutation_march_10.txt",append=TRUE)
+write("2",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors/dsc_patient_mutation_march_10.txt",append=TRUE)
+roles <- c(rep("n", 42), rep("s", nvars-42))
+write.table(cbind(1:nvars,names(z),roles),file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors/dsc_patient_mutation_march_10.txt",
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+```
+
+
+Dsc file for mutation matrix 
+Intended to see the importance score of each score
+```{r}
+z <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors/data_patient_mutation_march_8.txt",header=TRUE)
+nvars <- ncol(z)
+
+write("dsc_patient_mutation_march_10.txt",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutation_march_11.txt")
+
+write("NA",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutation_march_11.txt",append=TRUE)
+write("2",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutation_march_11.txt",append=TRUE)
+roles <- c(rep("s", 42), rep("n", nvars-42))
+write.table(cbind(1:nvars,names(z),roles),file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutation_march_11.txt",
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+```
+
+
+
+Dsc file for mutation matrix unique (one patient per row)
+Intended to see the importance score of each score
+```{r}
+z <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/data_patient_mutations_unique.txt",header=TRUE)
+
+nvars <- ncol(z)
+
+write("data_patient_mutations_unique.txt",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutations_unique.txt")
+
+write("NA",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutations_unique.txt",append=TRUE)
+
+write("2",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutations_unique.txt",append=TRUE)
+
+roles <- c(rep("s", 42), rep("n", nvars-42))
+
+write.table(cbind(1:nvars,names(z),roles),file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/dsc_patient_mutations_unique.txt",
+
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+
+```
