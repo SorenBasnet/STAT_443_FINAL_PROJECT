@@ -1,0 +1,33 @@
+---
+title: "01_genetic_contribution"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors"
+```
+
+Read in data files
+```{r}
+data_patient_mutations <- read.table(file.path(dataset_path,"data_patient_mutation_march_8.txt"),header=TRUE, sep=" ")
+
+```
+
+
+Lets try (for now, using genetic datamutations file were only one patient row)
+```{r}
+data_patient_mutations_unique <- data_patient_mutations %>% distinct(PATIENT_ID, .keep_all = TRUE)
+```
+
+```{r}
+write.table(data_patient_mutations_unique, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors_2/data_patient_mutations_unique.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
+
+

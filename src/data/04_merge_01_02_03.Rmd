@@ -46,6 +46,7 @@ data_mutations %>%
 patient_mutation <- left_join(patient_file, data_mutations, by = c("SAMPLE_ID" = "Tumor_Sample_Barcode"))
 colnames(patient_mutation)
 head(patient_file)
+unique(patient_file$CANCER_TYPE)
 ```
 
 
