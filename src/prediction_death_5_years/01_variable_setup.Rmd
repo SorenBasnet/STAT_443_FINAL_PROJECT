@@ -1,0 +1,99 @@
+---
+title: "01_variable_setup"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+```
+
+Import required dataset(s)
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+Read in data files
+```{r}
+data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t")
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
+```
+
+Number of patients in the data_clinical_patient file
+```{r}
+length(unique(data_clinical_patient$PATIENT_ID))
+nrow(data_clinical_patient)
+```
+
+Lets see what patient ID are getting repeated 
+```{r}
+table(data_clinical_sample$PATIENT_ID)[table(data_clinical_sample$PATIENT_ID) > 1]
+
+dup_ids <- data_clinical_sample$PATIENT_ID[duplicated(data_clinical_sample$PATIENT_ID)]
+data_dups <- data_clinical_sample[data_clinical_sample$PATIENT_ID %in% dup_ids, ]
+```
+
+We will only keep the first occurence 
+```{r}
+data_unique <- data_clinical_sample[!duplicated(data_clinical_sample$PATIENT_ID), ]
+```
+
+
+Number of patients in the data_clinical_sample file
+```{r}
+length(unique(data_clinical_sample$PATIENT_ID))
+nrow(data_clinical_sample)
+```
+
+Column names 
+
+```{r}
+colnames(data_clinical_patient)
+```
+
+```{r}
+colnames(data_unique)
+```
+
+Merge the 2 patient files
+```{r}
+patient_file <- left_join(data_unique, data_clinical_patient, by = "PATIENT_ID")
+length(unique(patient_file$PATIENT_ID))
+nrow(patient_file)
+```
+
+
+```{r}
+data_armlevel_cna   <- read.table(file.path(dataset_path,"data_armlevel_cna.txt"),header=TRUE, sep="\t") 
+head(colnames(data_armlevel_cna))
+print("---------------------------------------")
+unique(data_armlevel_cna$ENTITY_STABLE_ID)
+print("---------------------------------------")
+dim(data_armlevel_cna)
+```
+Change the column names to something suitable for merge 
+```{r}
+colnames(data_armlevel_cna) <- gsub("\\.", "-", colnames(data_armlevel_cna))
+head(colnames(data_armlevel_cna))
+```
+
+Add colnames - 11q_status, 17p_status, 17q_status, etc to the patient file 
+```{r}
+cna_mat <- data_armlevel_cna[, -(1:3)]
+cna_t <- as.data.frame(t(cna_mat))
+colnames(cna_t) <- data_armlevel_cna$ENTITY_STABLE_ID
+cna_t$SAMPLE_ID <- rownames(cna_t)
+rownames(cna_t) <- NULL
+length(unique(cna_t$SAMPLE_ID))
+```
+
+
+Merge the patient file with cna_t file 
+```{r}
+patient_file_cna <- merge(data_clinical_sample, cna_t, by = "SAMPLE_ID", all.x = TRUE)
+```
+
+
+
+
+

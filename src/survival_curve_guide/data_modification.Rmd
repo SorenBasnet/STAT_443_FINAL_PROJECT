@@ -32,6 +32,7 @@ summary(data_patient_mutations$death_5yr)
 
 summary(data_patient_mutations$surv_5yrs)
 summary(data_patient_mutations$death_5yr)
+
 ```
 
 
@@ -48,6 +49,67 @@ cox_model <- coxph(
 
 summary(cox_model)
 ```
+
+
+```{r}
+
+library(survival)
+
+surv_obj <- Surv(data_patient_mutations$surv_5yrs,
+                 data_patient_mutations$death_5yr)
+
+non_gene_cols <- c(
+"PATIENT_ID","SAMPLE_ID","CENTER","ONCOTREE_CODE","DISEASE_TYPE",
+"NORMAL_MEAN_COVERAGE","TUMOR_MEAN_COVERAGE","TUMOR_SAMPLE_PURITY",
+"TUMOR_SAMPLE_PLOIDY","CANCER_TYPE","CANCER_TYPE_DETAILED",
+"SOMATIC_STATUS","CLL_EPITYPE","TUMOR_MOLECULAR_SUBTYPE",
+"SEQUENCING_PLATFORM","RNA_SEQUENCING","RRBS","ARRAY450K",
+"M_CLL_WES","U_CLL_WES","EC_DISCOVERY","EC_EXTENSION",
+"IGLV3_21_R110","U1_STATUS","TMB_NONSYNONYMOUS",
+"AGE","AGE_SAMPLING","SEX","OS_STATUS","OS_MONTHS","DEATH_DAYS",
+"COHORT","IGHV_MUTATION_STATUS","IGHV_IDENTITY_PERCENTAGE",
+"TREATMENT_STATUS","PRIOR_TREATMENT_CATEGORY",
+"TREATMENT_AFTER_SAMPLING","EXPRESSION_CLUSTER",
+"FFS_STATUS","FFS_MONTHS","Consequence",
+"surv_5yrs","death_5yr"
+)
+
+gene_cols <- setdiff(colnames(data_patient_mutations), non_gene_cols)
+
+gene_freq <- colSums(data_patient_mutations[,gene_cols])
+
+gene_cols_filtered <- names(gene_freq[gene_freq >= 5])
+
+results <- data.frame()
+
+for (g in gene_cols) {
+
+  formula <- as.formula(
+    paste("Surv(surv_5yrs, death_5yr) ~ AGE + SEX + IGHV_MUTATION_STATUS +", g)
+  )
+
+  fit <- coxph(formula, data=data_patient_mutations)
+
+  s <- summary(fit)
+
+  hr <- s$coefficients[g,"exp(coef)"]
+  p  <- s$coefficients[g,"Pr(>|z|)"]
+
+  results <- rbind(results,
+                   data.frame(GENE=g, HR=hr, P=p))
+}
+
+results$FDR <- p.adjust(results$P, method="BH")
+
+results <- results[order(results$FDR),]
+head(results,20)
+
+
+```
+
+
+
+
 
 
 Kaplan -Meier curves for important genes 
