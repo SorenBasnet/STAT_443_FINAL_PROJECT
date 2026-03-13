@@ -1,0 +1,98 @@
+---
+title: "exploration_datasets"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+Read in data files
+```{r}
+data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t")
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
+data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+```
+
+```{r}
+
+data_sv <- read.delim(file.path(dataset_path, "data_sv.txt"))
+colnames(data_sv)
+```
+
+
+# data_armlevel_cna
+
+cancer_study_identifier: cll_broad_2022
+genetic_alteration_type: GENERIC_ASSAY
+generic_assay_type: ARMLEVEL_CNA
+datatype: CATEGORICAL
+stable_id: armlevel_cna
+profile_name: Putative arm-level copy-number from GISTIC
+profile_description: Putative arm-level copy-number from GISTIC.
+data_filename: data_armlevel_cna.txt
+show_profile_in_analysis_tab: true
+generic_entity_meta_properties: NAME,DESCRIPTION
+
+```{r}
+data_armlevel_cna   <- read.table(file.path(dataset_path,"data_armlevel_cna.txt"),header=TRUE, sep="\t") 
+head(colnames(data_armlevel_cna))
+unique(data_armlevel_cna$ENTITY_STABLE_ID)
+```
+
+# Data_timeline_diagnosis
+```{r}
+data_timeline_diagnosis  <- read.table(file.path(dataset_path,"data_timeline_diagnosis.txt"),header=TRUE, sep="\t")                 
+colnames(data_timeline_diagnosis)
+```
+
+#data_timeline_specimen  
+```{r}
+data_timeline_treatment  <- read.table(file.path(dataset_path,"data_timeline_treatment.txt"),header=TRUE, sep="\t")                
+```
+
+
+```{r}
+data_timeline_prior_treatment  <- read.table(file.path(dataset_path,"data_timeline_prior_treatment.txt"),header=TRUE, sep="\t")           
+
+```
+```{r}
+
+data_timeline_death  <- read.table(file.path(dataset_path,"data_timeline_death.txt"),header=TRUE, sep="\t")       
+
+
+data_clinical_patient   <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t") 
+
+
+data_clinical_sample          <- read.table(file.path(dataset_path,"data_clinical_sample.txt"),header=TRUE, sep="\t")       
+
+
+data_focal_cna         <- read.table(file.path(dataset_path,"data_focal_cna.txt"),header=TRUE, sep="\t")               
+
+data_timeline_specimen  <- read.table(file.path(dataset_path,"data_timeline_specimen.txt"),header=TRUE, sep="\t")                 
+
+
+data_gene_panel_matrix  <- read.table(file.path(dataset_path,"data_gene_panel_matrix.txt"),header=TRUE, sep="\t")                  
+
+
+
+data_mrna_seq_tpm_zscores_ref_all_samples<- read.table(file.path(dataset_path,"data_mrna_seq_tpm_zscores_ref_all_samples.txt"),header=TRUE, sep="\t")
+head(data_mrna_seq_tpm_zscores_ref_all_samples)
+
+meta_mutations<- read.table(file.path(dataset_path,"meta_mutations.txt"),header=TRUE, sep="\t")
+
+data_mrna_seq_tpm<- read.table(file.path(dataset_path,"data_mrna_seq_tpm.txt"),header=TRUE, sep="\t")
+head(data_mrna_seq_tpm)
+
+meta_study<- read.table(file.path(dataset_path,"meta_study.txt"),header=TRUE, sep="\t")
+data_mutations<- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+meta_armlevel_cna  <- read.table(file.path(dataset_path,"meta_armlevel_cna.txt"),header=TRUE, sep="\t")                       
+meta_sv<- read.table(file.path(dataset_path,"meta_sv.txt"),header=TRUE, sep="\t")
+```
