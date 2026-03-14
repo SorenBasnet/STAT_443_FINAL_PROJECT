@@ -55,7 +55,8 @@ colnames(data_timeline_diagnosis)
 
 #data_timeline_specimen  
 ```{r}
-data_timeline_treatment  <- read.table(file.path(dataset_path,"data_timeline_treatment.txt"),header=TRUE, sep="\t")                
+data_timeline_treatment  <- read.table(file.path(dataset_path,"data_timeline_treatment.txt"),header=TRUE, sep="\t") 
+colnames(data_timeline_treatment)
 ```
 
 
