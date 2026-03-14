@@ -1,0 +1,16 @@
+---
+title: "dsc_file"
+output: html_document
+---
+DSC file for paitent_file_cna_rai file for predicting death within 5 years without mutation variables yet - data_patient_file_cna_rai.txt
+```{r}
+z <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/data_patient_file_cna_rai.txt",sep=" ",header=TRUE)
+nvars <- ncol(z)
+write("data_patient_file_cna_rai.txt",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/dsc_patient_file_cna_rai.txt")
+write("NA",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/dsc_patient_file_cna_rai.txt",append=TRUE)
+write("2",file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/dsc_patient_file_cna_rai.txt",append=TRUE)
+roles <- ifelse(sapply(z, function(x) is.numeric(x) | is.integer(x)), "n", "c")
+write.table(cbind(1:nvars,names(z),roles),file="/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/dsc_patient_file_cna_rai.txt",
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+
+```

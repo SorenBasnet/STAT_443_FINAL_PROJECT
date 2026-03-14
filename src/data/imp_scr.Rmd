@@ -25,3 +25,33 @@ col=rev(barcol[1:n]),horiz=TRUE,xlab="GUIDE importance scores")
 legend("bottomright",legend=leg.txt,fill=leg.col)
 
 ```
+
+
+
+```{r}
+library(arrow)
+df <- read_parquet("/Users/sorenbasnet/Downloads/taxi.parquet")
+yellow <- read_parquet("/Users/sorenbasnet/Downloads/yellow.parquet")
+head(yellow)
+colnames(df)
+```
+
+
+```{r}
+colnames(yellow)
+```
+
+```{r}
+
+green <- read_parquet("/Users/sorenbasnet/Downloads/green_tripdata_2024-01.parquet")
+head(green)
+colnames(green)
+```
+
+```{r}
+
+fhv <- read_parquet("/Users/sorenbasnet/Downloads/fhv_tripdata_2024-01.parquet")
+head(fhv)
+colnames(fhv)
+
+```

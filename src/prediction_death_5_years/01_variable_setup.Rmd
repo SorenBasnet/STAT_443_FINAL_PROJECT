@@ -60,6 +60,7 @@ Merge the 2 patient files
 patient_file <- left_join(data_unique, data_clinical_patient, by = "PATIENT_ID")
 length(unique(patient_file$PATIENT_ID))
 nrow(patient_file)
+colnames(patient_file)
 ```
 
 
@@ -90,8 +91,72 @@ length(unique(cna_t$SAMPLE_ID))
 
 Merge the patient file with cna_t file 
 ```{r}
-patient_file_cna <- merge(data_clinical_sample, cna_t, by = "SAMPLE_ID", all.x = TRUE)
+patient_file_cna <- merge(patient_file, cna_t, by = "SAMPLE_ID", all.x = TRUE)
+colnames(patient_file_cna)
 ```
+
+Rai Stage is another important variable required for good predicting
+```{r}
+data_timeline_treatment  <- read.table(file.path(dataset_path,"data_timeline_treatment.txt"),header=TRUE, sep="\t") 
+colnames(data_timeline_treatment)
+```
+
+Number of patients in the timeline_treatment df 
+```{r}
+nrow(data_timeline_treatment)
+length(unique(data_timeline_treatment$PATIENT_ID))
+```
+
+Left join the patient_file_cna and data_timeline_treatment
+```{r}
+patient_file_cna_rai <- merge(patient_file_cna, data_timeline_treatment, by="SAMPLE_ID", all.x = TRUE)
+colnames(patient_file_cna_rai)
+```
+
+Take some columns out
+```{r}
+patient_file_cna_rai <- patient_file_cna_rai %>% select(-PATIENT_ID.x, -PATIENT_ID.y, -CENTER, -EVENT_TYPE, -START_DATE, -STOP_DATE)
+```
+
+Remove any spaces or unwanted syntax
+```{r}
+
+patient_file_cna_rai <- patient_file_cna_rai %>% mutate(across(where(is.character), ~ gsub(",", "__", .)))
+patient_file_cna_rai <- patient_file_cna_rai %>% mutate(across(where(is.character), ~ gsub(" ", "__", .)))
+patient_file_cna_rai <- patient_file_cna_rai %>% mutate(across(where(is.character), ~ gsub("-", "_", .)))
+patient_file_cna_rai <- patient_file_cna_rai %>% mutate(across(where(is.character), ~ gsub("/", "_", .)))
+```
+
+Make the OS_Survival for 5 years of less into 1 or 0 
+```{r}
+patient_file_cna_rai$surv_5yrs <- pmin(patient_file_cna_rai$OS_MONTHS, 60)
+patient_file_cna_rai$surv_5yrs <- as.numeric(patient_file_cna_rai$surv_5yrs)
+summary(patient_file_cna_rai$surv_5yrs)
+print("=====================================")
+
+patient_file_cna_rai$death_5yr <- ifelse(patient_file_cna_rai$OS_STATUS == "DECEASED" & patient_file_cna_rai$OS_MONTHS <= 60, 1, 0)
+patient_file_cna_rai$death_5yr <- as.numeric(patient_file_cna_rai$death_5yr)
+summary(patient_file_cna_rai$death_5yr)
+
+
+
+```
+```{r}
+patient_file_cna_rai[is.na(patient_file_cna_rai)] <- NA
+patient_file_cna_rai$AGE_SAMPLING <- as.numeric(patient_file_cna_rai$AGE_SAMPLING)
+```
+
+
+Write the patient_file_cna_rai to prediction_death_5_years dataset 
+```{r}
+write.table(patient_file_cna_rai, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/data_patient_file_cna_rai.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
+
+```{r}
+unique(patient_file_cna_rai$AGE_SAMPLING)
+```
+
+
 
 
 
