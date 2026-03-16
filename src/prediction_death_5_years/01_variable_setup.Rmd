@@ -143,6 +143,7 @@ summary(patient_file_cna_rai$death_5yr)
 ```
 ```{r}
 patient_file_cna_rai[is.na(patient_file_cna_rai)] <- NA
+patient_file_cna_rai[patient_file_cna_rai == ""] <- NA
 patient_file_cna_rai$AGE_SAMPLING <- as.numeric(patient_file_cna_rai$AGE_SAMPLING)
 ```
 
@@ -152,9 +153,22 @@ Write the patient_file_cna_rai to prediction_death_5_years dataset
 write.table(patient_file_cna_rai, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years/data_patient_file_cna_rai.txt", sep=" ", row.names = FALSE, quote = FALSE)
 ```
 
+
+Summary of cna and death event 
 ```{r}
-unique(patient_file_cna_rai$AGE_SAMPLING)
+colnames(patient_file_cna_rai)
+table(patient_file_cna_rai$`17p_status`, patient_file_cna_rai$death_5yr)
+
+chisq.test(table(patient_file_cna_rai$`17p_status`,
+                 patient_file_cna_rai$death_5yr))
+
+
+library(epitools)
+oddsratio(table(patient_file_cna_rai$`17p_status`,
+                patient_file_cna_rai$death_5yr))
 ```
+
+
 
 
 
