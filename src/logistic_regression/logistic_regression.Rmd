@@ -1,0 +1,49 @@
+---
+title: "logistic_regression"
+output: html_document
+---
+
+Import required library 
+```{r}
+library(dplyr)
+```
+
+Global file path 
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years"
+dataset_filename <- "data_patient_file_cna_rai.txt"
+```
+
+#Datasets
+
+This requires a file that has a one hot coded column - surv5yrs 
+
+surv5yrs := 1{ patient died within 5 years of diagnosis }
+
+```{r}
+data_patient_clinical <- read.table(file.path(dataset_path, dataset_filename), header=TRUE, sep=" ")
+```
+
+Colnames
+```{r}
+colnames(data_patient_clinical)
+```
+
+We need to subset a little but of columns 
+
+```{r}
+data_patient_clinical <- data_patient_clinical %>% select(-c(ONCOTREE_CODE, DISEASE_TYPE, SOMATIC_STATUS,CLL_EPITYPE,TUMOR_MOLECULAR_SUBTYPE,SEQUENCING_PLATFORM,RNA_SEQUENCING,RRBS,ARRAY450K, M.CLL_WES,U.CLL_WES,EC_DISCOVERY,EC_EXTENSION,IGLV3_21_R110,COHORT,CANCER_TYPE,CANCER_TYPE_DETAILED,TREATMENT_STATUS,PRIOR_TREATMENT_CATEGORY,SAMPLE_ID))
+
+data_patient_clinical <- data_patient_clinical %>% select(-c(OS_STATUS,OS_MONTHS,DEATH_DAYS))
+
+head(data_patient_clinical)
+```
+
+Logistic regression 
+```{r}
+
+m1 <- glm(death_5yr ~ ., data=data_patient_clinical, family="binomial")
+summary(m1)
+
+```
+

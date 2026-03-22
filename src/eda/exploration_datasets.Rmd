@@ -1,15 +1,21 @@
 ---
 title: "exploration_datasets"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
+# Exploratory Data Analysis of Datasets used
+
 Import required library
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(dplyr)
 library(gtsummary)
 library(kableExtra)
+library(ggplot2)
 ```
 
+Global path variable to the data set 
 ```{r}
 dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
 ```
@@ -21,14 +27,94 @@ data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample
 data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
 ```
 
+Number of patients with MBL and CLL respectively - data_clinical_sample
 ```{r}
+ggplot(data_clinical_sample, aes(x=DISEASE_TYPE)) +
+         geom_bar() + 
+  geom_text(stat = 'count', aes(label = after_stat(count)), vjust = -0.5, size=3.5) + 
+  # using a color palette 
+  scale_fill_viridis_d(option="mako", begin =0.2, end=0.8) + 
+  theme_minimal(base_size = 14) + 
+  labs(
+    title = "Distribution of Disease Types",
+    subtitle = "Sorted by prevalence in clinical samples",
+    x = NULL, # Removes the redundant 'DISEASE_TYPE' label
+    y = "Number of Cases"
+  ) +
+  # Clean up the grid and rotate labels if they are long
+  theme(
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
 
+
+library(ggplot2)
+library(forcats) # This is key for the sorting "magic"
+
+ggplot(data_clinical_sample, aes(y = fct_rev(fct_infreq(DISEASE_TYPE)), fill = DISEASE_TYPE)) +
+  geom_bar(show.legend = FALSE) +
+  # Adds the actual numbers inside/at the end of the bars
+  geom_text(stat = 'count', aes(label = after_stat(count)), hjust = -0.2, size = 4) +
+  # A sleek, professional color palette
+  scale_fill_
+  scale_fill_viridis_d(option = "mako", begin = 0.3, end = 0.7) +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Disease Type Distribution",
+    subtitle = "Sorted by frequency",
+    x = "Number of Cases",
+    y = NULL
+  ) +
+  # Extra clean-up
+  theme(panel.grid.minor = element_blank())
+  
+  
+  
+library(ggplot2)
+
+ggplot(data_clinical_sample, aes(x = DISEASE_TYPE)) +
+  geom_bar(fill = "#4C78A8", width = 0.65) +
+  labs(
+    title = "Disease Distribution",
+    x = "Disease Type",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+
+
+ggplot(df, aes(x = reorder(disease, -..count..))) +
+  geom_bar(fill = "#2A9D8F", width = 0.65) +
+  labs(
+    title = "Disease Cohort Composition",
+    x = NULL,
+    y = "Number of Patients"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    panel.grid.major.x = element_blank()
+  )
+
+```
+
+
+
+May not use this for this stage of the project. 
+Important file, should come back to it later. 
+```{r}
 data_sv <- read.delim(file.path(dataset_path, "data_sv.txt"))
 colnames(data_sv)
 ```
 
 
-# data_armlevel_cna
+# data_armlevel_cna - will be using this one
 
 cancer_study_identifier: cll_broad_2022
 genetic_alteration_type: GENERIC_ASSAY
@@ -45,7 +131,19 @@ generic_entity_meta_properties: NAME,DESCRIPTION
 data_armlevel_cna   <- read.table(file.path(dataset_path,"data_armlevel_cna.txt"),header=TRUE, sep="\t") 
 head(colnames(data_armlevel_cna))
 unique(data_armlevel_cna$ENTITY_STABLE_ID)
+head(data_armlevel_cna)
+
 ```
+I will be using arm level cna for now. 
+```{r}
+data_focal_cna <- read.table(file.path(dataset_path,"data_focal_cna.txt"),header=TRUE, sep="\t")     
+colnames(data_focal_cna)
+head(data_focal_cna)
+
+```
+
+Conclusion : I will be using arm level cna 
+link : https://chatgpt.com/share/69bec9a3-62ec-8011-9869-7d6b2c0aa5f0
 
 # Data_timeline_diagnosis
 ```{r}
@@ -62,38 +160,22 @@ colnames(data_timeline_treatment)
 
 ```{r}
 data_timeline_prior_treatment  <- read.table(file.path(dataset_path,"data_timeline_prior_treatment.txt"),header=TRUE, sep="\t")           
-
+colnames(data_timeline_prior_treatment)
 ```
+
+Use mrna seq tpm as well. it shows the level at which the genes are expressed 
 ```{r}
-
-data_timeline_death  <- read.table(file.path(dataset_path,"data_timeline_death.txt"),header=TRUE, sep="\t")       
-
-
-data_clinical_patient   <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t") 
-
-
-data_clinical_sample          <- read.table(file.path(dataset_path,"data_clinical_sample.txt"),header=TRUE, sep="\t")       
-
-
-data_focal_cna         <- read.table(file.path(dataset_path,"data_focal_cna.txt"),header=TRUE, sep="\t")               
-
-data_timeline_specimen  <- read.table(file.path(dataset_path,"data_timeline_specimen.txt"),header=TRUE, sep="\t")                 
-
-
-data_gene_panel_matrix  <- read.table(file.path(dataset_path,"data_gene_panel_matrix.txt"),header=TRUE, sep="\t")                  
-
-
-
-data_mrna_seq_tpm_zscores_ref_all_samples<- read.table(file.path(dataset_path,"data_mrna_seq_tpm_zscores_ref_all_samples.txt"),header=TRUE, sep="\t")
-head(data_mrna_seq_tpm_zscores_ref_all_samples)
-
-meta_mutations<- read.table(file.path(dataset_path,"meta_mutations.txt"),header=TRUE, sep="\t")
-
 data_mrna_seq_tpm<- read.table(file.path(dataset_path,"data_mrna_seq_tpm.txt"),header=TRUE, sep="\t")
 head(data_mrna_seq_tpm)
-
-meta_study<- read.table(file.path(dataset_path,"meta_study.txt"),header=TRUE, sep="\t")
-data_mutations<- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
-meta_armlevel_cna  <- read.table(file.path(dataset_path,"meta_armlevel_cna.txt"),header=TRUE, sep="\t")                       
-meta_sv<- read.table(file.path(dataset_path,"meta_sv.txt"),header=TRUE, sep="\t")
+colnames(data_mrna_seq_tpm)
 ```
+
+
+```{r}
+data_timeline_death  <- read.table(file.path(dataset_path,"data_timeline_death.txt"),header=TRUE, sep="\t")       
+colnames(data_timeline_death)
+
+data_timeline_specimen  <- read.table(file.path(dataset_path,"data_timeline_specimen.txt"),header=TRUE, sep="\t")      
+```
+
+
