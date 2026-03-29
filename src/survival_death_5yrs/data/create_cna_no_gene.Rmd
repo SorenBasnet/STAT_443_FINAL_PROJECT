@@ -66,6 +66,8 @@ data_patient_cna$surv_5yrs <- pmin(data_patient_cna$OS_MONTHS, 60)
 data_patient_cna$surv_5yrs <- as.numeric(data_patient_cna$surv_5yrs)
 data_patient_cna$death_5yr <- ifelse(data_patient_cna$OS_STATUS == "DECEASED" & data_patient_cna$OS_MONTHS <= 60, 1, 0)
 data_patient_cna$death_5yr <- as.numeric(data_patient_cna$death_5yr)
+
+unique(data_patient_cna$U_CLL_WES)
 ```
 
 

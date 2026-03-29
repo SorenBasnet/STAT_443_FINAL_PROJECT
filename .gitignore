@@ -18,5 +18,13 @@
 
 .Rproj.user
 
-/data
+/data/interim
+/data/cna_survival_curve_guide
+/data/genetic_contributors_2
+/data/prediction_death_5_years 
+/data/raw
+/data/genetic_contributors
+/data/interim
+/data/processed
+
 /STAT_443_FINAL_PROJECT.Rproj
