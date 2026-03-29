@@ -104,6 +104,37 @@ ggplot(df, aes(x = reorder(disease, -..count..))) +
 
 ```
 
+Drawing plots again 
+```{r}
+# 1. Open a PNG file "device" with high resolution (300 DPI)
+# Note: I've increased the pixel dimensions to account for the higher resolution
+png("disease_plot.png", width = 2400, height = 1800, res = 300)
+
+# 2. Increase margins (6,6,6,6) as you requested
+par(mar = c(6, 6, 6, 6))
+
+# 3. Summarize the data
+disease_counts <- table(data_clinical_sample$DISEASE_TYPE)
+
+# 4. Basic barplot 
+my_bar <- barplot(disease_counts, 
+                  border = FALSE, 
+                  las = 2, 
+                  main = "Frequency of Disease Types", 
+                  col = "skyblue")
+# 1. Allow drawing in the margins
+par(xpd = TRUE)
+
+# 5. Legend
+legend("topright",
+       legend = c("CLL", "MBL"), 
+       fill = "skyblue", # Added fill to match your bars
+       bty = "o", 
+       inset = c(0.00, -0.20))
+
+# 6. Save the file
+dev.off()
+```
 
 
 May not use this for this stage of the project. 

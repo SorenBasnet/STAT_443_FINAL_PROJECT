@@ -1,0 +1,90 @@
+---
+title: "create_cna_no_gene"
+output: html_document
+---
+
+
+Import required library 
+```{r}
+import(dplyr)
+```
+
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/genetic_contributors"
+dataset_path_raw <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+
+Read in data files
+```{r}
+data_patient_mutations <- read.table(file.path(dataset_path,"data_patient_mutation_march_8.txt"),header=TRUE, sep=" ")
+```
+
+
+Datafile head
+```{r}
+head(data_patient_mutations)
+colnames(data_patient_mutations)
+```
+
+
+Subset file - to create part a) of datafile 
+```{r}
+data_patient_cna <- data_patient_mutations[, 1:40]
+colnames(data_patient_cna)
+```
+
+Add rai stage to the data_patient_cna 
+```{r}
+data_timeline_treatment  <- read.table(file.path(dataset_path_raw,"data_timeline_treatment.txt"),header=TRUE, sep="\t") 
+colnames(data_timeline_treatment)
+print("---------------------------------")
+data_timeline_diagnosis  <- read.table(file.path(dataset_path_raw,"data_timeline_diagnosis.txt"),header=TRUE, sep="\t")             
+colnames(data_timeline_diagnosis)
+```
+Make total rai stage file
+```{r}
+total_rai <- left_join(data_timeline_diagnosis, data_timeline_treatment, by=c("PATIENT_ID"))
+total_rai <- total_rai %>% select(c(PATIENT_ID, RAI_AT_DIAGNOSIS, RAI_AT_SAMPLING))
+head(total_rai)
+
+remove(data_timeline_diagnosis)
+remove(data_timeline_treatment)
+```
+
+Left join data_patient_cna with rai state
+```{r}
+data_patient_cna <- left_join(data_patient_cna, total_rai, by=c("PATIENT_ID"))
+head(data_patient_cna)
+```
+
+
+Recode for death within 5 years of df - data_patient_cna 
+```{r}
+data_patient_cna$surv_5yrs <- pmin(data_patient_cna$OS_MONTHS, 60)
+data_patient_cna$surv_5yrs <- as.numeric(data_patient_cna$surv_5yrs)
+data_patient_cna$death_5yr <- ifelse(data_patient_cna$OS_STATUS == "DECEASED" & data_patient_cna$OS_MONTHS <= 60, 1, 0)
+data_patient_cna$death_5yr <- as.numeric(data_patient_cna$death_5yr)
+```
+
+
+Recode for death within 5 years - for part b) of the file
+```{r}
+data_patient_mutations$surv_5yrs <- pmin(data_patient_mutations$OS_MONTHS, 60)
+data_patient_mutations$surv_5yrs <- as.numeric(data_patient_mutations$surv_5yrs)
+data_patient_mutations$death_5yr <- ifelse(data_patient_mutations$OS_STATUS == "DECEASED" & data_patient_mutations$OS_MONTHS <= 60, 1, 0)
+data_patient_mutations$death_5yr <- as.numeric(data_patient_mutations$death_5yr)
+```
+
+
+Save the datafile now 
+```{r}
+
+write.table(data_patient_cna, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/survival_death_5yrs/data_patient_cna.txt", sep=" ", row.names = FALSE, quote = FALSE)
+
+write.table(data_patient_mutations, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/survival_death_5yrs/data_patient_mutations.txt", sep=" ", row.names = FALSE, quote = FALSE)
+
+```
+
+

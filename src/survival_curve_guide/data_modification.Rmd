@@ -20,6 +20,12 @@ data_patient_mutations <- read.table(file.path(dataset_path,"data_patient_mutati
 ```
 
 
+Datafile 
+```{r}
+head(data_patient_mutations)
+```
+
+
 Recode for death within 5 years 
 ```{r}
 data_patient_mutations$surv_5yrs <- pmin(data_patient_mutations$OS_MONTHS, 60)
@@ -34,7 +40,10 @@ summary(data_patient_mutations$surv_5yrs)
 summary(data_patient_mutations$death_5yr)
 
 ```
-
+Save the datafile now 
+```{r}
+write.table(data_patient_mutations, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/survival_curve_guide/data_patient_mutations_5yrs.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
 
 Trying to test run with Cox survival 
 ```{r}
