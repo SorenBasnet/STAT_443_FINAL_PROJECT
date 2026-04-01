@@ -1,0 +1,21 @@
+cll_board_2022/ \
+├── case_lists/ \
+│   ├── cases_all.txt \
+│   ├── cases_RNA_Seq_v2_mRNA.txt \
+│   ├── cases_sequenced.txt \
+│   └── cases_sv.txt \
+├── **data_armlevel_cna.txt** \
+├── **data_clinical_patient.txt** \
+├── **data_clinical_sample.txt** \
+├── **data_focal_cna.txt** \
+├── data_gene_panel_matrix.txt \
+├── data_mrna_seq+tpm_zscores_ref_all_samples.txt \
+├── data_mrna_seq_tpm.txt \
+├── **data_mutations.txt** \
+├── data_sv.txt \
+├── data_timeline_death.txt \
+├── **data_timeline_diagnosis.txt** \
+├── data_timeline_prior_treatment.txt \
+├── data_time_line_specimen.txt \
+├── data_timeline_treatment.txt \
+└── meta_file (other) \

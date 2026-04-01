@@ -1,0 +1,112 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Identification of CLL and MBL drivers to the survival of 5 years},
+  pdfauthor={Soren Basnet},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Identification of CLL and MBL drivers to the survival of 5 years}
+\author{Soren Basnet}
+\date{}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Abstract}\label{abstract}
+
+This report explores patients and genomic dataset of \textasciitilde1000
+patients of chronic lymphocytic leukemia and Monoclonal B-cell
+Lymphocytosis. Primarily affecting population of European Heritage,
+chronic lymphocytic leukemia is a form of luekemia that affects blood
+and bone marrow. Monoclonal B-cell Lymphocytosis is a precursor to the
+chronic lymphocytic leukemia. This paper used GUIDE to determine
+importance score of variables towards survival of patients surviving 5
+years after the diagnosis date. This paper also used guide to plot
+survival plots and determine factors affecting survival from the data
+used.
+
+Through importance score, it was found that \textbf{\emph{, }}, and
+\_\_\_ were top contributors towards determining survival of the
+patients. This remains to be consistent with the prevalent literature on
+CLL but clinical examination and determination is required to further
+biomechanistic determination. Several varaibles \textbf{\emph{, }}, \_\_
+were also present in the survival curve which contributed to the poor
+diagnosis of the survival.
+
+\subsubsection{Data}\label{data}
+
+Data source :
+
+Data contained several files and folders in the following manner :\\
+
+cll\_board\_2022/ ├── case\_lists/ │ ├── cases\_all.txt │ ├──
+cases\_RNA\_Seq\_v2\_mRNA.txt │ ├── cases\_sequenced.txt │ └──
+cases\_sv.txt ├── data\_armlevel\_cna.txt ├──
+data\_clinical\_patient.txt ├── data\_clinical\_sample.txt ├──
+data\_focal\_cna.txt ├── data\_gene\_panel\_matrix.txt ├──
+data\_mrna\_seq+tpm\_zscores\_ref\_all\_samples.txt ├──
+data\_mrna\_seq\_tpm.txt ├── data\_mutations.txt ├── data\_sv.txt ├──
+data\_timeline\_death.txt ├── data\_timeline\_diagnosis.txt ├──
+data\_timeline\_prior\_treatment.txt ├── data\_time\_line\_specimen.txt
+├── data\_timeline\_treatment.txt └── meta\_file (other)
+
+\end{document}
