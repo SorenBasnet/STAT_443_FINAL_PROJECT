@@ -11,7 +11,7 @@ data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patien
 data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
 
 # See what patient ID are getting repeated 
-# table(data_clinical_sample$PATIENT_ID)[table(data_clinical_sample$PATIENT_ID) > 1]
+# .table(data_clinical_sample$PATIENT_ID)[table(data_clinical_sample$PATIENT_ID) > 1]
 
 dup_ids <- data_clinical_sample$PATIENT_ID[duplicated(data_clinical_sample$PATIENT_ID)]
 data_dups <- data_clinical_sample[data_clinical_sample$PATIENT_ID %in% dup_ids, ]
@@ -48,8 +48,7 @@ total_rai <- merge(data_timeline_diagnosis, data_timeline_treatment, by="PATIENT
 total_rai$SAMPLE_ID <- total_rai$SAMPLE_ID.x
 total_rai <- total_rai %>% select(-PATIENT_ID, -START_DATE.x, -START_DATE.y, 
                                   -STOP_DATE.x, -STOP_DATE.y, -EVENT_TYPE.x, -EVENT_TYPE.y, 
-                                  -AGE_AT_DIAGNOSIS, -TREATMENT_STATUS_AT_SAMPLING, 
-                                  -FIRST_TREATMENT_AFTER_SAMPLING, -SAMPLE_ID.y, -SAMPLE_ID.x)
+                                  -AGE_AT_DIAGNOSIS, -SAMPLE_ID.y, -SAMPLE_ID.x)
 
 
 # Left join the patient_file_cna and data_timeline_treatment
@@ -75,6 +74,7 @@ patient_file_cna_rai$AGE_SAMPLING <- as.numeric(patient_file_cna_rai$AGE_SAMPLIN
 
 # Write the patient_file_cna_rai to prediction_death_5_years dataset 
 write.table(patient_file_cna_rai, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai/patient_file_cna_rai.txt", sep=" ", row.names = FALSE, quote = FALSE)
+write.table(patient_file_cna_rai, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/importance_score/pat_cna/patient_file_cna_rai.txt", sep=" ", row.names = FALSE, quote = FALSE)
 
 
 
