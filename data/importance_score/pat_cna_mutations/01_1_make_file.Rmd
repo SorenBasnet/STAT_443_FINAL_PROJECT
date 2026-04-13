@@ -1,0 +1,9 @@
+---
+title: "01_1_make_file"
+output: html_document
+---
+
+```{r}
+data <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/importance_score/pat_cna/patient_cna_rai_mutation.txt", header=TRUE, sep=" ")
+colnames(data)
+```

@@ -1,0 +1,15 @@
+---
+title: "01_1_pat_summary"
+output: html_document
+---
+
+```{r}
+data <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/importance_score/pat/patient_file.txt", header=TRUE, sep=" ")
+```
+
+```{r}
+cols <- c(3:5, 10:24, 28:29, 31:37)
+data[cols] <- lapply(data[cols], factor)
+
+summary(data)
+```

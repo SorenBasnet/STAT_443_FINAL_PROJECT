@@ -16,6 +16,8 @@ Through importance score, it was found that ___, ___, and ___ were top contribut
 
 Through the application of GUIDE importance scores, it was determined that age at diagnosis, IGHV mutation status, and Binet stage were the top predictors of 5-year survival. These findings are consistent with prevalent CLL literature, though clinical validation is required for further biomechanistic determination. Additionally, the survival curves identified several key variables—specifically del(17p) status, TP53 mutation, and elevated Beta-2 Microglobulin—which contributed significantly to a poor prognosis. These factors played a decisive role in the recursive partitioning of the patient cohort, highlighting the interplay between clinical staging and genomic aberrations in determining long-term outcomes
 
+data/impscr/pat
+The GUIDE model identified IGHV mutation status as the most significant predictor of 5-year mortality (Rank 1), followed closely by CLL epitype and Whole Exome Sequencing (WES) subtypes (M_CLL_WES and U_CLL_WES). Beyond these core biological markers, patient age and treatment-related factors (including treatment status and prior treatment category) appeared as secondary but vital contributors to the model’s predictive accuracy. The classification matrix demonstrated robust model performance, successfully identifying the majority of the survival outcomes with high specificity.
 
 
 

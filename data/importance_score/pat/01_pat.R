@@ -27,6 +27,7 @@ data_timeline_diagnosis  <- read.table(file.path(dataset_path_raw,"data_timeline
 # Make total rai stage file
 total_rai <- left_join(data_timeline_diagnosis, data_timeline_treatment, by=c("PATIENT_ID"))
 total_rai <- total_rai %>% select(c(PATIENT_ID, RAI_AT_DIAGNOSIS, RAI_AT_SAMPLING))
+total_rai$PATIENT_ID <- gsub("-", "_", total_rai$PATIENT_ID)
 
 #Left join data_patient_cna with rai state
 data_patient_cna <- left_join(patient_file, total_rai, by=c("PATIENT_ID"))

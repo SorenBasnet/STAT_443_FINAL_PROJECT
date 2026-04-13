@@ -1,0 +1,80 @@
+---
+title: "visualize_missing_data"
+output: html_document
+---
+
+
+```{r}
+data <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/importance_score/pat_cna/patient_file_cna_rai.txt", header=TRUE, sep=" ")
+```
+
+
+```{r}
+library(VIM)
+par(cex=0.7)
+aggr(data)
+```
+
+
+
+```{r}
+#par(cex = 0.8)  # slightly bigger text
+#par(mar = c(10, 4, 4, 2) + 0.1, cex = 0.8)
+
+# 2. Set margins: c(bottom, left, top, right)
+par(mar = c(12, 5, 2, 2), cex = 0.8)
+#aggr(data,
+#     col = c("skyblue", "red"),     # blue = observed, red = missing
+#     numbers = TRUE,                # show counts
+#     sortVars = TRUE,               # sort by missingness
+#     labels = names(data),          # variable names
+#     cex.axis = 0.7,                # axis text size
+#     gap = 3,                       # spacing between bars
+#     ylab = c("Missing data", "Pattern"))
+
+
+aggr(data,
+     col = c("skyblue", "red"),
+     numbers = TRUE,
+     sortVars = TRUE,
+     labels = names(data),
+     cex.axis = 0.6,   # Smaller text helps labels fit
+     gap = 2,          # Reduced gap can help squeeze more in
+     ylab = c("Missing Data", "Pattern"))
+```
+
+
+
+```{r}
+aggr(data,
+     col = c("gray90", "red"),
+     numbers = TRUE,
+     sortVars = TRUE,
+     combined = TRUE)
+```
+
+
+
+```{r}
+library(naniar)
+
+gg_miss_var(data)          # missing by variable
+gg_miss_case(data)         # missing by observation
+vis_miss(data)             # heatmap-style
+```
+
+
+```{r}
+gg_miss_var(data, facet = death_5yr)
+```
+
+
+
+
+
+
+
+
+
+
+

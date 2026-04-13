@@ -6,8 +6,8 @@ output: html_document
 ```{r}
 library(survival)
 library(readr)
-z0 <- read_table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/survival_curve_guide/data_patient_file_cna_rai.txt")
-z1 <- read_table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/survival_curve_guide/fit.txt")
+z0 <- read_table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/cna_survival_curve_guide/data_patient_file_cna_rai.txt")
+z1 <- read_table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/cna_survival_curve_guide/fit.txt")
 
 nodenum <- unique(sort(z1$node))
 leg.txt <- paste("Node",nodenum)

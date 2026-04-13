@@ -6,6 +6,7 @@
 	- UPDATE : adding Rai stage to the both files in a) and b)
 	- added Rai stage for 1) cna files but no gene files 
 
+
 - Analysis : 
 	1) Logistic Regression 
 	2) Cox proportional hazard ( R package )
@@ -15,4 +16,11 @@
 			  	     error file
 
 - Plot graphics ( Kaplan Mier Survival curve )
+
+UPDATE - very good result for input_pat_cna.txt 
+			      output_pat_cna.txt 
+			      tree_pat_cna.txt 
+			      used file : data_patient_cna.txt 
+			      dsc_file : dsc_data_patient_cna.txt 
+
 

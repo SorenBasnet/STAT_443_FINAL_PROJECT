@@ -59,6 +59,72 @@ cox_model <- coxph(
 summary(cox_model)
 ```
 
+Fit a Kaplan Meier Curve - IGHV MUTATION STATUS 
+```{r}
+
+colnames(data_patient_mutations)
+# Load the necessary library for plotting
+library(survminer)
+
+# 1. Create the survival fit object 
+# Here we group by IGHV_MUTATION_STATUS
+km_fit <- survfit(Surv(surv_5yrs, death_5yr) ~ NOTCH1 + TP53BP2 + TP53INP2 + TP53TG5, 
+                  data = data_patient_mutations)
+
+
+coxph(Surv(surv_5yrs, death_5yr) ~ 
+      NOTCH1 + TP53BP2 + TP53INP2 + TP53TG5,
+      data = data_patient_mutations)
+
+survdiff(Surv(surv_5yrs, death_5yr) ~ NOTCH1, 
+         data = data_patient_mutations)
+
+coxph(Surv(surv_5yrs, death_5yr) ~ NOTCH1 + TP53BP2 + TP53INP2 + TP53TG5, 
+      data = data_patient_mutations)
+
+# 2. Plot the curve
+ggsurvplot(
+  km_fit, 
+  data = data_patient_mutations,
+  risk.table = TRUE,       # Adds a table showing subjects at risk
+  pval = TRUE,             # Adds the Log-rank test p-value
+  conf.int = TRUE,         # Adds confidence intervals
+  palette = c("#E7B800", "#2E9FDF"), # Custom colors
+  title = "Kaplan-Meier Survival Curve by Presence of Gene - NOTCH1",
+  xlab = "Time (Years)",
+  ylab = "Survival Probability"
+)
+
+data_patient_mutations[grep("TP", data_patient_mutations$gene_column), ]
+```
+
+Fit a Kaplan Mier Cruve - gene 
+```{r}
+# Load the necessary library for plotting
+library(survminer)
+
+# 1. Create the survival fit object 
+# Here we group by IGHV_MUTATION_STATUS
+km_fit <- survfit(Surv(surv_5yrs, death_5yr) ~ IGHV_MUTATION_STATUS, 
+                  data = data_patient_mutations)
+
+# 2. Plot the curve
+ggsurvplot(
+  km_fit, 
+  data = data_patient_mutations,
+  risk.table = TRUE,       # Adds a table showing subjects at risk
+  pval = TRUE,             # Adds the Log-rank test p-value
+  conf.int = TRUE,         # Adds confidence intervals
+  palette = c("#E7B800", "#2E9FDF"), # Custom colors
+  title = "Kaplan-Meier Survival Curve by IGHV Mutation Status",
+  xlab = "Time (Years)",
+  ylab = "Survival Probability"
+)
+
+grep("TP53", colnames(data_patient_mutations), value = TRUE)
+
+```
+
 
 ```{r}
 
@@ -129,6 +195,27 @@ plot(fit, col=c("blue","red"), lwd=2,
      xlab="Months", ylab="Survival Probability")
 legend("bottomleft", legend=c("No mutation","Mutation"),
        col=c("blue","red"), lwd=2)
+```
+
+
+```{r}
+data = read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/cna_survival_curve_guide/data_patient_file_cna_rai.txt", header=TRUE, sep=" ")
+
+km_fit <- survfit(Surv(surv_5yrs, death_5yr) ~ X17p_status, 
+                  data = data)
+
+# 2. Plot the curve
+ggsurvplot(
+  km_fit, 
+  data = data,
+  risk.table = TRUE,       # Adds a table showing subjects at risk
+  pval = TRUE,             # Adds the Log-rank test p-value
+  conf.int = TRUE,         # Adds confidence intervals
+  palette = c("#E7B800", "#2E9FDF"), # Custom colors
+  title = "Kaplan-Meier Survival Curve by 17p_status",
+  xlab = "Time (Years)",
+  ylab = "Survival Probability"
+)
 ```
 
 
