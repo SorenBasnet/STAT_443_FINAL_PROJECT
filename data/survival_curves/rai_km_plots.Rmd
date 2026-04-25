@@ -1,0 +1,86 @@
+---
+title: "km_plots"
+output: html_document
+---
+
+Import required library
+```{r}
+library(survival)
+library(survminer)
+```
+
+Load datafile 
+```{r}
+data <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai/patient_file_cna_rai.txt", header=TRUE, sep=" ")
+
+head(data)
+colnames(data)
+summary(data$OS_MONTHS)
+summary(data$surv_5yrs)
+summary(data$death_5yr)
+```
+
+Create survival object 
+```{r}
+fit <- survfit(Surv(surv_5yrs, death_5yr) ~ data$RAI_AT_SAMPLING, data=data)
+
+ggsurvplot(
+  fit,
+  data = data,
+  pval = TRUE,              # shows log-rank test
+  risk.table = TRUE,        # number at risk table
+  conf.int = TRUE,          # confidence intervals
+  xlab = "Time (months)",
+  ylab = "Overall Survival Probability",
+  legend.title = "Rai Stage"
+)
+```
+
+This Kaplan-Meier plot illustrates that the Rai Stage at the time of sampling has no statistically significant impact on Overall Survival Probability over a 60-month period, as evidenced by the high p-value of 0.61. Across all five stages (0–4), the survival rates remain remarkably high and stable, with all groups maintaining a survival probability above approximately 75% at the five-year mark. The extensive overlap of the confidence intervals and the staggered "step" declines across the different colored cohorts further confirm that, for this specific study population, clinical staging did not serve as a primary predictor of mortality outcomes within the observed timeframe.
+
+```{r}
+coxph(Surv(surv_5yrs, death_5yr) ~ RAI_AT_SAMPLING, data = data)
+```
+
+
+```{r}
+coxph(Surv(surv_5yrs, death_5yr) ~ RAI_AT_SAMPLING + AGE + SEX, data = data)
+```
+
+
+Key Takeaways :
+
+Rai Stage is Not Significant: In the first model (univariate), the Rai Stage has a p-value of 0.924. Even when adjusting for Age and Sex in the second model (multivariate), it remains non-significant (p=0.315). The Hazard Ratio (exp(coef)) of approximately 1.07 suggests that for every one-unit increase in Rai Stage, the risk of death increases by only about 7%, which is not statistically reliable here.
+
+Age is a Strong Predictor: Age is highly significant (p=1.59×10 
+−6
+ ). The Hazard Ratio of 1.043 indicates that for every additional year of age, the hazard (risk) of death increases by 4.3%. This effect is very precise and holds up under the multivariate model.
+
+Sex is Not Significant: There is no evidence of a survival difference between sexes (p=0.684).
+
+Missing Data Warning: A significant portion of your dataset—over 400 observations—was excluded due to missing values. This can sometimes introduce bias if the data isn't "missing at random," so it's worth checking if those patients differ systematically from the 689 included in the final model.
+
+
+# Making curves for coxph(Surv(surv_5yrs, death_5yr) ~ RAI_AT_SAMPLING + AGE + SEX, data=data)
+
+
+```{r}
+library(survminer)
+
+# 1. To create the Forest Plot
+model <- coxph(Surv(surv_5yrs, death_5yr) ~ RAI_AT_SAMPLING + AGE + SEX, data = data)
+ggforest(model, data = data)
+
+# 2. To create Adjusted Survival Curves by Rai Stage
+ggadjustedcurves(model, variable = "RAI_AT_SAMPLING", data = data)
+
+```
+
+
+
+
+
+
+
+
+

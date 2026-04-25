@@ -40,7 +40,7 @@ summary(as.factor(data_mutations$Hugo_Symbol))
 colnames(data_mutations)
 ```
 
-Dataframe for a CLL driver importance score
+Dataframe for a CLL driver importance score - Transpose the mutation matrix here
 ```{r}
 mutation_matrix <- data_mutations %>% select(Hugo_Symbol, Tumor_Sample_Barcode, Consequence)
 

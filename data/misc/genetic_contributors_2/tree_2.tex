@@ -1,0 +1,49 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 46.2 on 03/11/26 at 10:58
+ %%%% Usage: latex tree_2.tex, dvips tree_2.tex, ps2pdf tree_2.tex
+ %%%% or: xelatex tree_2.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree_2.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center} \footnotesize
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=.5cm,levelsep=50pt,radius=6pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{MX2}}\\$\leq_*$\texttt{0.5000}}}
+ }{
+ \Tcircle[fillcolor=red]{ 2 }
+    ~[tnpos=l]{\shortstack[r]{0.95\\0.05}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{3940}}}
+ \Tcircle[fillcolor=green]{ 3 }
+    ~[tnpos=r]{\shortstack[r]{0.25\\0.75}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{4}}}
+ }
+ \end{center}
+GUIDE v.46.2 importance scoring
+classification tree for predicting \texttt{\detokenize{DISEASE_TYPE}} using
+estimated priors
+and unit misclassification costs.
+ % Tree constructed from 3944 observations
+ % and pruned from a tree with 9 terminal nodes.
+ % Maximum number of split levels is 8 and minimum node sample size is 3.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Symbol `$\leq_*$' stands for `$\leq$ or missing'.
+Predicted class and sample size (in \emph{italics}) printed below each terminal node;
+class posterior probabilities for \texttt{\detokenize{DISEASE_TYPE}} =
+ \texttt{\detokenize{CLL}} and \texttt{\detokenize{MBL}} beside node.
+ %\end{landscape}
+ \end{document}

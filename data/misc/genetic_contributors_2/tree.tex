@@ -1,0 +1,83 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 46.2 on 03/11/26 at 10:06
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ \begin{landscape}
+ \begin{center} \footnotesize
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=.5cm,levelsep=50pt,radius=6pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{AGE}}\\=\texttt{\detokenize{NA}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V1}}\\$\leq$\texttt{106.30}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 4 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V2}}\\=\texttt{\detokenize{mutated}}}}
+ }{
+ \Tcircle[fillcolor=green]{ 8 }
+    ~[tnpos=l]{\shortstack[r]{0.06\\0.94}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{135}}}
+  \pstree[treemode=D]{\Tcircle{ 9 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V3}}\\$\leq$\texttt{55.65}}}
+ }{
+ \Tcircle[fillcolor=green]{\small 18}
+    ~[tnpos=l]{\shortstack[r]{0.07\\0.93}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{44}}}
+ \Tcircle[fillcolor=red]{\small 19}
+    ~[tnpos=r]{\shortstack[r]{0.77\\0.23}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{44}}}
+   }
+   }
+  \pstree[treemode=D]{\Tcircle{ 5 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{IGLV3_21_R110}}\\=\texttt{\detokenize{NA}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 10}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V4}}\\$\leq_*$\texttt{69.90}}}
+ }{
+ \Tcircle[fillcolor=red]{\small 20}
+    ~[tnpos=l]{\shortstack[r]{1.00\\0.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{5}}}
+ \Tcircle[fillcolor=green]{\small 21}
+    ~[tnpos=r]{\shortstack[r]{0.00\\1.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{4}}}
+   }
+ \Tcircle[fillcolor=red]{\small 11}
+    ~[tnpos=r]{\shortstack[r]{0.97\\0.03}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{276}}}
+   }
+   }
+ \Tcircle[fillcolor=red]{ 3 }
+    ~[tnpos=r]{\shortstack[r]{1.00\\0.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{3436}}}
+ }
+ \end{center}
+GUIDE v.46.2 importance scoring
+classification tree for predicting \texttt{\detokenize{DISEASE_TYPE}} using
+estimated priors
+and unit misclassification costs.
+ % Tree constructed from 3944 observations
+ % and pruned from a tree with 10 terminal nodes.
+ % Maximum number of split levels is 8 and minimum node sample size is 3.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Symbol `$\leq_*$' stands for `$\leq$ or missing'.
+\texttt{\detokenize{V1}} = \texttt{\detokenize{TUMOR_MEAN_COVERAGE}}.
+\texttt{\detokenize{V2}} = \texttt{\detokenize{IGHV_MUTATION_STATUS}}.
+\texttt{\detokenize{V3}} = \texttt{\detokenize{TUMOR_MEAN_COVERAGE}}.
+\texttt{\detokenize{V4}} = \texttt{\detokenize{NORMAL_MEAN_COVERAGE}}.
+Predicted class and sample size (in \emph{italics}) printed below each terminal node;
+class posterior probabilities for \texttt{\detokenize{DISEASE_TYPE}} =
+ \texttt{\detokenize{CLL}} and \texttt{\detokenize{MBL}} beside node.
+ \end{landscape}
+ \end{document}

@@ -104,3 +104,10 @@ print(paste("Guide forest error and SE =",gforest.mean,gforest.se),quote=FALSE)
 }
 }
 ```
+
+
+```{r}
+## IMPORTANT: choose mac or windows
+system("./guide < sim_importance.in > simcons.log") ## mac osx
+z1 <- read.table("simcons.fit",header=TRUE)
+```

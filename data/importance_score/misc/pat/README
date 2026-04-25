@@ -1,0 +1,17 @@
+Author : Soren Basnet
+Folder location : /Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/importance_score/pat
+Files :  
+    1) pat.R
+         a) Purpose : Used to make patient_file.txt, eliminates empty spaces, reformates variables. 
+	 b) Input : data_clinical_patient.txt and data_clinical_samples.txt
+	 c) Output : patient_file.txt in the same folder location. 
+
+
+
+
+for now 
+	input.txt, output.txt, imp_Scr.txt you see is done  patient_file.txt . 
+
+
+	 
+

@@ -12,4 +12,6 @@ head(data)
 colnames(data)
 
 summary(data$RAI_AT_SAMPLING)
+summary(as.factor(data$M.CLL_WES))
+summary(as.factor(data$U.CLL_WES))
 ```

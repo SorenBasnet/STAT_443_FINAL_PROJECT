@@ -1,0 +1,1 @@
+A survival tree model using death_5yr as the event and surv_5yrs as time did not identify any significant splits. Cross-validation selected a single-node tree, suggesting that none of the covariates, including RAI at diagnosis, provided sufficient predictive power for 5-year mortality in this dataset

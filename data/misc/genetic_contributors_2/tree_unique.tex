@@ -1,0 +1,79 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 46.2 on 03/11/26 at 21:48
+ %%%% Usage: latex tree_unique.tex, dvips tree_unique.tex, ps2pdf tree_unique.tex
+ %%%% or: xelatex tree_unique.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree_unique.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center} \footnotesize
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=.5cm,levelsep=50pt,radius=6pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{MX2}}\\$\leq_*$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{C2orf57}}\\=\texttt{\detokenize{NA}}}}
+ }{
+ \Tcircle[fillcolor=red]{ 4 }
+    ~[tnpos=l]{\shortstack[r]{0.98\\0.02}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{165}}}
+  \pstree[treemode=D]{\Tcircle{ 5 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{ANKS1B}}\\$\leq$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 10}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{NFIC}}\\$\leq$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 20}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{GLI3}}\\$\leq$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 40}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{MYO18B}}\\$\leq$\texttt{0.5000}}}
+ }{
+ \Tcircle[fillcolor=red]{\small 80}
+    ~[tnpos=l]{\shortstack[r]{0.96\\0.04}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{CLL}}}\\\emph{965}}}
+ \Tcircle[fillcolor=green]{\small 81}
+    ~[tnpos=r]{\shortstack[r]{0.33\\0.67}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{3}}}
+   }
+ \Tcircle[fillcolor=green]{\small 41}
+    ~[tnpos=r]{\shortstack[r]{0.33\\0.67}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{3}}}
+   }
+ \Tcircle[fillcolor=green]{\small 21}
+    ~[tnpos=r]{\shortstack[r]{0.33\\0.67}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{3}}}
+   }
+ \Tcircle[fillcolor=green]{\small 11}
+    ~[tnpos=r]{\shortstack[r]{0.40\\0.60}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{5}}}
+   }
+   }
+ \Tcircle[fillcolor=green]{ 3 }
+    ~[tnpos=r]{\shortstack[r]{0.25\\0.75}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{MBL}}}\\\emph{4}}}
+ }
+ \end{center}
+GUIDE v.46.2 importance scoring
+classification tree for predicting \texttt{\detokenize{DISEASE_TYPE}} using
+estimated priors
+and unit misclassification costs.
+ % Tree constructed from 1148 observations
+ % and pruned from a tree with 8 terminal nodes.
+ % Maximum number of split levels is 8 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Symbol `$\leq_*$' stands for `$\leq$ or missing'.
+Predicted class and sample size (in \emph{italics}) printed below each terminal node;
+class posterior probabilities for \texttt{\detokenize{DISEASE_TYPE}} =
+ \texttt{\detokenize{CLL}} and \texttt{\detokenize{MBL}} beside node.
+ %\end{landscape}
+ \end{document}

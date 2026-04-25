@@ -1,0 +1,36 @@
+---
+
+---
+
+
+
+```{r}
+# Load necessary libraries
+library(survival)
+library(survminer)
+
+# 1. Load the data (ensure the filename matches your actual file)
+fit_data <- read.table("fit_2.txt", header = TRUE, sep="", fill=TRUE)
+
+# 2. Convert 'event' to a numeric indicator for R (y = 1, n = 0)
+fit_data$event_num <- ifelse(fit_data$event == "y", 1, 0)
+
+# 3. Create the survival object and fit the model stratified by Node
+# Node 2 = Unmutated, Node 3 = Mutated
+km_fit <- survfit(Surv(observed, event_num) ~ node, data = fit_data)
+
+# 4. Generate the Kaplan-Meier Plot
+ggsurvplot(
+  km_fit,
+  data = fit_data,
+  xlim = c(0, 60),               # Limit X-axis to your 5-year window
+  ylim = c(0.5, 1),              # Median survival was 60+, so zoom in on top half
+  xlab = "Observed Months",
+  ylab = "Survival Probability",
+  legend.labs = c("Unmutated (Node 2)", "Mutated (Node 3)"),
+  palette = c("#E7B800", "#2E9FDF"), # Distinct colors for the groups
+  ggtheme = theme_minimal()
+)
+```
+
+

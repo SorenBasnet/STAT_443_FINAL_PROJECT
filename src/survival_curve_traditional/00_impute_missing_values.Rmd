@@ -1,0 +1,59 @@
+---
+title: "impute_NA"
+output: html_document
+---
+
+```{r}
+library(survival)
+library(survminer)
+library(dplyr)
+library(VIM)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai"
+```
+
+```{r}
+data <- read.table(file.path(dataset_path,"patient_file_cna_rai.txt"),header=TRUE, sep=" ")
+```
+
+
+
+Summary of the missing file
+```{r}
+
+#png("missingness_plot.png", width = 1600, height = 1000, res = 150)
+
+missing_per_variable <- colMeans(is.na(data))
+top_vars <- names(sort(missing_per_variable, decreasing = TRUE))
+
+top_vars_missing <- top_vars[missing_per_variable[top_vars] > 0]
+
+miss_vec <- sort(colMeans(is.na(data[, top_vars_missing])), decreasing = TRUE)
+
+
+#barplot(
+#  miss_vec,
+#  las = 2,
+#  col = "red",
+#  ylab = "Proportion Missing",
+#  main = "Missingness by Variable"
+#)
+
+aggr(
+  data[, top_vars_missing],
+  sortVars   = TRUE,
+  combined   = TRUE,
+  only.miss  = TRUE,
+  numbers    = TRUE,
+  cex.axis   = 0.7
+)
+
+
+#dev.off()
+
+
+```
+
+
