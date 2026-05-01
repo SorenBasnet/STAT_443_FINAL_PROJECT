@@ -1,0 +1,309 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 46.2 on 04/30/26 at 09:56
+ %%%% Usage: latex tree_10.tex, dvips tree_10.tex, ps2pdf tree_10.tex
+ %%%% or: xelatex tree_10.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree_10.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[a1paper,landscape,left=0.25in,right=0.25in,top=0.75in,bottom=0.75in]{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ \begin{landscape}
+ \begin{center} \footnotesize
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=.5cm,levelsep=50pt,radius=6pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V1}}\\=\texttt{\detokenize{NA}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V2}}\\=\texttt{\detokenize{EC_o}}}}
+ }{
+    \Tcircle[fillcolor=orange]{ 4 }~{\shortstack[c]{\emph{12}\\60}}  
+  \pstree[treemode=D]{\Tcircle{ 5 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V3}}\\$\leq$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 10}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V4}}\\=\texttt{\detokenize{EC_u1}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 20}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{SEX}}\\=\texttt{\detokenize{Male}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 40}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V5}}\\$\leq_*$\texttt{69.95}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 80}~{\shortstack[c]{\emph{3}\\4.34}}  
+    \Tcircle[fillcolor=orange]{\small 81}~{\shortstack[c]{\emph{3}\\33.34}}  
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 41}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V6}}\\$\leq$\texttt{99.83}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 82}~{\shortstack[c]{\emph{5}\\60}}  
+    \Tcircle[fillcolor=orange]{\small 83}~{\shortstack[c]{\emph{2}\\30.11}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 21}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V7}}\\=\texttt{\detokenize{Gain}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 42}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V8}}\\$\leq$\texttt{1.40}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 84}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V9}}\\=\texttt{\detokenize{NA}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 168}~{\shortstack[c]{\emph{3}\\53.65}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 169}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V10}}\\$\leq$\texttt{0.5833}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 338}~{\shortstack[c]{\emph{3}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 339}~{\shortstack[c]{\emph{15}\\60}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 85}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V11}}\\=\texttt{\detokenize{No}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 170}~{\shortstack[c]{\emph{3}\\41.88}}  
+    \Tcircle[fillcolor=orange]{\tiny 171}~{\shortstack[c]{\emph{2}\\55.73}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 43}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V12}}\\$\leq$\texttt{37}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 86}~{\shortstack[c]{\emph{3}\\60}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 87}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V13}}\\$\leq$\texttt{44.50}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 174}~{\shortstack[c]{\emph{2}\\60}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 175}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V14}}\\$\leq_*$\texttt{0.9150}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 350}~{\shortstack[c]{\emph{71}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 351}~{\shortstack[c]{\emph{160}\\60}}  
+   }
+   }
+   }
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 11}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V15}}\\=\texttt{\detokenize{mutated}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 22}~{\shortstack[c]{\emph{2}\\57.43}}  
+    \Tcircle[fillcolor=orange]{\small 23}~{\shortstack[c]{\emph{2}\\59.54}}  
+   }
+   }
+   }
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V16}}\\=\texttt{\detokenize{Treated}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 6 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{COHORT}}\\=\texttt{\detokenize{ICGC}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 12}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V17}}\\=\texttt{\detokenize{No}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 24}~{\shortstack[c]{\emph{8}\\60}}  
+    \Tcircle[fillcolor=orange]{\small 25}~{\shortstack[c]{\emph{5}\\60}}  
+   }
+  \pstree[treemode=D]{\Tcircle{\small 13}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V18}}\\$\leq$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=brown]{\small 26}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V19}}\\in $S_{1}$}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 52}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V20}}\\$\leq$\texttt{2.00}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 104}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V21}}\\$\leq$\texttt{1.98}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 208}~{\shortstack[c]{\emph{3}\\26.17}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 209}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V22}}\\$\leq$\texttt{0.8050}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 418}~{\shortstack[c]{\emph{5}\\41.29}}  
+    \Tcircle[fillcolor=orange]{\tiny 419}~{\shortstack[c]{\emph{13}\\54.84}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 105}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V23}}\\in $S_{2}$}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 210}~{\shortstack[c]{\emph{3}\\35.44}}  
+    \Tcircle[fillcolor=orange]{\tiny 211}~{\shortstack[c]{\emph{3}\\38.73}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 53}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V24}}\\$\leq$\texttt{104.95}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 106}~{\shortstack[c]{\emph{3}\\60}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 107}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V25}}\\in $S_{3}$}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 214}~{\shortstack[c]{\emph{2}\\22.98}}  
+    \Tcircle[fillcolor=orange]{\tiny 215}~{\shortstack[c]{\emph{2}\\48.69}}  
+   }
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 27}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{AGE}}\\$\leq$\texttt{43}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 54}~{\shortstack[c]{\emph{3}\\60}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 55}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V26}}\\$\leq$\texttt{79.65}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 110}~{\shortstack[c]{\emph{3}\\60}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 111}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{RRBS}}\\=\texttt{\detokenize{No}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 222}~{\shortstack[c]{\emph{2}\\40.27}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 223}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V27}}\\$\leq$\texttt{0.9550}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 446}~{\shortstack[c]{\emph{3}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 447}~{\shortstack[c]{\emph{9}\\60}}  
+   }
+   }
+   }
+   }
+   }
+   }
+  \pstree[treemode=D]{\Tcircle{ 7 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V28}}\\=\texttt{\detokenize{No}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 14}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V29}}\\$\leq$\texttt{86.50}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 28}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V30}}\\$\leq$\texttt{0.5000}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 56}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V31}}\\$\leq$\texttt{84.50}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\tiny 112}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V32}}\\$\leq$\texttt{58.50}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 224}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V33}}\\=\texttt{\detokenize{NA}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 448}~{\shortstack[c]{\emph{13}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 449}~{\shortstack[c]{\emph{77}\\60}}  
+   }
+  \pstree[treemode=D]{\Tcircle{\tiny 225}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V34}}\\$\leq$\texttt{60.50}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 450}~{\shortstack[c]{\emph{21}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 451}~{\shortstack[c]{\emph{137}\\60}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 113}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V35}}\\=\texttt{\detokenize{Yes}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 226}~{\shortstack[c]{\emph{3}\\53.85}}  
+    \Tcircle[fillcolor=orange]{\tiny 227}~{\shortstack[c]{\emph{2}\\57.90}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 57}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V36}}\\=\texttt{\detokenize{MUT}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 114}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V37}}\\=\texttt{\detokenize{M_CLL}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 228}~{\shortstack[c]{\emph{4}\\39.58}}  
+    \Tcircle[fillcolor=orange]{\tiny 229}~{\shortstack[c]{\emph{2}\\60}}  
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 115}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V38}}\\=\texttt{\detokenize{Loss}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 230}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V39}}\\=\texttt{\detokenize{Yes}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 460}~{\shortstack[c]{\emph{4}\\56.94}}  
+    \Tcircle[fillcolor=orange]{\tiny 461}~{\shortstack[c]{\emph{5}\\60}}  
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 231}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V40}}\\$\leq_*$\texttt{139.60}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 462}~{\shortstack[c]{\emph{116}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 463}~{\shortstack[c]{\emph{23}\\60}}  
+   }
+   }
+   }
+   }
+    \Tcircle[fillcolor=orange]{\small 29}~{\shortstack[c]{\emph{3}\\49.84}}  
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 15}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{COHORT}}\\in $S_{4}$}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 30}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V41}}\\=\texttt{\detokenize{No}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\small 60}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{RRBS}}\\=\texttt{\detokenize{No}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 120}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{AGE}}\\$\leq_*$\texttt{40}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 240}~{\shortstack[c]{\emph{3}\\60}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 241}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V42}}\\$\leq$\texttt{0.5000}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 482}~{\shortstack[c]{\emph{8}\\60}}  
+    \Tcircle[fillcolor=orange]{\tiny 483}~{\shortstack[c]{\emph{4}\\60}}  
+   }
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 121}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V43}}\\$\leq$\texttt{2.01}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 242}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V44}}\\=\texttt{\detokenize{U_CLL}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 484}~{\shortstack[c]{\emph{2}\\15.35}}  
+    \Tcircle[fillcolor=orange]{\tiny 485}~{\shortstack[c]{\emph{4}\\60}}  
+   }
+    \Tcircle[fillcolor=orange]{\tiny 243}~{\shortstack[c]{\emph{2}\\60}}  
+   }
+   }
+    \Tcircle[fillcolor=orange]{\small 61}~{\shortstack[c]{\emph{25}\\60}}  
+   }
+  \pstree[treemode=D]{\Tcircle{\small 31}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{AGE}}\\$\leq$\texttt{82.50}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 62}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V45}}\\=\texttt{\detokenize{Gain}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{\tiny 124}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V46}}\\=\texttt{\detokenize{Loss}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\tiny 248}~{\shortstack[c]{\emph{2}\\29.82}}  
+    \Tcircle[fillcolor=orange]{\tiny 249}~{\shortstack[c]{\emph{2}\\60}}  
+   }
+    \Tcircle[fillcolor=orange]{\tiny 125}~{\shortstack[c]{\emph{186}\\60}}  
+   }
+    \Tcircle[fillcolor=orange]{\small 63}~{\shortstack[c]{\emph{2}\\43.59}}  
+ }
+ }
+ }
+ }
+ }
+ \end{center}
+GUIDE v.46.2 importance scoring
+ piecewise-constant  0.900-quantile regression tree
+for predicting \texttt{\detokenize{surv_5yrs}}.
+ % Tree constructed from 1008 observations
+ % (excluding observations with non-positive weight or missing values
+ % in \texttt{D}, \texttt{T}, \texttt{R} or \texttt{Z} variables)
+ % and pruned from a tree with 55 terminal nodes.
+ % Maximum number of split levels is 8 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Symbol `$\leq_*$' stands for `$\leq$ or missing'.
+\texttt{\detokenize{V1}} = \texttt{\detokenize{TREATMENT_STATUS_AT_SAMPLING}}.
+\texttt{\detokenize{V2}} = \texttt{\detokenize{EXPRESSION_CLUSTER}}.
+\texttt{\detokenize{V3}} = \texttt{\detokenize{RAI_AT_DIAGNOSIS}}.
+\texttt{\detokenize{V4}} = \texttt{\detokenize{EXPRESSION_CLUSTER}}.
+\texttt{\detokenize{V5}} = \texttt{\detokenize{NORMAL_MEAN_COVERAGE}}.
+\texttt{\detokenize{V6}} = \texttt{\detokenize{IGHV_IDENTITY_PERCENTAGE}}.
+\texttt{\detokenize{V7}} = \texttt{\detokenize{tri12_status}}.
+\texttt{\detokenize{V8}} = \texttt{\detokenize{TMB_NONSYNONYMOUS}}.
+\texttt{\detokenize{V9}} = \texttt{\detokenize{TUMOR_MOLECULAR_SUBTYPE}}.
+\texttt{\detokenize{V10}} = \texttt{\detokenize{TMB_NONSYNONYMOUS}}.
+\texttt{\detokenize{V11}} = \texttt{\detokenize{M.CLL_WES}}.
+\texttt{\detokenize{V12}} = \texttt{\detokenize{AGE_SAMPLING}}.
+\texttt{\detokenize{V13}} = \texttt{\detokenize{AGE_SAMPLING}}.
+\texttt{\detokenize{V14}} = \texttt{\detokenize{TUMOR_SAMPLE_PURITY}}.
+\texttt{\detokenize{V15}} = \texttt{\detokenize{IGHV_MUTATION_STATUS}}.
+\texttt{\detokenize{V16}} = \texttt{\detokenize{TREATMENT_STATUS_AT_SAMPLING}}.
+\texttt{\detokenize{V17}} = \texttt{\detokenize{U.CLL_WES}}.
+\texttt{\detokenize{V18}} = \texttt{\detokenize{RAI_AT_SAMPLING}}.
+\texttt{\detokenize{V19}} = \texttt{\detokenize{IGHV_MUTATION_STATUS}}.
+\texttt{\detokenize{V20}} = \texttt{\detokenize{TUMOR_SAMPLE_PLOIDY}}.
+\texttt{\detokenize{V21}} = \texttt{\detokenize{TUMOR_SAMPLE_PLOIDY}}.
+\texttt{\detokenize{V22}} = \texttt{\detokenize{TUMOR_SAMPLE_PURITY}}.
+\texttt{\detokenize{V23}} = \texttt{\detokenize{FIRST_TREATMENT_AFTER_SAMPLING}}.
+\texttt{\detokenize{V24}} = \texttt{\detokenize{NORMAL_MEAN_COVERAGE}}.
+\texttt{\detokenize{V25}} = \texttt{\detokenize{FIRST_TREATMENT_AFTER_SAMPLING}}.
+\texttt{\detokenize{V26}} = \texttt{\detokenize{TUMOR_MEAN_COVERAGE}}.
+\texttt{\detokenize{V27}} = \texttt{\detokenize{TUMOR_SAMPLE_PURITY}}.
+\texttt{\detokenize{V28}} = \texttt{\detokenize{M.CLL_WES}}.
+\texttt{\detokenize{V29}} = \texttt{\detokenize{AGE_SAMPLING}}.
+\texttt{\detokenize{V30}} = \texttt{\detokenize{RAI_AT_SAMPLING}}.
+\texttt{\detokenize{V31}} = \texttt{\detokenize{AGE_SAMPLING}}.
+\texttt{\detokenize{V32}} = \texttt{\detokenize{AGE_SAMPLING}}.
+\texttt{\detokenize{V33}} = \texttt{\detokenize{TUMOR_SAMPLE_PLOIDY}}.
+\texttt{\detokenize{V34}} = \texttt{\detokenize{AGE_SAMPLING}}.
+\texttt{\detokenize{V35}} = \texttt{\detokenize{ARRAY450K}}.
+\texttt{\detokenize{V36}} = \texttt{\detokenize{U1_STATUS}}.
+\texttt{\detokenize{V37}} = \texttt{\detokenize{TUMOR_MOLECULAR_SUBTYPE}}.
+\texttt{\detokenize{V38}} = \texttt{\detokenize{X11q_status}}.
+\texttt{\detokenize{V39}} = \texttt{\detokenize{EC_DISCOVERY}}.
+\texttt{\detokenize{V40}} = \texttt{\detokenize{TUMOR_MEAN_COVERAGE}}.
+\texttt{\detokenize{V41}} = \texttt{\detokenize{EC_DISCOVERY}}.
+\texttt{\detokenize{V42}} = \texttt{\detokenize{RAI_AT_SAMPLING}}.
+\texttt{\detokenize{V43}} = \texttt{\detokenize{TUMOR_SAMPLE_PLOIDY}}.
+\texttt{\detokenize{V44}} = \texttt{\detokenize{TUMOR_MOLECULAR_SUBTYPE}}.
+\texttt{\detokenize{V45}} = \texttt{\detokenize{X8q_status}}.
+\texttt{\detokenize{V46}} = \texttt{\detokenize{X17p_status}}.
+ $S_{1}$ = \{\texttt{\detokenize{unmutated}}\}.
+ $S_{2}$ = \{\texttt{\detokenize{Chemo__+__Ab}}\}.
+ $S_{3}$ = \{\texttt{\detokenize{Ab__+__no__chemo}}\}.
+ $S_{4}$ = \{\texttt{\detokenize{DFCI}}, \texttt{\detokenize{NHLBI}}\}.
+ Splits at nodes drawn with \textbf{\textcolor{gray}{gray}} circles are not statistically significant.
+ Splits at nodes drawn with \textbf{\textcolor{brown}{brown}} circles are interaction splits.
+ Sample size (in \emph{italics}) and 0.900-quantile of \texttt{\detokenize{surv_5yrs}} printed below nodes.
+ Terminal nodes with quantiles above and below value of 60 at root node are painted \colorbox{yellow}{yellow} and \colorbox{orange}{orange} respectively.
+ \end{landscape}
+ \end{document}

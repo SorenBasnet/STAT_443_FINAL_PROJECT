@@ -1,6 +1,8 @@
 ---
 title: "genes_visualization"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 Import required library
@@ -19,6 +21,7 @@ data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header
 
 ```{r}
 colnames(data_mutations)
+dim(data_mutations)
 ```
 
 ```{r}
@@ -38,6 +41,7 @@ ggplot(top_genes, aes(x = reorder(Hugo_Symbol, n), y = n)) +
 ```
 
 
+In a dataset of mutations with ~20000 genes, it is important to note how rare these genes are in the dataset. This may/may not influence results. 
 
 Mutation Per Person
 ```{r}
@@ -73,28 +77,13 @@ gene_patient <- data_mutations %>%
 Now convert to matrix and plot:
 
 ```{r}
-library(pheatmap)
+#library(pheatmap)
 
-mat <- as.matrix(gene_patient[,-1])
-rownames(mat) <- gene_patient$Tumor_Sample_Barcode
+#mat <- as.matrix(gene_patient[,-1])
+#rownames(mat) <- gene_patient$Tumor_Sample_Barcode
 
-pheatmap(mat)
+#pheatmap(mat)
 ```
-
-
-This dont work 
-```{r}
-library(maftools)
-
-maf <- read.maf(
-  maf = "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022/data_mutations.txt",
-  removeDuplicatedVariants = FALSE
-)
-
-oncoplot(maf, top = 20)
-
-```
-
 
 Mutation along gene
 ```{r}

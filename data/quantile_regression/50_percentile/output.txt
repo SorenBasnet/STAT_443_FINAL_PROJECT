@@ -1,0 +1,331 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 04/30/26 at 09:44
+  
+ Quantile regression tree with quantile probability 0.5000
+ Pruning by cross-validation
+ DSC file: dsc_patient_file_cna_rai.txt
+ Training sample file: patient_file_cna_rai.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ 10 N variables changed to S
+ D variable is surv_5yrs
+ Piecewise constant model
+ Number of records in data file: 1148
+ Length of longest entry in data file: 59
+ Missing values found in D variable
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Missing values found among non-categorical variables
+ Warning: C variable CANCER_TYPE takes only 1 value
+ Warning: C variable SOMATIC_STATUS takes only 1 value
+  
+ Summary information for training sample of size 1008 (excluding observations
+  with non-positive weight or missing values in d, e, t, r or z variables)
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                                       #Codes/           
+                                                                       Levels/           
+  Column  Name                                 Minimum      Maximum    Periods   #Missing
+       5  NORMAL_MEAN_COVERAGE            s    16.10        360.7                    83
+       6  TUMOR_MEAN_COVERAGE             s    11.40        406.9                    83
+       7  TUMOR_SAMPLE_PURITY             s   0.3300        1.000                    83
+       8  TUMOR_SAMPLE_PLOIDY             s    1.920        2.130                    83
+       9  CANCER_TYPE                     c                                  1
+      10  CANCER_TYPE_DETAILED            c                                  2
+      11  SOMATIC_STATUS                  c                                  1
+      12  CLL_EPITYPE                     c                                  6
+      13  TUMOR_MOLECULAR_SUBTYPE         c                                  2      144
+      14  SEQUENCING_PLATFORM             c                                  3
+      15  RNA_SEQUENCING                  c                                  2
+      16  RRBS                            c                                  2
+      17  ARRAY450K                       c                                  2
+      18  M.CLL_WES                       c                                  2
+      19  U.CLL_WES                       c                                  2
+      20  EC_DISCOVERY                    c                                  2
+      21  EC_EXTENSION                    c                                  2
+      22  IGLV3_21_R110                   c                                  2       26
+      23  U1_STATUS                       c                                  2      197
+      24  TMB_NONSYNONYMOUS               s   0.1333        18.57                    83
+      25  AGE                             s    18.00        93.00                    50
+      26  AGE_SAMPLING                    s    19.00        94.00    
+      27  SEX                             c                                  2
+      31  COHORT                          c                                  6
+      32  IGHV_MUTATION_STATUS            c                                  2       15
+      33  IGHV_IDENTITY_PERCENTAGE        s    84.72        100.0                    18
+      34  TREATMENT_STATUS                c                                  2
+      35  PRIOR_TREATMENT_CATEGORY        c                                  6
+      36  TREATMENT_AFTER_SAMPLING        c                                 19      612
+      37  EXPRESSION_CLUSTER              c                                 10
+      40  X11q_status                     c                                  2
+      41  X17p_status                     c                                  2
+      42  X17q_status                     c                                  2
+      43  X18p_status                     c                                  2
+      44  X19q_status                     c                                  2
+      45  X20p_status                     c                                  2
+      46  X2p_status                      c                                  2
+      47  X4p_status                      c                                  2
+      48  X6q_status                      c                                  2
+      49  X8p_status                      c                                  2
+      50  X8q_status                      c                                  2
+      51  tri12_status                    c                                  2
+      52  RAI_AT_DIAGNOSIS                s    0.000        4.000    
+      53  TREATMENT_STATUS_AT_SAMPLING    c                                  2      291
+      54  RAI_AT_SAMPLING                 s    0.000        4.000                   291
+      55  FIRST_TREATMENT_AFTER_SAMPLING  c                                 20      291
+      56  surv_5yrs                       d    0.000        60.00    
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       1148        140        526       10        0        0       10
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       36        0
+ Number of cases used for training: 1008
+ Number of cases excluded due to 0 W or missing D variable: 140
+  
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Nodewise interaction tests on all variables
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 2
+ Ranks of variables and their 1-df chi-squared values at root node
+      1  0.3830E+02   TREATMENT_STATUS_AT_SAMPLING
+      2  0.3621E+02   TREATMENT_STATUS
+      3  0.3146E+02   PRIOR_TREATMENT_CATEGORY
+      4  0.2615E+02   AGE_SAMPLING
+      5  0.2503E+02   EC_EXTENSION
+      6  0.2240E+02   IGHV_MUTATION_STATUS
+      7  0.2048E+02   M.CLL_WES
+      8  0.1852E+02   X17p_status
+      9  0.1783E+02   U.CLL_WES
+     10  0.1375E+02   CLL_EPITYPE
+     11  0.1329E+02   TREATMENT_AFTER_SAMPLING
+     12  0.1233E+02   EXPRESSION_CLUSTER
+     13  0.1225E+02   FIRST_TREATMENT_AFTER_SAMPLING
+     14  0.1167E+02   X8p_status
+     15  0.8138E+01   IGHV_IDENTITY_PERCENTAGE
+     16  0.7597E+01   COHORT
+     17  0.6024E+01   ARRAY450K
+     18  0.5634E+01   AGE
+     19  0.5632E+01   NORMAL_MEAN_COVERAGE
+     20  0.4002E+01   X20p_status
+     21  0.3925E+01   TMB_NONSYNONYMOUS
+     22  0.3729E+01   X11q_status
+     23  0.3000E+01   EC_DISCOVERY
+     24  0.1954E+01   RRBS
+     25  0.1609E+01   X2p_status
+     26  0.1516E+01   TUMOR_MEAN_COVERAGE
+     27  0.1288E+01   X19q_status
+     28  0.1236E+01   tri12_status
+     29  0.1158E+01   X8q_status
+     30  0.1134E+01   X17q_status
+     31  0.9819E+00   RAI_AT_DIAGNOSIS
+     32  0.7155E+00   TUMOR_MOLECULAR_SUBTYPE
+     33  0.6722E+00   RAI_AT_SAMPLING
+     34  0.6691E+00   X6q_status
+     35  0.2343E+00   X4p_status
+     36  0.2035E+00   IGLV3_21_R110
+     37  0.2029E+00   SEX
+     38  0.1515E+00   TUMOR_SAMPLE_PURITY
+     39  0.1455E+00   TUMOR_SAMPLE_PLOIDY
+     40  0.1291E+00   SEQUENCING_PLATFORM
+     41  0.5998E-01   U1_STATUS
+     42  0.4742E-01   X18p_status
+     43  0.2551E-01   RNA_SEQUENCING
+
+ Size and CV Loss and SE of subtrees:
+  Tree   #Tnodes  Mean Loss   SE(Mean)   BSE(Mean)  Median Loss  BSE(Median)
+    1      146   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    2      145   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    3      144   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    4      143   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    5      142   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    6      141   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    7      140   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    8      139   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+    9      138   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   10      137   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   11      136   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   12      135   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   13      134   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   14      133   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   15      132   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   16      131   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   17      130   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   18      129   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   19      128   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   20      127   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   21      126   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   22      125   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   23      124   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   24      123   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   25      122   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   26      121   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   27      120   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   28      119   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   29      118   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   30      117   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   31      116   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   32      115   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   33      114   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   34      113   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   35      112   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   36      111   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   37      110   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   38      107   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   39      106   4.767E+00   2.451E-01   1.099E-01   4.793E+00   1.149E-01
+   40      105   4.651E+00   2.453E-01   1.329E-01   4.677E+00   1.261E-01
+   41      104   4.651E+00   2.453E-01   1.329E-01   4.677E+00   1.261E-01
+   42       99   4.648E+00   2.452E-01   1.331E-01   4.677E+00   1.291E-01
+   43       97   4.648E+00   2.452E-01   1.331E-01   4.677E+00   1.291E-01
+   44       96   4.641E+00   2.453E-01   1.329E-01   4.661E+00   1.277E-01
+   45       95   4.643E+00   2.455E-01   1.336E-01   4.661E+00   1.267E-01
+   46       92   4.645E+00   2.455E-01   1.334E-01   4.661E+00   1.241E-01
+   47       91   4.647E+00   2.455E-01   1.333E-01   4.661E+00   1.220E-01
+   48       90   4.633E+00   2.455E-01   1.331E-01   4.630E+00   1.270E-01
+   49       88   4.595E+00   2.463E-01   1.307E-01   4.628E+00   1.304E-01
+   50       84   4.560E+00   2.462E-01   1.296E-01   4.563E+00   1.032E-01
+   51       83   4.541E+00   2.463E-01   1.290E-01   4.524E+00   9.093E-02
+   52       82   4.545E+00   2.464E-01   1.277E-01   4.524E+00   8.844E-02
+   53       81   4.553E+00   2.464E-01   1.278E-01   4.559E+00   9.342E-02
+   54       79   4.553E+00   2.464E-01   1.278E-01   4.559E+00   9.342E-02
+   55       78   4.553E+00   2.464E-01   1.278E-01   4.559E+00   9.342E-02
+   56       75   4.535E+00   2.466E-01   1.299E-01   4.549E+00   1.098E-01
+   57       74   4.515E+00   2.472E-01   1.285E-01   4.505E+00   1.152E-01
+   58       73   4.495E+00   2.470E-01   1.292E-01   4.467E+00   1.001E-01
+   59       72   4.422E+00   2.458E-01   1.231E-01   4.429E+00   1.127E-01
+   60       65   4.422E+00   2.458E-01   1.231E-01   4.429E+00   1.127E-01
+   61       63   4.383E+00   2.459E-01   1.309E-01   4.429E+00   1.561E-01
+   62       62   4.385E+00   2.460E-01   1.312E-01   4.429E+00   1.568E-01
+   63       56   4.367E+00   2.459E-01   1.358E-01   4.431E+00   1.709E-01
+   64       54   4.345E+00   2.459E-01   1.360E-01   4.335E+00   1.680E-01
+   65       52   4.264E+00   2.452E-01   1.003E-01   4.303E+00   1.536E-01
+   66       48   4.257E+00   2.452E-01   1.034E-01   4.303E+00   1.530E-01
+   67       40   4.255E+00   2.452E-01   1.037E-01   4.303E+00   1.566E-01
+   68       36   4.256E+00   2.456E-01   1.010E-01   4.303E+00   1.517E-01
+   69       35   4.260E+00   2.456E-01   1.024E-01   4.303E+00   1.539E-01
+   70       32   4.192E+00   2.453E-01   9.056E-02   4.128E+00   1.147E-01
+   71       30   4.190E+00   2.453E-01   8.990E-02   4.128E+00   1.138E-01
+   72       24   4.077E+00   2.431E-01   8.380E-02   4.033E+00   8.240E-02
+   73       23   4.072E+00   2.433E-01   8.231E-02   4.033E+00   7.324E-02
+   74       22   4.056E+00   2.426E-01   9.719E-02   4.026E+00   9.161E-02
+   75       20   4.061E+00   2.433E-01   9.743E-02   4.000E+00   9.555E-02
+   76       17   4.068E+00   2.434E-01   1.117E-01   3.968E+00   1.218E-01
+   77       16   3.919E+00   2.409E-01   1.016E-01   3.968E+00   8.333E-02
+   78       10   3.882E+00   2.401E-01   9.593E-02   3.928E+00   8.019E-02
+   79        9   3.805E+00   2.380E-01   8.918E-02   3.838E+00   5.559E-02
+   80        8   3.805E+00   2.380E-01   8.918E-02   3.838E+00   5.559E-02
+   81        7   3.777E+00   2.375E-01   9.123E-02   3.788E+00   6.612E-02
+   82++      5   3.771E+00   2.379E-01   8.911E-02   3.767E+00   6.420E-02
+   83**      4   3.812E+00   2.387E-01   1.009E-01   3.825E+00   9.098E-02
+   84        3   3.917E+00   2.403E-01   8.218E-02   3.928E+00   9.519E-02
+   85        1   3.930E+00   2.458E-01   1.078E-01   3.954E+00   8.168E-02
+  
+ 0-SE tree based on mean is marked with * and has 5 terminal nodes
+ 0-SE tree based on median is marked with + and has 5 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree same as + tree
+ ++ tree same as -- tree
+ + tree same as ++ tree
+ * tree same as ++ tree
+ * tree same as -- tree
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ D-quant is quantile of surv_5yrs in the node
+ Cases fit give the number of cases used to fit node
+        Node    Total    Cases Matrix    Node    Split          Other
+        label   cases      fit  rank    D-quant  variable       variables
+           1     1008     1008     1  6.000E+01  TREATMENT_STATUS_AT_SAMPLING 
+           2       67       67     1  4.208E+01  COHORT 
+           4T      34       34     1  3.541E+01  TUMOR_MOLECULAR_SUBTYPE 
+           5T      33       33     1  6.000E+01  U.CLL_WES 
+           3      941      941     1  6.000E+01  AGE_SAMPLING 
+           6T     917      917     1  6.000E+01  AGE_SAMPLING 
+           7T      24       24     1  4.347E+01  SEQUENCING_PLATFORM 
+  
+ Number of terminal nodes of final tree: 4
+ Total number of nodes of final tree: 7
+ Second best split variable (based on curvature test) at root node is TREATMENT_STATUS
+  
+ Regression tree:
+ For categorical variable splits, values not in training data go to the right
+  
+ Node 1: TREATMENT_STATUS_AT_SAMPLING = "Treated"
+   Node 2: COHORT = "DFCI"
+     Node 4: surv_5yrs sample quantile = 35.405000
+   Node 2: COHORT /= "DFCI"
+     Node 5: surv_5yrs sample quantile = 60.000000
+ Node 1: TREATMENT_STATUS_AT_SAMPLING /= "Treated"
+   Node 3: AGE_SAMPLING <= 85.500000
+     Node 6: surv_5yrs sample quantile = 60.000000
+   Node 3: AGE_SAMPLING > 85.500000 or NA
+     Node 7: surv_5yrs sample quantile = 43.465000
+ 
+ ***************************************************************
+ Predictor means below are means of cases with no missing values.
+  
+ WARNING: p-values below not adjusted for split search. For a bootstrap solution see:
+  
+ 1. Loh et al. (2016), "Identification of subgroups with differential treatment effects
+ for longitudinal and multiresponse variables", Statistics in Medicine, v.35, 4837-4855.
+  
+ 2. Loh et al. (2019), "Subgroups from regression trees with adjustment for prognostic
+ effects and post-selection inference", Statistics in Medicine, v.38, 545-557.
+  
+ 3. Loh and Zhou (2020), "The GUIDE approach to subgroup identification",
+ in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if TREATMENT_STATUS_AT_SAMPLING = "Treated"
+ TREATMENT_STATUS_AT_SAMPLING mode = "Untreated"
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if COHORT = "DFCI"
+ COHORT mode = "DFCI"
+ ----------------------------
+Node 4: Terminal node
+ Predicted quantile = 35.4050
+ ----------------------------
+Node 5: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if AGE_SAMPLING <= 85.500000
+ AGE_SAMPLING mean = 63.099894
+ ----------------------------
+Node 6: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 7: Terminal node
+ Predicted quantile = 43.4650
+ ----------------------------
+ Observed and fitted values are stored in fit.txt
+ LaTeX code for tree is in tree.tex
+ Elapsed time in seconds: 1.2063

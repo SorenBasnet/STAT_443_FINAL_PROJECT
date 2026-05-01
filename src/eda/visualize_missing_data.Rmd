@@ -1,6 +1,8 @@
 ---
 title: "visualize_missing_data"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 
@@ -42,33 +44,21 @@ aggr(data,
      gap = 2,          # Reduced gap can help squeeze more in
      ylab = c("Missing Data", "Pattern"))
 ```
-
-
-
-```{r}
-aggr(data,
-     col = c("gray90", "red"),
-     numbers = TRUE,
-     sortVars = TRUE,
-     combined = TRUE)
-```
+Various methods we explored to show the all column names in the x-axis. 
 
 
 
 ```{r}
 library(naniar)
 
-gg_miss_var(data)          # missing by variable
-gg_miss_case(data)         # missing by observation
-vis_miss(data)             # heatmap-style
+gg_miss_var(data)   
+
 ```
 
 
-```{r}
-gg_miss_var(data, facet = death_5yr)
-```
-
-
+  We can see that status of treatment after sampling has the most number of missing values followed by variable having to do with treatment status and rai stage sampling which could've been done during sampling. 
+  
+  Imputation of such variables is not recommended because some patients might've opted for new medical advice or might've decided to not to proceed with recommended procedures. 
 
 
 

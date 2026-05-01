@@ -34,3 +34,4 @@ ggsurvplot(
 ```
 
 
+Rai stage sampling has no splits on its own. We can conclude that in this dataset and modeling setup, RAI alone does not explain survival variation beyond noise

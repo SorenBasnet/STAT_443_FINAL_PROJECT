@@ -56,7 +56,6 @@ ggplot(data_clinical_sample, aes(y = fct_rev(fct_infreq(DISEASE_TYPE)), fill = D
   # Adds the actual numbers inside/at the end of the bars
   geom_text(stat = 'count', aes(label = after_stat(count)), hjust = -0.2, size = 4) +
   # A sleek, professional color palette
-  scale_fill_
   scale_fill_viridis_d(option = "mako", begin = 0.3, end = 0.7) +
   theme_minimal(base_size = 14) +
   labs(
@@ -89,18 +88,7 @@ ggplot(data_clinical_sample, aes(x = DISEASE_TYPE)) +
   )
 
 
-ggplot(df, aes(x = reorder(disease, -..count..))) +
-  geom_bar(fill = "#2A9D8F", width = 0.65) +
-  labs(
-    title = "Disease Cohort Composition",
-    x = NULL,
-    y = "Number of Patients"
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    plot.title = element_text(face = "bold"),
-    panel.grid.major.x = element_blank()
-  )
+
 
 ```
 
@@ -137,76 +125,10 @@ dev.off()
 ```
 
 
-May not use this for this stage of the project. 
-Important file, should come back to it later. 
 ```{r}
-data_sv <- read.delim(file.path(dataset_path, "data_sv.txt"))
-colnames(data_sv)
+(table(data_clinical_sample$DISEASE_TYPE))
 ```
 
 
-# data_armlevel_cna - will be using this one
-
-cancer_study_identifier: cll_broad_2022
-genetic_alteration_type: GENERIC_ASSAY
-generic_assay_type: ARMLEVEL_CNA
-datatype: CATEGORICAL
-stable_id: armlevel_cna
-profile_name: Putative arm-level copy-number from GISTIC
-profile_description: Putative arm-level copy-number from GISTIC.
-data_filename: data_armlevel_cna.txt
-show_profile_in_analysis_tab: true
-generic_entity_meta_properties: NAME,DESCRIPTION
-
-```{r}
-data_armlevel_cna   <- read.table(file.path(dataset_path,"data_armlevel_cna.txt"),header=TRUE, sep="\t") 
-head(colnames(data_armlevel_cna))
-unique(data_armlevel_cna$ENTITY_STABLE_ID)
-head(data_armlevel_cna)
-
-```
-I will be using arm level cna for now. 
-```{r}
-data_focal_cna <- read.table(file.path(dataset_path,"data_focal_cna.txt"),header=TRUE, sep="\t")     
-colnames(data_focal_cna)
-head(data_focal_cna)
-
-```
-
-Conclusion : I will be using arm level cna 
-link : https://chatgpt.com/share/69bec9a3-62ec-8011-9869-7d6b2c0aa5f0
-
-# Data_timeline_diagnosis
-```{r}
-data_timeline_diagnosis  <- read.table(file.path(dataset_path,"data_timeline_diagnosis.txt"),header=TRUE, sep="\t")                 
-colnames(data_timeline_diagnosis)
-```
-
-#data_timeline_specimen  
-```{r}
-data_timeline_treatment  <- read.table(file.path(dataset_path,"data_timeline_treatment.txt"),header=TRUE, sep="\t") 
-colnames(data_timeline_treatment)
-```
-
-
-```{r}
-data_timeline_prior_treatment  <- read.table(file.path(dataset_path,"data_timeline_prior_treatment.txt"),header=TRUE, sep="\t")           
-colnames(data_timeline_prior_treatment)
-```
-
-Use mrna seq tpm as well. it shows the level at which the genes are expressed 
-```{r}
-data_mrna_seq_tpm<- read.table(file.path(dataset_path,"data_mrna_seq_tpm.txt"),header=TRUE, sep="\t")
-head(data_mrna_seq_tpm)
-colnames(data_mrna_seq_tpm)
-```
-
-
-```{r}
-data_timeline_death  <- read.table(file.path(dataset_path,"data_timeline_death.txt"),header=TRUE, sep="\t")       
-colnames(data_timeline_death)
-
-data_timeline_specimen  <- read.table(file.path(dataset_path,"data_timeline_specimen.txt"),header=TRUE, sep="\t")      
-```
 
 

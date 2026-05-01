@@ -32,14 +32,17 @@ top_vars_missing <- top_vars[missing_per_variable[top_vars] > 0]
 
 miss_vec <- sort(colMeans(is.na(data[, top_vars_missing])), decreasing = TRUE)
 
+miss_count <- colSums(is.na(data))
+miss_count
+sort(miss_count[miss_count > 0], decreasing = TRUE)
 
-#barplot(
-#  miss_vec,
-#  las = 2,
-#  col = "red",
-#  ylab = "Proportion Missing",
-#  main = "Missingness by Variable"
-#)
+barplot(
+  miss_vec,
+  las = 2,
+  col = "red",
+  ylab = "Proportion Missing",
+  main = "Missingness by Variable"
+)
 
 aggr(
   data[, top_vars_missing],

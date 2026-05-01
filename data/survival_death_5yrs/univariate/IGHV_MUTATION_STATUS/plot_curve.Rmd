@@ -1,0 +1,30 @@
+---
+
+---
+
+
+
+```{r}
+library(survival)
+library(survminer)
+
+fit_data <- read.table("fit_2.txt", header = TRUE, sep="", fill=TRUE)
+
+fit_data$event_num <- ifelse(fit_data$event == "y", 1, 0)
+
+km_fit <- survfit(Surv(observed, event_num) ~ node, data = fit_data)
+
+ggsurvplot(
+  km_fit,
+  data = fit_data,
+  xlim = c(0, 60),         
+  ylim = c(0.5, 1),             
+  xlab = "Observed Months",
+  ylab = "Survival Probability",
+  legend.labs = c("Unmutated (Node 2)", "Mutated (Node 3)"),
+  palette = c("#E7B800", "#2E9FDF"), 
+  ggtheme = theme_minimal()
+)
+```
+ We can observe that unmutated IGHV status has poor survival prognostic than IGHV mutates status. This is consistent with current literature. 
+

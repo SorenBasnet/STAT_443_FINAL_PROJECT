@@ -1,0 +1,49 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 46.2 on 04/30/26 at 20:06
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.5cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{X17p_status}}\\=\texttt{\detokenize{Loss}}}}
+ }{
+    \Tcircle[fillcolor=vermillion]{ 2 }~{\shortstack[c]{\emph{70}\\      3.24\\60+}} 
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{AGE_SAMPLING}}\\$\leq$\texttt{74.50}}}
+ }{
+    \Tcircle[fillcolor=vermillion]{ 6 }~{\shortstack[c]{\emph{779}\\      0.64\\60+}} 
+    \Tcircle[fillcolor=vermillion]{ 7 }~{\shortstack[c]{\emph{153}\\      2.26\\60+}} 
+ }
+ }
+ \end{center}
+GUIDE v.46.2 0.250-SE
+piecewise-constant proportional hazards regression tree
+for \texttt{\detokenize{surv_5yrs}}.
+ % Tree constructed from 1002 observations
+ % (excluding observations with non-positive weight or missing values
+ % in \texttt{D}, \texttt{T}, \texttt{R} or \texttt{Z} variables)
+ % and pruned from a tree with 102 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+Sample size (in \emph{italics}), relative hazard, and median survival time printed below nodes.
+ Terminal nodes with median survival times above and below 60+ (median at root node) are painted \colorbox{yellow}{yellow} and \colorbox{vermillion}{vermillion} respectively.
+ Second best split variable at root node is \texttt{\detokenize{AGE_SAMPLING}}.
+ %\end{landscape}
+ \end{document}

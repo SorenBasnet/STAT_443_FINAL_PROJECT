@@ -9,9 +9,9 @@ output:
 
 
 ### Abstract 
-This report explores patients and genomic dataset of ~1000 patients of chronic lymphocytic leukemia and Monoclonal B-cell Lymphocytosis. Primarily affecting population of European Heritage, chronic lymphocytic leukemia is a form of luekemia that affects blood and bone marrow. Monoclonal B-cell Lymphocytosis is a precursor to the chronic lymphocytic leukemia. This paper used GUIDE to determine importance score of variables towards survival of patients surviving 5 years after the diagnosis date. This paper also used guide to plot survival plots and determine factors affecting survival from the data used. 
+This report explores patients and genomic dataset of 1148 patients of Chronic Lymphocytic Leukemia (CLL) and Monoclonal B-cell Lymphocytosis (MBL). This is a form of blood related cancer that primarily affects population of European Heritage. CLL is a form of luekemia that affects blood and bone marrow. MBL is a precursor to the CLL. This report used GUIDE to determine importance score of variables towards survival of patients surviving 5 years after the diagnosis date. This paper also used guide to plot survival plots and determine factors affecting survival from the data used. Later in the paper, the other statistical methods are used to compare accuracy of classification. These models are : Logistic Regression, Linear Discriminant Analysis, C-Trees, CART-Trees, Random Forest and a Deep Neural Learning Method. 
 
-Through importance score, it was found that ___, ___, and ___ were top contributors towards determining survival of the patients. This remains to be consistent with the prevalent literature on CLL but clinical examination and determination is required to further biomechanistic determination. Several varaibles ___, ___, __ were also present in the survival curve which contributed to the poor diagnosis of the survival. 
+Through importance score, it was found that ___, ___, and ___ were top contributors towards determining survival of the patients. This result remains consistent with the prevalent literature on CLL but clinical examination and determination is required to further bio mechanistic determination. Several variables like ___, ___, __ also presented a poor survival curve which also remained consistent with known literature. Both importance scores and survival curves were calculated using GUIDE. 
 
 
 Through the application of GUIDE importance scores, it was determined that age at diagnosis, IGHV mutation status, and Binet stage were the top predictors of 5-year survival. These findings are consistent with prevalent CLL literature, though clinical validation is required for further biomechanistic determination. Additionally, the survival curves identified several key variables—specifically del(17p) status, TP53 mutation, and elevated Beta-2 Microglobulin—which contributed significantly to a poor prognosis. These factors played a decisive role in the recursive partitioning of the patient cohort, highlighting the interplay between clinical staging and genomic aberrations in determining long-term outcomes
@@ -21,7 +21,7 @@ The GUIDE model identified IGHV mutation status as the most significant predicto
 
 
 
-### Data 
+### Exploratory Data Analysis
 
 Data source : 
 
@@ -58,12 +58,24 @@ kable(project_files, booktabs = TRUE, col.names = c("File Name", "Description"))
                 position = "left") %>%
   column_spec(1, bold = TRUE, monospace = TRUE)
 ```
-Full data folder structure is mentioned in detail later. 
+Full data folder structure is mentioned in detail later. ( Rmd file : )
 
 Actions performed to in the folder : 
+- Raw data from the source was thoroughly examined for meaning behind column names, nature of patient data and datafiles/meta files not required for the purposes of intended analysis were excluded. 
+- Useful columns of various datafiles were merged using PATIENT_ID as the primary key. 
+- Mutaion file had gene information in the format : row as gene and column as mutation status as present, unpresent. Mutation file was transposed into mutation matrix where columns are genes and one-hot encoded dummy variables (1/0) in the row indicated presence of the the said gene. 
+- Mutation file was also merged using PATIENT_ID as primary key. 
+- Imputation of datafiles was p
 
+A meaning depection of the process can be found here : 
 
 -- note for self, use library(dm) to show how you worked with realtional dataset 
+
+Data Analysis and Methods : 
+
+
+
+
 
 
 

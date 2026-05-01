@@ -3,47 +3,122 @@ title: "logistic_regression"
 output: html_document
 ---
 
-Import required library 
+Import required library
 ```{r}
 library(dplyr)
 ```
 
-Global file path 
+Global file path
 ```{r}
-dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/prediction_death_5_years"
-dataset_filename <- "data_patient_file_cna_rai.txt"
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai"
+dataset_filename <- "patient_file_cna_rai.txt"
 ```
-
-#Datasets
-
-This requires a file that has a one hot coded column - surv5yrs 
-
-surv5yrs := 1{ patient died within 5 years of diagnosis }
 
 ```{r}
 data_patient_clinical <- read.table(file.path(dataset_path, dataset_filename), header=TRUE, sep=" ")
+
+length(unique(data_patient_clinical$PATIENT_ID))
 ```
 
-Colnames
+Column Names
 ```{r}
 colnames(data_patient_clinical)
 ```
 
-We need to subset a little but of columns 
+We need to subset a little bit of columns
 
 ```{r}
-data_patient_clinical <- data_patient_clinical %>% select(-c(ONCOTREE_CODE, DISEASE_TYPE, SOMATIC_STATUS,CLL_EPITYPE,TUMOR_MOLECULAR_SUBTYPE,SEQUENCING_PLATFORM,RNA_SEQUENCING,RRBS,ARRAY450K, M.CLL_WES,U.CLL_WES,EC_DISCOVERY,EC_EXTENSION,IGLV3_21_R110,COHORT,CANCER_TYPE,CANCER_TYPE_DETAILED,TREATMENT_STATUS,PRIOR_TREATMENT_CATEGORY,SAMPLE_ID))
+#data_patient_clinical <- data_patient_clinical %>% select(-c(ONCOTREE_CODE, DISEASE_TYPE, SOMATIC_STATUS,CLL_EPITYPE,TUMOR_MOLECULAR_SUBTYPE,SEQUENCING_PLATFORM,RNA_SEQUENCING,RRBS,ARRAY450K, M.CLL_WES,U.CLL_WES,EC_DISCOVERY,EC_EXTENSION,IGLV3_21_R110,COHORT,CANCER_TYPE,CANCER_TYPE_DETAILED,TREATMENT_STATUS,PRIOR_TREATMENT_CATEGORY,SAMPLE_ID))
 
-data_patient_clinical <- data_patient_clinical %>% select(-c(OS_STATUS,OS_MONTHS,DEATH_DAYS))
+data_patient_clinical <- data_patient_clinical %>% select(-c(SAMPLE_ID, PATIENT_ID, ONCOTREE_CODE, DISEASE_TYPE, OS_STATUS, OS_MONTHS, DEATH_DAYS, FFS_STATUS, FFS_MONTHS))
 
 head(data_patient_clinical)
-```
 
-Logistic regression 
+data_patient_clinical <- data_patient_clinical %>%
+  mutate(across(where(is.character), as.factor))
+summary(data_patient_clinical)
+```
+Deselect columns with 1 factor: 
 ```{r}
 
-m1 <- glm(death_5yr ~ ., data=data_patient_clinical, family="binomial")
+data_patient_clinical <- data_patient_clinical %>% select(-c(CANCER_TYPE,SOMATIC_STATUS))
+
+sapply(data_patient_clinical, function(x) length(unique(x)))
+
+
+```
+
+
+Columns with 1 factor levels 
+```{r}
+const_cols <- sapply(data_patient_clinical, function(x) {
+  length(unique(x)) < 2
+})
+
+names(const_cols[const_cols == TRUE])
+
+data_clean <- data_patient_clinical[, !const_cols]
+colnames(data_clean)
+```
+
+Logistic regression
+```{r}
+library(mice)
+
+imputed <- mice(data_patient_clinical, m = 1, method = "pmm", seed = 123)
+
+data_imputed <- complete(imputed)
+
+data_imputed <- data_imputed |> select(where(~ length(unique(.)) > 1))
+
+# Identify columns that are factors and have fewer than 2 levels
+drop_cols <- sapply(data_imputed, function(x) is.factor(x) && nlevels(x) < 2)
+
+# Remove those columns
+data_imputed_clean <- data_imputed[, !drop_cols]
+
+# Drop unused levels across the entire dataframe
+data_imputed_clean <- droplevels(data_imputed_clean)
+
+# Re-check for single-level factors again if you still see errors
+# This ensures that even if a factor has levels, if it's constant, it's removed
+data_imputed_clean <- data_imputed_clean[, sapply(data_imputed_clean, function(x) {
+  if(is.factor(x)) nlevels(x) > 1 else length(unique(x)) > 1
+})]
+
+
+
+m1 <- glm(death_5yr ~ NORMAL_MEAN_COVERAGE + TUMOR_MEAN_COVERAGE + TUMOR_SAMPLE_PURITY +TUMOR_SAMPLE_PLOIDY+CANCER_TYPE_DETAILED+CLL_EPITYPE+TUMOR_MOLECULAR_SUBTYPE+SEQUENCING_PLATFORM
+          , data = data_imputed_clean, family = "binomial")
 summary(m1)
 
+m1 <- glm(death_5yr ~ RNA_SEQUENCING +RRBS+ARRAY450K + M.CLL_WES + U.CLL_WES + EC_DISCOVERY + EC_EXTENSION + IGLV3_21_R110 + U1_STATUS + TMB_NONSYNONYMOUS + AGE + AGE_SAMPLING + SEX + COHORT + IGHV_MUTATION_STATUS + IGHV_IDENTITY_PERCENTAGE + TREATMENT_STATUS + PRIOR_TREATMENT_CATEGORY + TREATMENT_AFTER_SAMPLING +EXPRESSION_CLUSTER , data = data_imputed_clean, family = "binomial")
+
+colnames(data_imputed_clean)
+
+summary(data_imputed_clean$death_5yr)
+
+```
+
+```{r}
+imputed      <- mice(data_patient_clinical, m = 1, method = "pmm", seed = 123)
+data_imputed <- complete(imputed)
+
+is_constant <- function(x) {
+  if (is.factor(x)) nlevels(droplevels(x)) < 2
+  else              length(unique(na.omit(x))) < 2
+}
+
+data_imputed_clean <- data_imputed |>
+  select(where(~ !is_constant(.x))) |>
+  droplevels()
+
+bad <- sapply(data_imputed_clean, function(x) is.factor(x) && nlevels(x) < 2)
+if (any(bad)) {
+  message("Still-problematic columns: ", paste(names(bad)[bad], collapse = ", "))
+  data_imputed_clean <- data_imputed_clean[, !bad]
+}
+
+m1 <- glm(death_5yr ~ ., data = data_imputed_clean, family = "binomial")
 ```
 

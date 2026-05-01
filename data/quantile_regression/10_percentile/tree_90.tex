@@ -1,0 +1,62 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 46.2 on 04/30/26 at 09:50
+ %%%% Usage: latex tree_90.tex, dvips tree_90.tex, ps2pdf tree_90.tex
+ %%%% or: xelatex tree_90.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree_90.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.5cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{X17p_status}}\\=\texttt{\detokenize{Loss}}}}
+ }{
+    \Tcircle[fillcolor=orange]{ 2 }~{\shortstack[c]{\emph{70}\\11.34}}  
+  \pstree[treemode=D]{\Tcircle[linecolor=brown]{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V1}}\\=\texttt{\detokenize{Untreated}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=gray]{ 6 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V2}}\\$\leq_*$\texttt{97.20}}}
+ }{
+    \Tcircle[fillcolor=yellow]{\small 12}~{\shortstack[c]{\emph{217}\\44.12}}  
+    \Tcircle[fillcolor=yellow]{\small 13}~{\shortstack[c]{\emph{393}\\29.95}}  
+   }
+  \pstree[treemode=D]{\Tcircle{ 7 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{CLL_EPITYPE}}\\=\texttt{\detokenize{n_CLL}}}}
+ }{
+    \Tcircle[fillcolor=orange]{\small 14}~{\shortstack[c]{\emph{48}\\ 0.30}}  
+    \Tcircle[fillcolor=yellow]{\small 15}~{\shortstack[c]{\emph{280}\\30.66}}  
+ }
+ }
+ }
+ \end{center}
+GUIDE v.46.2 0.250-SE
+ piecewise-constant  0.100-quantile regression tree
+for predicting \texttt{\detokenize{surv_5yrs}}.
+ % Tree constructed from 1008 observations
+ % (excluding observations with non-positive weight or missing values
+ % in \texttt{D}, \texttt{T}, \texttt{R} or \texttt{Z} variables)
+ % and pruned from a tree with 226 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Symbol `$\leq_*$' stands for `$\leq$ or missing'.
+\texttt{\detokenize{V1}} = \texttt{\detokenize{TREATMENT_STATUS_AT_SAMPLING}}.
+\texttt{\detokenize{V2}} = \texttt{\detokenize{IGHV_IDENTITY_PERCENTAGE}}.
+ Splits at nodes drawn with \textbf{\textcolor{gray}{gray}} circles are not statistically significant.
+ Splits at nodes drawn with \textbf{\textcolor{brown}{brown}} circles are interaction splits.
+ Sample size (in \emph{italics}) and 0.100-quantile of \texttt{\detokenize{surv_5yrs}} printed below nodes.
+ Terminal nodes with quantiles above and below value of 24.49 at root node are painted \colorbox{yellow}{yellow} and \colorbox{orange}{orange} respectively.
+ Second best split variable at root node is \texttt{\detokenize{TREATMENT_STATUS}}.
+ %\end{landscape}
+ \end{document}

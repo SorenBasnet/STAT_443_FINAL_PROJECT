@@ -3,9 +3,9 @@ title: "quantile_regression"
 output: html_document
 ---
 
-Action : 
+Action :
 1) To go quantile regression on the patient data to see who survives and who does [CURRENT TASK]
-    - This objective might also help with the the infection rate 
+    - This objective might also help with the the infection rate
 2) Then if that is successful, do quantile regression on the patient data along with genetic mutation matrix [PLANNED]
 
 Role,Variables from your list
@@ -55,7 +55,7 @@ dim(patient_mutation)
 
 ```
 
-Save the patient_mutation file 
+Save the patient_mutation file
 
 ```{r}
 

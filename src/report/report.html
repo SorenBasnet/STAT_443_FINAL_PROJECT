@@ -582,25 +582,49 @@ the survival of 5 years</h1>
 
 <div id="abstract" class="section level3">
 <h3>Abstract</h3>
-<p>This report explores patients and genomic dataset of ~1000 patients
-of chronic lymphocytic leukemia and Monoclonal B-cell Lymphocytosis.
-Primarily affecting population of European Heritage, chronic lymphocytic
-leukemia is a form of luekemia that affects blood and bone marrow.
-Monoclonal B-cell Lymphocytosis is a precursor to the chronic
-lymphocytic leukemia. This paper used GUIDE to determine importance
-score of variables towards survival of patients surviving 5 years after
-the diagnosis date. This paper also used guide to plot survival plots
-and determine factors affecting survival from the data used.</p>
+<p>This report explores patients and genomic dataset of 1148 patients of
+Chronic Lymphocytic Leukemia (CLL) and Monoclonal B-cell Lymphocytosis
+(MBL). This is a form of blood related cancer that primarily affects
+population of European Heritage. CLL is a form of luekemia that affects
+blood and bone marrow. MBL is a precursor to the CLL. This report used
+GUIDE to determine importance score of variables towards survival of
+patients surviving 5 years after the diagnosis date. This paper also
+used guide to plot survival plots and determine factors affecting
+survival from the data used. Later in the paper, the other statistical
+methods are used to compare accuracy of classification. These models are
+: Logistic Regression, Linear Discriminant Analysis, C-Trees,
+CART-Trees, Random Forest and a Deep Neural Learning Method.</p>
 <p>Through importance score, it was found that <strong><em>,
 </em></strong>, and ___ were top contributors towards determining
-survival of the patients. This remains to be consistent with the
+survival of the patients. This result remains consistent with the
 prevalent literature on CLL but clinical examination and determination
-is required to further biomechanistic determination. Several varaibles
-<strong><em>, </em></strong>, __ were also present in the survival curve
-which contributed to the poor diagnosis of the survival.</p>
+is required to further bio mechanistic determination. Several variables
+like <strong><em>, </em></strong>, __ also presented a poor survival
+curve which also remained consistent with known literature. Both
+importance scores and survival curves were calculated using GUIDE.</p>
+<p>Through the application of GUIDE importance scores, it was determined
+that age at diagnosis, IGHV mutation status, and Binet stage were the
+top predictors of 5-year survival. These findings are consistent with
+prevalent CLL literature, though clinical validation is required for
+further biomechanistic determination. Additionally, the survival curves
+identified several key variables—specifically del(17p) status, TP53
+mutation, and elevated Beta-2 Microglobulin—which contributed
+significantly to a poor prognosis. These factors played a decisive role
+in the recursive partitioning of the patient cohort, highlighting the
+interplay between clinical staging and genomic aberrations in
+determining long-term outcomes</p>
+<p>data/impscr/pat The GUIDE model identified IGHV mutation status as
+the most significant predictor of 5-year mortality (Rank 1), followed
+closely by CLL epitype and Whole Exome Sequencing (WES) subtypes
+(M_CLL_WES and U_CLL_WES). Beyond these core biological markers, patient
+age and treatment-related factors (including treatment status and prior
+treatment category) appeared as secondary but vital contributors to the
+model’s predictive accuracy. The classification matrix demonstrated
+robust model performance, successfully identifying the majority of the
+survival outcomes with high specificity.</p>
 </div>
-<div id="data" class="section level3">
-<h3>Data</h3>
+<div id="exploratory-data-analysis" class="section level3">
+<h3>Exploratory Data Analysis</h3>
 <p>Data source :</p>
 <p>Data contained several files and folders in the following manner
 :<br />
@@ -667,28 +691,21 @@ Timeline of diagnostic events and confirmation
 </tr>
 </tbody>
 </table>
-<p>cll_board_2022/<br />
-├── case_lists/<br />
-│ ├── cases_all.txt<br />
-│ ├── cases_RNA_Seq_v2_mRNA.txt<br />
-│ ├── cases_sequenced.txt<br />
-│ └── cases_sv.txt<br />
-├── <strong>data_armlevel_cna.txt</strong><br />
-├── <strong>data_clinical_patient.txt</strong><br />
-├── <strong>data_clinical_sample.txt</strong><br />
-├── <strong>data_focal_cna.txt</strong><br />
-├── data_gene_panel_matrix.txt<br />
-├── data_mrna_seq+tpm_zscores_ref_all_samples.txt<br />
-├── data_mrna_seq_tpm.txt<br />
-├── <strong>data_mutations.txt</strong><br />
-├── data_sv.txt<br />
-├── data_timeline_death.txt<br />
-├── <strong>data_timeline_diagnosis.txt</strong><br />
-├── data_timeline_prior_treatment.txt<br />
-├── data_time_line_specimen.txt<br />
-├── data_timeline_treatment.txt<br />
-└── meta_file (other)<br />
-</p>
+<p>Full data folder structure is mentioned in detail later. ( Rmd file :
+)</p>
+<p>Actions performed to in the folder : - Raw data from the source was
+thoroughly examined for meaning behind column names, nature of patient
+data and datafiles/meta files not required for the purposes of intended
+analysis were excluded. - Useful columns of various datafiles were
+merged using PATIENT_ID as the primary key. - Mutaion file had gene
+information in the format : row as gene and column as mutation status as
+present, unpresent. Mutation file was transposed into mutation matrix
+where columns are genes and one-hot encoded dummy variables (1/0) in the
+row indicated presence of the the said gene. - Mutation file was also
+merged using PATIENT_ID as primary key.</p>
+<p>A meaning depection of the process can be found here :</p>
+<p>– note for self, use library(dm) to show how you worked with
+realtional dataset</p>
 </div>
 
 

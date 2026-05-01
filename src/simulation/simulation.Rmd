@@ -29,11 +29,12 @@ gcon.err <- 0
 gcon.err2 <- 0
 gforest.err <- 0
 gforest.err2 <- 0
-April 8, 2026 STAT 443: Classification and Regression Trees (Loh) 280
+
 for(i in 1:nsim){
 ran <- rbinom(n,1,0.5)
 train <- ran == 1
 test <- ran == 0
+
 ### ctree
 ct <- ctree(y ~ .,data=z[train,])
 ct.pred <- predict(ct,newdata=z[test,])
@@ -58,7 +59,7 @@ ran.pred <- predict(ran,data=z[test,])$predictions
 error <- mean(y[test] != ran.pred)
 ran.err <- ran.err+error
 ran.err2 <- ran.err2+error*error
-April 8, 2026 STAT 443: Classification and Regression Trees (Loh) 281
+
 ### guide constant tree
 z0 <- z
 z0$y[test] <- NA
@@ -80,7 +81,7 @@ gforest.pred <- z1$predicted[test]
 error <- mean(as.character(y[test]) != gforest.pred)
 gforest.err <- gforest.err+error
 gforest.err2 <- gforest.err2+error*error
-April 8, 2026 STAT 443: Classification and Regression Trees (Loh) 282
+
 if(i == nsim | i==5*floor(i/5)){
 print(paste("Number of iterations completed =",i),quote=FALSE)
 ct.mean <- ct.err/i

@@ -1,0 +1,26 @@
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2026 Wei-Yin Loh. All rights reserved.
+ Software based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ Choose one of the following options:
+ 0. Read the warranty disclaimer
+ 1. Create a GUIDE input file
+ Input your choice:  Batch run with input file 
+ Input 1 for model fitting, 2 for importance or DIF scoring, 3 for data conversion: 1
+ Output file is output_forest.txt
+  
+ Job start date and time: 04/30/26 at 20:03
+  
+ Input 1 for single tree, 2 for ensemble of trees: 2
+ Input 1 for bagging, 2 for rforest: 2
+ Input 1 for classification, 2 for least-squares regression
+ Input your choice: 1
+ Input 1 for interaction tests, 2 to skip them: 2
+ Bonferroni alpha = 0.100
+  
+ Input name of DSC file (max 100 characters);
+ enclose with matching quotes if it has spaces:  Description file dsc_patient_file_cna_rai.txt does not exist

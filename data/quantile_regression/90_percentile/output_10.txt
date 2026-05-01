@@ -1,0 +1,828 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 04/30/26 at 09:56
+  
+ Quantile regression tree with quantile probability 0.9000
+ No pruning
+ DSC file: dsc_patient_file_cna_rai.txt
+ Training sample file: patient_file_cna_rai.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ 10 N variables changed to S
+ D variable is surv_5yrs
+ Piecewise constant model
+ Number of records in data file: 1148
+ Length of longest entry in data file: 59
+ Missing values found in D variable
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Missing values found among non-categorical variables
+ Warning: C variable CANCER_TYPE takes only 1 value
+ Warning: C variable SOMATIC_STATUS takes only 1 value
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       1148        140        526       10        0        0       10
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       36        0
+ Number of cases used for training: 1008
+ Number of cases excluded due to 0 W or missing D variable: 140
+  
+ Importance scoring of variables
+ Nodewise interaction tests on all variables
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 8
+ Minimum node sample size: 2
+ Using 300 permutations to standardize means of importance scores
+ Finished permutations to standardize means of importance scores
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ D-quant is quantile of surv_5yrs in the node
+ Cases fit give the number of cases used to fit node
+        Node    Total    Cases Matrix    Node    Split          Other
+        label   cases      fit  rank    D-quant  variable       variables
+           1     1008     1008     1  6.000E+01  TREATMENT_STATUS_AT_SAMPLING 
+           2      291      291     1  6.000E+01  EXPRESSION_CLUSTER 
+           4T      12       12     1  6.000E+01  - 
+           5      279      279     1  6.000E+01  RAI_AT_DIAGNOSIS 
+          10      275      275     1  6.000E+01  EXPRESSION_CLUSTER 
+          20       13       13     1  6.000E+01  SEX 
+          40        6        6     1  3.334E+01  NORMAL_MEAN_COVERAGE 
+          80T       3        3     1  4.340E+00  - 
+          81T       3        3     1  3.334E+01  - 
+          41        7        7     1  6.000E+01  IGHV_IDENTITY_PERCENTAGE 
+          82T       5        5     1  6.000E+01  - 
+          83T       2        2     1  3.011E+01  - 
+          21      262      262     1  6.000E+01  tri12_status 
+          42       26       26     1  6.000E+01  TMB_NONSYNONYMOUS 
+          84       21       21     1  6.000E+01  TUMOR_MOLECULAR_SUBTYPE 
+         168T       3        3     1  5.365E+01  - 
+         169       18       18     1  6.000E+01  TMB_NONSYNONYMOUS 
+         338T       3        3     1  6.000E+01  - 
+         339T      15       15     1  6.000E+01  TMB_NONSYNONYMOUS 
+          85        5        5     1  5.573E+01  M.CLL_WES 
+         170T       3        3     1  4.188E+01  - 
+         171T       2        2     1  5.573E+01  - 
+          43      236      236     1  6.000E+01  AGE_SAMPLING 
+          86T       3        3     1  6.000E+01  - 
+          87      233      233     1  6.000E+01  AGE_SAMPLING 
+         174T       2        2     1  6.000E+01  - 
+         175      231      231     1  6.000E+01  TUMOR_SAMPLE_PURITY 
+         350T      71       71     1  6.000E+01  TUMOR_SAMPLE_PLOIDY 
+         351T     160      160     1  6.000E+01  IGLV3_21_R110 
+          11        4        4     1  5.954E+01  IGHV_MUTATION_STATUS 
+          22T       2        2     1  5.743E+01  - 
+          23T       2        2     1  5.954E+01  - 
+           3      717      717     1  6.000E+01  TREATMENT_STATUS_AT_SAMPLING 
+           6       67       67     1  6.000E+01  COHORT 
+          12       13       13     1  6.000E+01  U.CLL_WES 
+          24T       8        8     1  6.000E+01  - 
+          25T       5        5     1  6.000E+01  FIRST_TREATMENT_AFTER_SAMPLING 
+          13       54       54     1  6.000E+01  RAI_AT_SAMPLING 
+          26       34       34     1  6.000E+01  IGHV_MUTATION_STATUS :TUMOR_MEAN_COVERAGE
+          52       27       27     1  5.467E+01  TUMOR_SAMPLE_PLOIDY 
+         104       21       21     1  5.467E+01  TUMOR_SAMPLE_PLOIDY 
+         208T       3        3     1  2.617E+01  - 
+         209       18       18     1  5.484E+01  TUMOR_SAMPLE_PURITY 
+         418T       5        5     1  4.129E+01  NORMAL_MEAN_COVERAGE 
+         419T      13       13     1  5.484E+01  AGE_SAMPLING 
+         105        6        6     1  3.873E+01  FIRST_TREATMENT_AFTER_SAMPLING 
+         210T       3        3     1  3.544E+01  - 
+         211T       3        3     1  3.873E+01  - 
+          53        7        7     1  6.000E+01  NORMAL_MEAN_COVERAGE 
+         106T       3        3     1  6.000E+01  - 
+         107        4        4     1  4.869E+01  FIRST_TREATMENT_AFTER_SAMPLING 
+         214T       2        2     1  2.298E+01  - 
+         215T       2        2     1  4.869E+01  - 
+          27       20       20     1  6.000E+01  AGE 
+          54T       3        3     1  6.000E+01  - 
+          55       17       17     1  6.000E+01  TUMOR_MEAN_COVERAGE 
+         110T       3        3     1  6.000E+01  - 
+         111       14       14     1  6.000E+01  RRBS 
+         222T       2        2     1  4.027E+01  - 
+         223       12       12     1  6.000E+01  TUMOR_SAMPLE_PURITY 
+         446T       3        3     1  6.000E+01  - 
+         447T       9        9     1  6.000E+01  NORMAL_MEAN_COVERAGE 
+           7      650      650     1  6.000E+01  M.CLL_WES 
+          14      410      410     1  6.000E+01  AGE_SAMPLING 
+          28      407      407     1  6.000E+01  RAI_AT_SAMPLING 
+          56      253      253     1  6.000E+01  AGE_SAMPLING 
+         112      248      248     1  6.000E+01  AGE_SAMPLING 
+         224       90       90     1  6.000E+01  TUMOR_SAMPLE_PLOIDY 
+         448T      13       13     1  6.000E+01  U1_STATUS 
+         449T      77       77     1  6.000E+01  TUMOR_SAMPLE_PLOIDY 
+         225      158      158     1  6.000E+01  AGE_SAMPLING 
+         450T      21       21     1  6.000E+01  AGE :SEX
+         451T     137      137     1  6.000E+01  AGE_SAMPLING 
+         113        5        5     1  5.790E+01  ARRAY450K 
+         226T       3        3     1  5.385E+01  - 
+         227T       2        2     1  5.790E+01  - 
+          57      154      154     1  6.000E+01  U1_STATUS 
+         114        6        6     1  6.000E+01  TUMOR_MOLECULAR_SUBTYPE 
+         228T       4        4     1  3.958E+01  EXPRESSION_CLUSTER 
+         229T       2        2     1  6.000E+01  - 
+         115      148      148     1  6.000E+01  X11q_status 
+         230        9        9     1  6.000E+01  EC_DISCOVERY 
+         460T       4        4     1  5.694E+01  IGHV_MUTATION_STATUS 
+         461T       5        5     1  6.000E+01  TMB_NONSYNONYMOUS 
+         231      139      139     1  6.000E+01  TUMOR_MEAN_COVERAGE 
+         462T     116      116     1  6.000E+01  U.CLL_WES 
+         463T      23       23     1  6.000E+01  - 
+          29T       3        3     1  4.984E+01  - 
+          15      240      240     1  6.000E+01  COHORT 
+          30       48       48     1  6.000E+01  EC_DISCOVERY 
+          60       23       23     1  6.000E+01  RRBS 
+         120       15       15     1  6.000E+01  AGE 
+         240T       3        3     1  6.000E+01  - 
+         241       12       12     1  6.000E+01  RAI_AT_SAMPLING 
+         482T       8        8     1  6.000E+01  - 
+         483T       4        4     1  6.000E+01  SEX 
+         121        8        8     1  6.000E+01  TUMOR_SAMPLE_PLOIDY 
+         242        6        6     1  6.000E+01  TUMOR_MOLECULAR_SUBTYPE 
+         484T       2        2     1  1.535E+01  - 
+         485T       4        4     1  6.000E+01  CLL_EPITYPE 
+         243T       2        2     1  6.000E+01  - 
+          61T      25       25     1  6.000E+01  - 
+          31      192      192     1  6.000E+01  AGE 
+          62      190      190     1  6.000E+01  X8q_status 
+         124        4        4     1  6.000E+01  X17p_status 
+         248T       2        2     1  2.982E+01  - 
+         249T       2        2     1  6.000E+01  - 
+         125T     186      186     1  6.000E+01  - 
+          63T       2        2     1  4.359E+01  - 
+  
+ Number of terminal nodes of final tree: 55
+ Total number of nodes of final tree: 109
+  
+ Regression tree:
+ For categorical variable splits, values not in training data go to the right
+  
+ Node 1: TREATMENT_STATUS_AT_SAMPLING = "NA"
+   Node 2: EXPRESSION_CLUSTER = "EC_o"
+     Node 4: surv_5yrs sample quantile = 60.000000
+   Node 2: EXPRESSION_CLUSTER /= "EC_o"
+     Node 5: RAI_AT_DIAGNOSIS <= 0.50000000
+       Node 10: EXPRESSION_CLUSTER = "EC_u1"
+         Node 20: SEX = "Male"
+           Node 40: NORMAL_MEAN_COVERAGE <= 69.950000 or NA
+             Node 80: surv_5yrs sample quantile = 4.3400000
+           Node 40: NORMAL_MEAN_COVERAGE > 69.950000
+             Node 81: surv_5yrs sample quantile = 33.340000
+         Node 20: SEX /= "Male"
+           Node 41: IGHV_IDENTITY_PERCENTAGE <= 99.830000
+             Node 82: surv_5yrs sample quantile = 60.000000
+           Node 41: IGHV_IDENTITY_PERCENTAGE > 99.830000 or NA
+             Node 83: surv_5yrs sample quantile = 30.110000
+       Node 10: EXPRESSION_CLUSTER /= "EC_u1"
+         Node 21: tri12_status = "Gain"
+           Node 42: TMB_NONSYNONYMOUS <= 1.4000000
+             Node 84: TUMOR_MOLECULAR_SUBTYPE = "NA"
+               Node 168: surv_5yrs sample quantile = 53.650000
+             Node 84: TUMOR_MOLECULAR_SUBTYPE /= "NA"
+               Node 169: TMB_NONSYNONYMOUS <= 0.58333333
+                 Node 338: surv_5yrs sample quantile = 60.000000
+               Node 169: TMB_NONSYNONYMOUS > 0.58333333 or NA
+                 Node 339: surv_5yrs sample quantile = 60.000000
+           Node 42: TMB_NONSYNONYMOUS > 1.4000000 or NA
+             Node 85: M.CLL_WES = "No"
+               Node 170: surv_5yrs sample quantile = 41.880000
+             Node 85: M.CLL_WES /= "No"
+               Node 171: surv_5yrs sample quantile = 55.730000
+         Node 21: tri12_status /= "Gain"
+           Node 43: AGE_SAMPLING <= 37.000000
+             Node 86: surv_5yrs sample quantile = 60.000000
+           Node 43: AGE_SAMPLING > 37.000000 or NA
+             Node 87: AGE_SAMPLING <= 44.500000
+               Node 174: surv_5yrs sample quantile = 60.000000
+             Node 87: AGE_SAMPLING > 44.500000 or NA
+               Node 175: TUMOR_SAMPLE_PURITY <= 0.91500000 or NA
+                 Node 350: surv_5yrs sample quantile = 60.000000
+               Node 175: TUMOR_SAMPLE_PURITY > 0.91500000
+                 Node 351: surv_5yrs sample quantile = 60.000000
+     Node 5: RAI_AT_DIAGNOSIS > 0.50000000 or NA
+       Node 11: IGHV_MUTATION_STATUS = "mutated"
+         Node 22: surv_5yrs sample quantile = 57.430000
+       Node 11: IGHV_MUTATION_STATUS /= "mutated"
+         Node 23: surv_5yrs sample quantile = 59.540000
+ Node 1: TREATMENT_STATUS_AT_SAMPLING /= "NA"
+   Node 3: TREATMENT_STATUS_AT_SAMPLING = "Treated"
+     Node 6: COHORT = "ICGC"
+       Node 12: U.CLL_WES = "No"
+         Node 24: surv_5yrs sample quantile = 60.000000
+       Node 12: U.CLL_WES /= "No"
+         Node 25: surv_5yrs sample quantile = 60.000000
+     Node 6: COHORT /= "ICGC"
+       Node 13: RAI_AT_SAMPLING <= 0.50000000
+         Node 26: IGHV_MUTATION_STATUS = "unmutated"
+           Node 52: TUMOR_SAMPLE_PLOIDY <= 2.0050000
+             Node 104: TUMOR_SAMPLE_PLOIDY <= 1.9750000
+               Node 208: surv_5yrs sample quantile = 26.170000
+             Node 104: TUMOR_SAMPLE_PLOIDY > 1.9750000 or NA
+               Node 209: TUMOR_SAMPLE_PURITY <= 0.80500000
+                 Node 418: surv_5yrs sample quantile = 41.290000
+               Node 209: TUMOR_SAMPLE_PURITY > 0.80500000 or NA
+                 Node 419: surv_5yrs sample quantile = 54.840000
+           Node 52: TUMOR_SAMPLE_PLOIDY > 2.0050000 or NA
+             Node 105: FIRST_TREATMENT_AFTER_SAMPLING = "Chemo__+__Ab"
+               Node 210: surv_5yrs sample quantile = 35.440000
+             Node 105: FIRST_TREATMENT_AFTER_SAMPLING /= "Chemo__+__Ab"
+               Node 211: surv_5yrs sample quantile = 38.730000
+         Node 26: IGHV_MUTATION_STATUS /= "unmutated"
+           Node 53: NORMAL_MEAN_COVERAGE <= 104.95000
+             Node 106: surv_5yrs sample quantile = 60.000000
+           Node 53: NORMAL_MEAN_COVERAGE > 104.95000 or NA
+             Node 107: FIRST_TREATMENT_AFTER_SAMPLING = "Ab__+__no__chemo"
+               Node 214: surv_5yrs sample quantile = 22.980000
+             Node 107: FIRST_TREATMENT_AFTER_SAMPLING /= "Ab__+__no__chemo"
+               Node 215: surv_5yrs sample quantile = 48.690000
+       Node 13: RAI_AT_SAMPLING > 0.50000000 or NA
+         Node 27: AGE <= 43.000000
+           Node 54: surv_5yrs sample quantile = 60.000000
+         Node 27: AGE > 43.000000 or NA
+           Node 55: TUMOR_MEAN_COVERAGE <= 79.650000
+             Node 110: surv_5yrs sample quantile = 60.000000
+           Node 55: TUMOR_MEAN_COVERAGE > 79.650000 or NA
+             Node 111: RRBS = "No"
+               Node 222: surv_5yrs sample quantile = 40.270000
+             Node 111: RRBS /= "No"
+               Node 223: TUMOR_SAMPLE_PURITY <= 0.95500000
+                 Node 446: surv_5yrs sample quantile = 60.000000
+               Node 223: TUMOR_SAMPLE_PURITY > 0.95500000 or NA
+                 Node 447: surv_5yrs sample quantile = 60.000000
+   Node 3: TREATMENT_STATUS_AT_SAMPLING /= "Treated"
+     Node 7: M.CLL_WES = "No"
+       Node 14: AGE_SAMPLING <= 86.500000
+         Node 28: RAI_AT_SAMPLING <= 0.50000000
+           Node 56: AGE_SAMPLING <= 84.500000
+             Node 112: AGE_SAMPLING <= 58.500000
+               Node 224: TUMOR_SAMPLE_PLOIDY = NA
+                 Node 448: surv_5yrs sample quantile = 60.000000
+               Node 224: TUMOR_SAMPLE_PLOIDY /= NA
+                 Node 449: surv_5yrs sample quantile = 60.000000
+             Node 112: AGE_SAMPLING > 58.500000 or NA
+               Node 225: AGE_SAMPLING <= 60.500000
+                 Node 450: surv_5yrs sample quantile = 60.000000
+               Node 225: AGE_SAMPLING > 60.500000 or NA
+                 Node 451: surv_5yrs sample quantile = 60.000000
+           Node 56: AGE_SAMPLING > 84.500000 or NA
+             Node 113: ARRAY450K = "Yes"
+               Node 226: surv_5yrs sample quantile = 53.850000
+             Node 113: ARRAY450K /= "Yes"
+               Node 227: surv_5yrs sample quantile = 57.900000
+         Node 28: RAI_AT_SAMPLING > 0.50000000 or NA
+           Node 57: U1_STATUS = "MUT"
+             Node 114: TUMOR_MOLECULAR_SUBTYPE = "M_CLL"
+               Node 228: surv_5yrs sample quantile = 39.580000
+             Node 114: TUMOR_MOLECULAR_SUBTYPE /= "M_CLL"
+               Node 229: surv_5yrs sample quantile = 60.000000
+           Node 57: U1_STATUS /= "MUT"
+             Node 115: X11q_status = "Loss"
+               Node 230: EC_DISCOVERY = "Yes"
+                 Node 460: surv_5yrs sample quantile = 56.940000
+               Node 230: EC_DISCOVERY /= "Yes"
+                 Node 461: surv_5yrs sample quantile = 60.000000
+             Node 115: X11q_status /= "Loss"
+               Node 231: TUMOR_MEAN_COVERAGE <= 139.60000 or NA
+                 Node 462: surv_5yrs sample quantile = 60.000000
+               Node 231: TUMOR_MEAN_COVERAGE > 139.60000
+                 Node 463: surv_5yrs sample quantile = 60.000000
+       Node 14: AGE_SAMPLING > 86.500000 or NA
+         Node 29: surv_5yrs sample quantile = 49.840000
+     Node 7: M.CLL_WES /= "No"
+       Node 15: COHORT = "DFCI", "NHLBI"
+         Node 30: EC_DISCOVERY = "No"
+           Node 60: RRBS = "No"
+             Node 120: AGE <= 40.000000 or NA
+               Node 240: surv_5yrs sample quantile = 60.000000
+             Node 120: AGE > 40.000000
+               Node 241: RAI_AT_SAMPLING <= 0.50000000
+                 Node 482: surv_5yrs sample quantile = 60.000000
+               Node 241: RAI_AT_SAMPLING > 0.50000000 or NA
+                 Node 483: surv_5yrs sample quantile = 60.000000
+           Node 60: RRBS /= "No"
+             Node 121: TUMOR_SAMPLE_PLOIDY <= 2.0150000
+               Node 242: TUMOR_MOLECULAR_SUBTYPE = "U_CLL"
+                 Node 484: surv_5yrs sample quantile = 15.350000
+               Node 242: TUMOR_MOLECULAR_SUBTYPE /= "U_CLL"
+                 Node 485: surv_5yrs sample quantile = 60.000000
+             Node 121: TUMOR_SAMPLE_PLOIDY > 2.0150000 or NA
+               Node 243: surv_5yrs sample quantile = 60.000000
+         Node 30: EC_DISCOVERY /= "No"
+           Node 61: surv_5yrs sample quantile = 60.000000
+       Node 15: COHORT /= "DFCI", "NHLBI"
+         Node 31: AGE <= 82.500000
+           Node 62: X8q_status = "Gain"
+             Node 124: X17p_status = "Loss"
+               Node 248: surv_5yrs sample quantile = 29.820000
+             Node 124: X17p_status /= "Loss"
+               Node 249: surv_5yrs sample quantile = 60.000000
+           Node 62: X8q_status /= "Gain"
+             Node 125: surv_5yrs sample quantile = 60.000000
+         Node 31: AGE > 82.500000 or NA
+           Node 63: surv_5yrs sample quantile = 43.590000
+ 
+ ***************************************************************
+ Predictor means below are means of cases with no missing values.
+  
+ WARNING: p-values below not adjusted for split search. For a bootstrap solution see:
+  
+ 1. Loh et al. (2016), "Identification of subgroups with differential treatment effects
+ for longitudinal and multiresponse variables", Statistics in Medicine, v.35, 4837-4855.
+  
+ 2. Loh et al. (2019), "Subgroups from regression trees with adjustment for prognostic
+ effects and post-selection inference", Statistics in Medicine, v.38, 545-557.
+  
+ 3. Loh and Zhou (2020), "The GUIDE approach to subgroup identification",
+ in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if TREATMENT_STATUS_AT_SAMPLING = "NA"
+ TREATMENT_STATUS_AT_SAMPLING mode = "Untreated"
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if EXPRESSION_CLUSTER = "EC_o"
+ EXPRESSION_CLUSTER mode = "0"
+ ----------------------------
+Node 4: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 5: Intermediate node
+ A case goes into Node 10 if RAI_AT_DIAGNOSIS <= 0.50000000
+ RAI_AT_DIAGNOSIS mean = 0.14336918E-01
+ ----------------------------
+Node 10: Intermediate node
+ A case goes into Node 20 if EXPRESSION_CLUSTER = "EC_u1"
+ EXPRESSION_CLUSTER mode = "0"
+ ----------------------------
+Node 20: Intermediate node
+ A case goes into Node 40 if SEX = "Male"
+ SEX mode = "Female"
+ ----------------------------
+Node 40: Intermediate node
+ A case goes into Node 80 if NORMAL_MEAN_COVERAGE <= 69.950000 or NA
+ NORMAL_MEAN_COVERAGE mean = 71.940000
+ ----------------------------
+Node 80: Terminal node
+ Predicted quantile = 4.34000
+ ----------------------------
+Node 81: Terminal node
+ Predicted quantile = 33.3400
+ ----------------------------
+Node 41: Intermediate node
+ A case goes into Node 82 if IGHV_IDENTITY_PERCENTAGE <= 99.830000
+ IGHV_IDENTITY_PERCENTAGE mean = 96.857143
+ ----------------------------
+Node 82: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 83: Terminal node
+ Predicted quantile = 30.1100
+ ----------------------------
+Node 21: Intermediate node
+ A case goes into Node 42 if tri12_status = "Gain"
+ tri12_status mode = "Unchanged"
+ ----------------------------
+Node 42: Intermediate node
+ A case goes into Node 84 if TMB_NONSYNONYMOUS <= 1.4000000
+ TMB_NONSYNONYMOUS mean = 1.0360000
+ ----------------------------
+Node 84: Intermediate node
+ A case goes into Node 168 if TUMOR_MOLECULAR_SUBTYPE = "NA"
+ TUMOR_MOLECULAR_SUBTYPE mode = "M_CLL"
+ ----------------------------
+Node 168: Terminal node
+ Predicted quantile = 53.6500
+ ----------------------------
+Node 169: Intermediate node
+ A case goes into Node 338 if TMB_NONSYNONYMOUS <= 0.58333333
+ TMB_NONSYNONYMOUS mean = 0.89444444
+ ----------------------------
+Node 338: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 339: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 85: Intermediate node
+ A case goes into Node 170 if M.CLL_WES = "No"
+ M.CLL_WES mode = "No"
+ ----------------------------
+Node 170: Terminal node
+ Predicted quantile = 41.8800
+ ----------------------------
+Node 171: Terminal node
+ Predicted quantile = 55.7300
+ ----------------------------
+Node 43: Intermediate node
+ A case goes into Node 86 if AGE_SAMPLING <= 37.000000
+ AGE_SAMPLING mean = 66.974576
+ ----------------------------
+Node 86: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 87: Intermediate node
+ A case goes into Node 174 if AGE_SAMPLING <= 44.500000
+ AGE_SAMPLING mean = 67.377682
+ ----------------------------
+Node 174: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 175: Intermediate node
+ A case goes into Node 350 if TUMOR_SAMPLE_PURITY <= 0.91500000 or NA
+ TUMOR_SAMPLE_PURITY mean = 0.93270142
+ ----------------------------
+Node 350: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 351: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 11: Intermediate node
+ A case goes into Node 22 if IGHV_MUTATION_STATUS = "mutated"
+ IGHV_MUTATION_STATUS mode = "mutated"
+ ----------------------------
+Node 22: Terminal node
+ Predicted quantile = 57.4300
+ ----------------------------
+Node 23: Terminal node
+ Predicted quantile = 59.5400
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if TREATMENT_STATUS_AT_SAMPLING = "Treated"
+ TREATMENT_STATUS_AT_SAMPLING mode = "Untreated"
+ ----------------------------
+Node 6: Intermediate node
+ A case goes into Node 12 if COHORT = "ICGC"
+ COHORT mode = "DFCI"
+ ----------------------------
+Node 12: Intermediate node
+ A case goes into Node 24 if U.CLL_WES = "No"
+ U.CLL_WES mode = "No"
+ ----------------------------
+Node 24: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 25: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 13: Intermediate node
+ A case goes into Node 26 if RAI_AT_SAMPLING <= 0.50000000
+ RAI_AT_SAMPLING mean = 1.0370370
+ ----------------------------
+Node 26: Intermediate node
+ A case goes into Node 52 if IGHV_MUTATION_STATUS = "unmutated"
+ IGHV_MUTATION_STATUS mode = "unmutated"
+ ----------------------------
+Node 52: Intermediate node
+ A case goes into Node 104 if TUMOR_SAMPLE_PLOIDY <= 2.0050000
+ TUMOR_SAMPLE_PLOIDY mean = 1.9988889
+ ----------------------------
+Node 104: Intermediate node
+ A case goes into Node 208 if TUMOR_SAMPLE_PLOIDY <= 1.9750000
+ TUMOR_SAMPLE_PLOIDY mean = 1.9871429
+ ----------------------------
+Node 208: Terminal node
+ Predicted quantile = 26.1700
+ ----------------------------
+Node 209: Intermediate node
+ A case goes into Node 418 if TUMOR_SAMPLE_PURITY <= 0.80500000
+ TUMOR_SAMPLE_PURITY mean = 0.88444444
+ ----------------------------
+Node 418: Terminal node
+ Predicted quantile = 41.2900
+ ----------------------------
+Node 419: Terminal node
+ Predicted quantile = 54.8400
+ ----------------------------
+Node 105: Intermediate node
+ A case goes into Node 210 if FIRST_TREATMENT_AFTER_SAMPLING = "Chemo__+__Ab"
+ FIRST_TREATMENT_AFTER_SAMPLING mode = "Chemo__+__Ab"
+ ----------------------------
+Node 210: Terminal node
+ Predicted quantile = 35.4400
+ ----------------------------
+Node 211: Terminal node
+ Predicted quantile = 38.7300
+ ----------------------------
+Node 53: Intermediate node
+ A case goes into Node 106 if NORMAL_MEAN_COVERAGE <= 104.95000
+ NORMAL_MEAN_COVERAGE mean = 124.70000
+ ----------------------------
+Node 106: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 107: Intermediate node
+ A case goes into Node 214 if FIRST_TREATMENT_AFTER_SAMPLING = "Ab__+__no__chemo"
+ FIRST_TREATMENT_AFTER_SAMPLING mode = "Ab__+__no__chemo"
+ ----------------------------
+Node 214: Terminal node
+ Predicted quantile = 22.9800
+ ----------------------------
+Node 215: Terminal node
+ Predicted quantile = 48.6900
+ ----------------------------
+Node 27: Intermediate node
+ A case goes into Node 54 if AGE <= 43.000000
+ AGE mean = 55.400000
+ ----------------------------
+Node 54: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 55: Intermediate node
+ A case goes into Node 110 if TUMOR_MEAN_COVERAGE <= 79.650000
+ TUMOR_MEAN_COVERAGE mean = 142.10000
+ ----------------------------
+Node 110: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 111: Intermediate node
+ A case goes into Node 222 if RRBS = "No"
+ RRBS mode = "Yes"
+ ----------------------------
+Node 222: Terminal node
+ Predicted quantile = 40.2700
+ ----------------------------
+Node 223: Intermediate node
+ A case goes into Node 446 if TUMOR_SAMPLE_PURITY <= 0.95500000
+ TUMOR_SAMPLE_PURITY mean = 0.95333333
+ ----------------------------
+Node 446: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 447: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 7: Intermediate node
+ A case goes into Node 14 if M.CLL_WES = "No"
+ M.CLL_WES mode = "No"
+ ----------------------------
+Node 14: Intermediate node
+ A case goes into Node 28 if AGE_SAMPLING <= 86.500000
+ AGE_SAMPLING mean = 60.619512
+ ----------------------------
+Node 28: Intermediate node
+ A case goes into Node 56 if RAI_AT_SAMPLING <= 0.50000000
+ RAI_AT_SAMPLING mean = 0.91154791
+ ----------------------------
+Node 56: Intermediate node
+ A case goes into Node 112 if AGE_SAMPLING <= 84.500000
+ AGE_SAMPLING mean = 62.023715
+ ----------------------------
+Node 112: Intermediate node
+ A case goes into Node 224 if AGE_SAMPLING <= 58.500000
+ AGE_SAMPLING mean = 61.548387
+ ----------------------------
+Node 224: Intermediate node
+ A case goes into Node 448 if TUMOR_SAMPLE_PLOIDY = NA
+ TUMOR_SAMPLE_PLOIDY mean = 2.0045455
+ ----------------------------
+Node 448: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 449: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 225: Intermediate node
+ A case goes into Node 450 if AGE_SAMPLING <= 60.500000
+ AGE_SAMPLING mean = 68.639241
+ ----------------------------
+Node 450: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 451: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 113: Intermediate node
+ A case goes into Node 226 if ARRAY450K = "Yes"
+ ARRAY450K mode = "Yes"
+ ----------------------------
+Node 226: Terminal node
+ Predicted quantile = 53.8500
+ ----------------------------
+Node 227: Terminal node
+ Predicted quantile = 57.9000
+ ----------------------------
+Node 57: Intermediate node
+ A case goes into Node 114 if U1_STATUS = "MUT"
+ U1_STATUS mode = "WT"
+ ----------------------------
+Node 114: Intermediate node
+ A case goes into Node 228 if TUMOR_MOLECULAR_SUBTYPE = "M_CLL"
+ TUMOR_MOLECULAR_SUBTYPE mode = "M_CLL"
+ ----------------------------
+Node 228: Terminal node
+ Predicted quantile = 39.5800
+ ----------------------------
+Node 229: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 115: Intermediate node
+ A case goes into Node 230 if X11q_status = "Loss"
+ X11q_status mode = "Unchanged"
+ ----------------------------
+Node 230: Intermediate node
+ A case goes into Node 460 if EC_DISCOVERY = "Yes"
+ EC_DISCOVERY mode = "No"
+ ----------------------------
+Node 460: Terminal node
+ Predicted quantile = 56.9400
+ ----------------------------
+Node 461: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 231: Intermediate node
+ A case goes into Node 462 if TUMOR_MEAN_COVERAGE <= 139.60000 or NA
+ TUMOR_MEAN_COVERAGE mean = 97.787879
+ ----------------------------
+Node 462: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 463: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 29: Terminal node
+ Predicted quantile = 49.8400
+ ----------------------------
+Node 15: Intermediate node
+ A case goes into Node 30 if COHORT = "DFCI", "NHLBI"
+ COHORT mode = "GCLLSG"
+ ----------------------------
+Node 30: Intermediate node
+ A case goes into Node 60 if EC_DISCOVERY = "No"
+ EC_DISCOVERY mode = "Yes"
+ ----------------------------
+Node 60: Intermediate node
+ A case goes into Node 120 if RRBS = "No"
+ RRBS mode = "No"
+ ----------------------------
+Node 120: Intermediate node
+ A case goes into Node 240 if AGE <= 40.000000 or NA
+ AGE mean = 51.928571
+ ----------------------------
+Node 240: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 241: Intermediate node
+ A case goes into Node 482 if RAI_AT_SAMPLING <= 0.50000000
+ RAI_AT_SAMPLING mean = 0.75000000
+ ----------------------------
+Node 482: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 483: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 121: Intermediate node
+ A case goes into Node 242 if TUMOR_SAMPLE_PLOIDY <= 2.0150000
+ TUMOR_SAMPLE_PLOIDY mean = 2.0075000
+ ----------------------------
+Node 242: Intermediate node
+ A case goes into Node 484 if TUMOR_MOLECULAR_SUBTYPE = "U_CLL"
+ TUMOR_MOLECULAR_SUBTYPE mode = "M_CLL"
+ ----------------------------
+Node 484: Terminal node
+ Predicted quantile = 15.3500
+ ----------------------------
+Node 485: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 243: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 61: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 31: Intermediate node
+ A case goes into Node 62 if AGE <= 82.500000
+ AGE mean = 58.177083
+ ----------------------------
+Node 62: Intermediate node
+ A case goes into Node 124 if X8q_status = "Gain"
+ X8q_status mode = "Unchanged"
+ ----------------------------
+Node 124: Intermediate node
+ A case goes into Node 248 if X17p_status = "Loss"
+ X17p_status mode = "Loss"
+ ----------------------------
+Node 248: Terminal node
+ Predicted quantile = 29.8200
+ ----------------------------
+Node 249: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 125: Terminal node
+ Predicted quantile = 60.0000
+ ----------------------------
+Node 63: Terminal node
+ Predicted quantile = 43.5900
+ ----------------------------
+ ******************************************************
+ Variables used for splitting or fitting:
+ AGE
+ AGE_SAMPLING
+ ARRAY450K
+ COHORT
+ EC_DISCOVERY
+ EXPRESSION_CLUSTER
+ FIRST_TREATMENT_AFTER_SAMPLING
+ IGHV_IDENTITY_PERCENTAGE
+ IGHV_MUTATION_STATUS
+ M.CLL_WES
+ NORMAL_MEAN_COVERAGE
+ RAI_AT_DIAGNOSIS
+ RAI_AT_SAMPLING
+ RRBS
+ SEX
+ TMB_NONSYNONYMOUS
+ TREATMENT_STATUS_AT_SAMPLING
+ TUMOR_MEAN_COVERAGE
+ TUMOR_MOLECULAR_SUBTYPE
+ TUMOR_SAMPLE_PLOIDY
+ TUMOR_SAMPLE_PURITY
+ U.CLL_WES
+ U1_STATUS
+ X11q_status
+ X17p_status
+ X8q_status
+ tri12_status
+ 
+ Number of terminal nodes: 55
+ 
+ Scaled importance scores of predictor variables
+      Score     Rank  Variable
+  3.500E+00     1.00  TREATMENT_STATUS_AT_SAMPLING
+  2.996E+00     2.00  TREATMENT_STATUS
+  2.631E+00     3.00  PRIOR_TREATMENT_CATEGORY
+  2.235E+00     4.00  IGHV_MUTATION_STATUS
+  2.089E+00     5.00  AGE_SAMPLING
+  2.012E+00     6.00  M.CLL_WES
+  1.874E+00     7.00  EC_EXTENSION
+  1.656E+00     8.00  U.CLL_WES
+  1.595E+00     9.00  X17p_status
+  1.323E+00    10.00  TREATMENT_AFTER_SAMPLING
+  1.285E+00    11.00  FIRST_TREATMENT_AFTER_SAMPLING
+  1.242E+00    12.00  EXPRESSION_CLUSTER
+  1.198E+00    13.00  CLL_EPITYPE
+  1.030E+00    14.00  IGHV_IDENTITY_PERCENTAGE
+  1.022E+00    15.00  COHORT
+  9.775E-01    16.00  AGE
+  9.357E-01    17.00  X8p_status
+  8.311E-01    18.00  CANCER_TYPE_DETAILED
+  6.320E-01    19.00  NORMAL_MEAN_COVERAGE
+  6.116E-01    20.00  ARRAY450K
+  5.742E-01    21.00  RAI_AT_SAMPLING
+  5.264E-01    22.00  RAI_AT_DIAGNOSIS
+  4.610E-01    23.00  X11q_status
+  4.573E-01    24.00  X2p_status
+  4.392E-01    25.00  TMB_NONSYNONYMOUS
+  4.252E-01    26.00  SEQUENCING_PLATFORM
+  4.173E-01    27.00  X20p_status
+  4.023E-01    28.00  EC_DISCOVERY
+  3.699E-01    29.00  tri12_status
+  3.454E-01    30.00  TUMOR_SAMPLE_PLOIDY
+  3.340E-01    31.00  RRBS
+  3.334E-01    32.00  X19q_status
+  3.043E-01    33.00  TUMOR_MEAN_COVERAGE
+  2.922E-01    34.00  X8q_status
+  2.103E-01    35.00  TUMOR_SAMPLE_PURITY
+  2.093E-01    36.00  X6q_status
+  2.089E-01    37.00  SEX
+  2.032E-01    38.00  TUMOR_MOLECULAR_SUBTYPE
+  1.971E-01    39.00  X17q_status
+  1.520E-01    40.00  IGLV3_21_R110
+  1.426E-01    41.00  X4p_status
+  1.333E-01    42.00  X18p_status
+  1.211E-01    43.00  RNA_SEQUENCING
+  1.122E-01    44.00  U1_STATUS
+ 99% threshold is 1.3040
+ 95% threshold is 1.0000
+ 90% threshold is 0.8551
+ 80% threshold is 0.7161
+ 50% threshold is 0.8404
+ Number of variables above 99% threshold is 10
+ Number of variables between 95% and 99% thresholds is 5
+ Number of variables between 90% and 95% thresholds is 2
+ Number of variables between 80% and 90% thresholds is 1
+ Number of variables between 50% and 80% thresholds is 0
+ Number of variables below 50% threshold (excluding F, I and R variables) is 28
+ LaTeX code for tree is in tree_10.tex
+ Importance scores are stored in fit_10.txt
+ Elapsed time in seconds: 20.945
