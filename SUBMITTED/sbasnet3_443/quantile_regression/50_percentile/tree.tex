@@ -1,0 +1,54 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 46.2 on 04/30/26 at 09:44
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.5cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V1}}\\=\texttt{\detokenize{Treated}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{COHORT}}\\=\texttt{\detokenize{DFCI}}}}
+ }{
+    \Tcircle[fillcolor=orange]{ 4 }~{\shortstack[c]{\emph{34}\\35.41}}  
+    \Tcircle[fillcolor=orange]{ 5 }~{\shortstack[c]{\emph{33}\\60}}  
+   }
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{AGE_SAMPLING}}\\$\leq$\texttt{85.50}}}
+ }{
+    \Tcircle[fillcolor=orange]{ 6 }~{\shortstack[c]{\emph{917}\\60}}  
+    \Tcircle[fillcolor=orange]{ 7 }~{\shortstack[c]{\emph{24}\\43.47}}  
+ }
+ }
+ \end{center}
+GUIDE v.46.2 0.250-SE
+ piecewise-constant  0.500-quantile regression tree
+for predicting \texttt{\detokenize{surv_5yrs}}.
+ % Tree constructed from 1008 observations
+ % (excluding observations with non-positive weight or missing values
+ % in \texttt{D}, \texttt{T}, \texttt{R} or \texttt{Z} variables)
+ % and pruned from a tree with 147 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+\texttt{\detokenize{V1}} = \texttt{\detokenize{TREATMENT_STATUS_AT_SAMPLING}}.
+ Sample size (in \emph{italics}) and 0.500-quantile of \texttt{\detokenize{surv_5yrs}} printed below nodes.
+ Terminal nodes with quantiles above and below value of 60 at root node are painted \colorbox{yellow}{yellow} and \colorbox{orange}{orange} respectively.
+ Second best split variable at root node is \texttt{\detokenize{TREATMENT_STATUS}}.
+ %\end{landscape}
+ \end{document}

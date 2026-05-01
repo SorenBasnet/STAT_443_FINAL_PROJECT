@@ -1,0 +1,30 @@
+---
+title: "why_gene_data_wont_work"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Import required library
+```{r}
+library(survival)
+library(survminer)
+```
+
+
+```{r}
+data <- read.table("/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai_mutation/patient_cna_rai_mutation.txt", header=TRUE, sep=" ")
+```
+
+
+```{r}
+# Get names of all columns from SAMD11 to the end
+gene_names <- colnames(data)[58:ncol(data)]
+
+# Create the formula string: "death_5yr ~ SAMD11 + NOC2L + ..."
+gene_formula <- as.formula(paste("death_5yr ~", paste(gene_names, collapse = " + ")))
+
+# Run the model
+m1 <- glm(gene_formula, data = data, family = 'binomial')
+summary(m1)
+```

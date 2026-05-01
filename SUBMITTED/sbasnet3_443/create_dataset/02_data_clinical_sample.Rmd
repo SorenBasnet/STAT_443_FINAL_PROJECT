@@ -1,0 +1,91 @@
+---
+title: "02_data_clinical_sample"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+Read in data files
+```{r}
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
+```
+
+Column Names - clinical sample patient
+```{r}
+colnames(data_clinical_sample)
+```
+Data cleaning - clinical sample patient
+
+```{r}
+#1. Change in data in dataframe
+data_clinical_sample[] <- lapply(data_clinical_sample, function(x) gsub("-", "_", x))
+data_clinical_sample[] <- lapply(data_clinical_sample, function(y) gsub(" ", "", y))
+data_clinical_sample[] <- lapply(data_clinical_sample, function(z) gsub(":", "_", z))
+data_clinical_sample[] <- lapply(data_clinical_sample, function(a) gsub("/", "_", a))
+
+
+# 2. Change in column names
+names(data_clinical_sample) <- gsub(".", "_", names(data_clinical_sample), fixed = TRUE)
+names(data_clinical_sample) <- gsub(" ", "_", names(data_clinical_sample), fixed = TRUE)
+
+data_clinical_sample$CENTER <- as.factor(data_clinical_sample$CENTER)
+data_clinical_sample$ONCOTREE_CODE <- as.factor(data_clinical_sample$ONCOTREE_CODE)
+data_clinical_sample$DISEASE_TYPE <- as.factor(data_clinical_sample$DISEASE_TYPE)
+data_clinical_sample$NORMAL_MEAN_COVERAGE <- as.numeric(data_clinical_sample$NORMAL_MEAN_COVERAGE)
+data_clinical_sample$TUMOR_MEAN_COVERAGE <- as.numeric(data_clinical_sample$TUMOR_MEAN_COVERAGE)
+data_clinical_sample$TUMOR_SAMPLE_PURITY <- as.numeric(data_clinical_sample$TUMOR_SAMPLE_PURITY)
+data_clinical_sample$TUMOR_SAMPLE_PLOIDY <- as.numeric(data_clinical_sample$TUMOR_SAMPLE_PLOIDY)
+data_clinical_sample$CANCER_TYPE <- as.factor(data_clinical_sample$CANCER_TYPE)
+data_clinical_sample$SOMATIC_STATUS <- as.factor(data_clinical_sample$SOMATIC_STATUS)
+
+
+data_clinical_sample <- data_clinical_sample %>%
+  mutate(CANCER_TYPE_DETAILED = case_when(
+    CANCER_TYPE_DETAILED == "ChronicLymphocyticLeukemia_SmallLymphocyticLymphoma" ~ "CLL_SLL",
+    CANCER_TYPE_DETAILED == "MonoclonalB_CellLymphocytosis" ~ "MBL",
+    TRUE ~ CANCER_TYPE_DETAILED
+  ))
+data_clinical_sample$CANCER_TYPE_DETAILED <- as.factor(data_clinical_sample$CANCER_TYPE_DETAILED)
+data_clinical_sample$CLL_EPITYPE <- as.factor(data_clinical_sample$CLL_EPITYPE)
+
+data_clinical_sample$TUMOR_MOLECULAR_SUBTYPE[data_clinical_sample$TUMOR_MOLECULAR_SUBTYPE == ""] <- NA
+data_clinical_sample$TUMOR_MOLECULAR_SUBTYPE <- as.factor(data_clinical_sample$TUMOR_MOLECULAR_SUBTYPE)
+data_clinical_sample$SEQUENCING_PLATFORM <- as.factor(data_clinical_sample$SEQUENCING_PLATFORM)
+data_clinical_sample$RNA_SEQUENCING <- as.factor(data_clinical_sample$RNA_SEQUENCING)
+data_clinical_sample$RRBS <- as.factor(data_clinical_sample$RRBS)
+data_clinical_sample$ARRAY450K <- as.factor(data_clinical_sample$ARRAY450K)
+data_clinical_sample$M_CLL_WES <- as.factor(data_clinical_sample$M_CLL_WES)
+data_clinical_sample$U_CLL_WES <- as.factor(data_clinical_sample$U_CLL_WES)
+data_clinical_sample$EC_DISCOVERY <- as.factor(data_clinical_sample$EC_DISCOVERY)
+data_clinical_sample$EC_EXTENSION <- as.factor(data_clinical_sample$EC_EXTENSION)
+
+data_clinical_sample$IGLV3_21_R110[data_clinical_sample$IGLV3_21_R110 == ""] <- NA
+data_clinical_sample$IGLV3_21_R110 <- as.factor(data_clinical_sample$IGLV3_21_R110)
+
+
+data_clinical_sample$U1_STATUS[data_clinical_sample$U1_STATUS == ""] <- NA
+data_clinical_sample$U1_STATUS <- as.factor(data_clinical_sample$U1_STATUS)
+
+data_clinical_sample$TMB_NONSYNONYMOUS <- as.numeric(data_clinical_sample$TMB_NONSYNONYMOUS)
+
+summary(data_clinical_sample)
+
+```
+
+Write to interim data file
+```{r}
+write.table(data_clinical_sample, "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/interim/data_clinical_sample_march_7.txt", sep=" ", row.names = FALSE, quote = FALSE)
+```
+
+
+
+

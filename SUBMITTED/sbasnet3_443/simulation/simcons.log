@@ -1,0 +1,25 @@
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2026 Wei-Yin Loh. All rights reserved.
+ Software based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ Choose one of the following options:
+ 0. Read the warranty disclaimer
+ 1. Create a GUIDE input file
+ Input your choice:  Batch run with input file 
+ Input 1 for model fitting, 2 for importance or DIF scoring, 3 for data conversion: 2
+ Output file is imp.out
+  
+ Job start date and time: 04/12/26 at 22:28
+  
+ Input 1 for classification, 2 for regression, 3 for propensity score tree
+ Input your choice: 1
+ Input 1 for univariate and interaction splits,
+       2 to skip interaction splits: 1
+ Bonferroni alpha = 0.100
+  
+ Input name of DSC file (max 100 characters);
+ enclose with matching quotes if it has spaces:  Description file rhcdsc1.txt does not exist

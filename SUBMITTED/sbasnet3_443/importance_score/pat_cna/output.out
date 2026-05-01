@@ -1,0 +1,1066 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 04/13/26 at 15:37
+  
+ Classification tree
+ No pruning
+ DSC file: dsc_patient_file_cna_rai.txt
+ Training sample file: patient_file_cna_rai.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ 10 N variables changed to S
+ D variable is death_5yr
+ Number of records in data file: 1148
+ Length of longest entry in data file: 59
+ Missing values found in D variable
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Missing values found among non-categorical variables
+ Number of classes: 2
+ Warning: C variable CANCER_TYPE takes only 1 value
+ Warning: C variable SOMATIC_STATUS takes only 1 value
+ Training sample class proportions of D variable death_5yr:
+ Class  #Cases     Proportion
+ 0         844     0.83730159
+ 1         164     0.16269841
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       1148        140        526       10        0        0       10
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       36        0
+ Number of cases used for training: 1008
+ Number of cases excluded due to 0 W or missing D variable: 140
+  
+ Importance scoring of variables
+ Simple node models
+ Estimated priors
+ Unit misclassification costs
+ Univariate split highest priority
+ Interaction and linear splits 2nd and 3rd priorities
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 8
+ Minimum node sample size: 2
+ Using 300 permutations to standardize means of importance scores
+ Finished permutations to standardize means of importance scores
+  
+ Note: final tree is shorter due to pruning of sibling nodes with same predicted values.
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ Node cost is node misclassification cost divided by number of cases in node
+        Node    Total    Train    Predicted        Node    Split          Interacting
+       label    cases    cases    class            cost    variables      variable
+           1     1008     1008    0              1.429E-01 AGE_SAMPLING 
+           2      845      845    0              1.143E-01 X17p_status 
+           4       61       61    0              3.599E-01 EC_EXTENSION 
+           8T       7        7    1              1.254E-01 - 
+           9       54       54    0              3.089E-01 RAI_AT_DIAGNOSIS 
+          18       39       39    0              2.026E-01 NORMAL_MEAN_COVERAGE +RAI_AT_SAMPLING
+          36       33       33    0              1.064E-01 X17q_status 
+          72        5        5    0              3.512E-01 X8p_status 
+         144T       2        2    1              0.000E+00 - 
+         145T       3        3    0              0.000E+00 - 
+          73T      28       28    0              6.272E-02 TUMOR_SAMPLE_PURITY 
+          37T       6        6    1              1.463E-01 - 
+          19       15       15    1              2.927E-01 FIRST_TREATMENT_AFTER_SAMPLING 
+          38T       4        4    0              0.000E+00 - 
+          39T      11       11    1              7.982E-02 - 
+           5      784      784    0              9.520E-02 X8p_status 
+          10       13       13    0              4.053E-01 TUMOR_SAMPLE_PURITY 
+          20T       7        7    0              1.254E-01 - 
+          21T       6        6    1              1.463E-01 - 
+          11      771      771    0              8.997E-02 CLL_EPITYPE 
+          22      298      298    0              1.414E-01 TUMOR_SAMPLE_PLOIDY 
+          44      210      210    0              1.756E-01 TUMOR_MOLECULAR_SUBTYPE 
+          88      102      102    0              1.119E-01 AGE_SAMPLING +IGHV_IDENTITY_PERCENTAGE
+         176T      89       89    0              6.906E-02 X20p_status 
+         177       13       13    0              4.053E-01 TUMOR_MEAN_COVERAGE 
+         354T       4        4    1              0.000E+00 - 
+         355T       9        9    0              1.951E-01 RNA_SEQUENCING 
+          89      108      108    0              2.358E-01 tri12_status 
+         178T       2        2    1              0.000E+00 - 
+         179T     106      106    0              2.237E-01 ARRAY450K 
+          45       88       88    0              5.987E-02 RNA_SEQUENCING 
+          90       50       50    0              1.054E-01 X18p_status 
+         180        6        6    0              2.927E-01 AGE_SAMPLING 
+         360T       4        4    0              0.000E+00 - 
+         361T       2        2    1              0.000E+00 - 
+         181T      44       44    0              7.982E-02 AGE_SAMPLING 
+          91T      38       38    0              0.000E+00 - 
+          23      473      473    0              5.755E-02 TUMOR_SAMPLE_PLOIDY +IGHV_IDENTITY_PERCENTAGE
+          46      418      418    0              4.621E-02 SEX 
+          92      268      268    0              6.553E-02 IGLV3_21_R110 
+         184        7        7    0              2.509E-01 RNA_SEQUENCING 
+         368T       3        3    1              2.927E-01 - 
+         369T       4        4    0              0.000E+00 - 
+         185T     261      261    0              6.056E-02 AGE_SAMPLING 
+          93T     150      150    0              1.171E-02 X11q_status 
+          47       55       55    0              1.437E-01 TREATMENT_STATUS 
+          94T       3        3    1              2.927E-01 - 
+          95       52       52    0              1.182E-01 IGHV_IDENTITY_PERCENTAGE 
+         190T       3        3    1              2.927E-01 - 
+         191T      49       49    0              8.960E-02 TMB_NONSYNONYMOUS +IGHV_IDENTITY_PERCENTAGE
+           3      163      163    0              2.909E-01 IGHV_MUTATION_STATUS 
+           6       56       56    1              4.077E-01 ARRAY450K 
+          12       37       37    1              2.848E-01 TUMOR_MOLECULAR_SUBTYPE 
+          24T      13       13    1              0.000E+00 - 
+          25       24       24    1              4.390E-01 U1_STATUS 
+          50T       6        6    1              1.463E-01 - 
+          51       18       18    0              3.415E-01 U.CLL_WES 
+         102T       2        2    1              0.000E+00 - 
+         103       16       16    0              2.744E-01 TUMOR_SAMPLE_PURITY 
+         206       11       11    0              3.991E-01 RNA_SEQUENCING 
+         412T       7        7    1              2.509E-01 tri12_status 
+         413T       4        4    0              0.000E+00 - 
+         207T       5        5    0              0.000E+00 - 
+          13       19       19    0              2.311E-01 SEX 
+          26       12       12    0              3.659E-01 EXPRESSION_CLUSTER 
+          52T       2        2    1              0.000E+00 - 
+          53       10       10    0              2.634E-01 tri12_status 
+         106T       3        3    1              2.927E-01 - 
+         107T       7        7    0              1.254E-01 - 
+          27T       7        7    0              0.000E+00 - 
+           7      107      107    0              1.969E-01 AGE_SAMPLING 
+          14       86       86    0              1.327E-01 RAI_AT_DIAGNOSIS 
+          28       84       84    0              1.150E-01 RRBS 
+          56       67       67    0              1.442E-01 CLL_EPITYPE 
+         112        6        6    1              4.390E-01 FIRST_TREATMENT_AFTER_SAMPLING 
+         224T       2        2    1              0.000E+00 - 
+         225T       4        4    0              2.195E-01 - 
+         113T      61       61    0              1.152E-01 RAI_AT_SAMPLING 
+          57T      17       17    0              0.000E+00 - 
+          29T       2        2    1              0.000E+00 - 
+          15       21       21    1              4.181E-01 AGE 
+          30       13       13    0              2.702E-01 NORMAL_MEAN_COVERAGE +TUMOR_MEAN_COVERAGE
+          60T      10       10    0              8.780E-02 - 
+          61T       3        3    1              0.000E+00 - 
+          31T       8        8    1              1.098E-01 - 
+  
+ Number of terminal nodes of final tree: 43
+ Total number of nodes of final tree: 85
+  
+ Classification tree:
+ For categorical variable splits, values not in training data go to the right
+  
+ Node 1: AGE_SAMPLING <= 74.500000
+   Node 2: X17p_status = "Loss"
+     Node 4: EC_EXTENSION = "Yes"
+       Node 8: 1
+     Node 4: EC_EXTENSION /= "Yes"
+       Node 9: RAI_AT_DIAGNOSIS <= 0.50000000
+         Node 18: -3.4616797 * RAI_AT_SAMPLING + NORMAL_MEAN_COVERAGE <= 76.000000 or NA
+           Node 36: X17q_status = "Gain"
+             Node 72: X8p_status = "Loss"
+               Node 144: 1
+             Node 72: X8p_status /= "Loss"
+               Node 145: 0
+           Node 36: X17q_status /= "Gain"
+             Node 73: 0
+         Node 18: -3.4616797 * RAI_AT_SAMPLING + NORMAL_MEAN_COVERAGE > 76.000000
+           Node 37: 1
+       Node 9: RAI_AT_DIAGNOSIS > 0.50000000 or NA
+         Node 19: FIRST_TREATMENT_AFTER_SAMPLING = "Ab__+__no__chemo",
+                  "BTK__inhibitor", "CART__+__I"
+           Node 38: 0
+         Node 19: FIRST_TREATMENT_AFTER_SAMPLING /= "Ab__+__no__chemo",
+                  "BTK__inhibitor", "CART__+__I"
+           Node 39: 1
+   Node 2: X17p_status /= "Loss"
+     Node 5: X8p_status = "Loss"
+       Node 10: TUMOR_SAMPLE_PURITY <= 0.97500000 or NA
+         Node 20: 0
+       Node 10: TUMOR_SAMPLE_PURITY > 0.97500000
+         Node 21: 1
+     Node 5: X8p_status /= "Loss"
+       Node 11: CLL_EPITYPE = "n_CLL"
+         Node 22: TUMOR_SAMPLE_PLOIDY <= 2.0050000 or NA
+           Node 44: TUMOR_MOLECULAR_SUBTYPE = "M_CLL"
+             Node 88: -63.267146 * IGHV_IDENTITY_PERCENTAGE + AGE_SAMPLING <= -6253.6428 or NA
+               Node 176: 0
+             Node 88: -63.267146 * IGHV_IDENTITY_PERCENTAGE + AGE_SAMPLING > -6253.6428
+               Node 177: TUMOR_MEAN_COVERAGE <= 59.250000
+                 Node 354: 1
+               Node 177: TUMOR_MEAN_COVERAGE > 59.250000 or NA
+                 Node 355: 0
+           Node 44: TUMOR_MOLECULAR_SUBTYPE /= "M_CLL"
+             Node 89: tri12_status = "Gain"
+               Node 178: 1
+             Node 89: tri12_status /= "Gain"
+               Node 179: 0
+         Node 22: TUMOR_SAMPLE_PLOIDY > 2.0050000
+           Node 45: RNA_SEQUENCING = "Yes"
+             Node 90: X18p_status = "Loss"
+               Node 180: AGE_SAMPLING <= 66.000000
+                 Node 360: 0
+               Node 180: AGE_SAMPLING > 66.000000 or NA
+                 Node 361: 1
+             Node 90: X18p_status /= "Loss"
+               Node 181: 0
+           Node 45: RNA_SEQUENCING /= "Yes"
+             Node 91: 0
+       Node 11: CLL_EPITYPE /= "n_CLL"
+         Node 23: -0.90578607E-03 * IGHV_IDENTITY_PERCENTAGE + TUMOR_SAMPLE_PLOIDY <= 1.9380400 or NA
+           Node 46: SEX = "Male"
+             Node 92: IGLV3_21_R110 = "NA"
+               Node 184: RNA_SEQUENCING = "No"
+                 Node 368: 1
+               Node 184: RNA_SEQUENCING /= "No"
+                 Node 369: 0
+             Node 92: IGLV3_21_R110 /= "NA"
+               Node 185: 0
+           Node 46: SEX /= "Male"
+             Node 93: 0
+         Node 23: -0.90578607E-03 * IGHV_IDENTITY_PERCENTAGE + TUMOR_SAMPLE_PLOIDY > 1.9380400
+           Node 47: TREATMENT_STATUS = "Post_treatment"
+             Node 94: 1
+           Node 47: TREATMENT_STATUS /= "Post_treatment"
+             Node 95: IGHV_IDENTITY_PERCENTAGE <= 88.150000
+               Node 190: 1
+             Node 95: IGHV_IDENTITY_PERCENTAGE > 88.150000 or NA
+               Node 191: 0
+ Node 1: AGE_SAMPLING > 74.500000 or NA
+   Node 3: IGHV_MUTATION_STATUS = "unmutated"
+     Node 6: ARRAY450K = "Yes"
+       Node 12: TUMOR_MOLECULAR_SUBTYPE = "U_CLL"
+         Node 24: 1
+       Node 12: TUMOR_MOLECULAR_SUBTYPE /= "U_CLL"
+         Node 25: U1_STATUS = "WT"
+           Node 50: 1
+         Node 25: U1_STATUS /= "WT"
+           Node 51: U.CLL_WES = "No"
+             Node 102: 1
+           Node 51: U.CLL_WES /= "No"
+             Node 103: TUMOR_SAMPLE_PURITY <= 0.97000000
+               Node 206: RNA_SEQUENCING = "Yes"
+                 Node 412: 1
+               Node 206: RNA_SEQUENCING /= "Yes"
+                 Node 413: 0
+             Node 103: TUMOR_SAMPLE_PURITY > 0.97000000 or NA
+               Node 207: 0
+     Node 6: ARRAY450K /= "Yes"
+       Node 13: SEX = "Male"
+         Node 26: EXPRESSION_CLUSTER = "EC_u1"
+           Node 52: 1
+         Node 26: EXPRESSION_CLUSTER /= "EC_u1"
+           Node 53: tri12_status = "Gain"
+             Node 106: 1
+           Node 53: tri12_status /= "Gain"
+             Node 107: 0
+       Node 13: SEX /= "Male"
+         Node 27: 0
+   Node 3: IGHV_MUTATION_STATUS /= "unmutated"
+     Node 7: AGE_SAMPLING <= 84.500000
+       Node 14: RAI_AT_DIAGNOSIS <= 0.50000000
+         Node 28: RRBS = "No"
+           Node 56: CLL_EPITYPE = "i_CLL"
+             Node 112: FIRST_TREATMENT_AFTER_SAMPLING = "Chemo__+__no__Ab"
+               Node 224: 1
+             Node 112: FIRST_TREATMENT_AFTER_SAMPLING /= "Chemo__+__no__Ab"
+               Node 225: 0
+           Node 56: CLL_EPITYPE /= "i_CLL"
+             Node 113: 0
+         Node 28: RRBS /= "No"
+           Node 57: 0
+       Node 14: RAI_AT_DIAGNOSIS > 0.50000000 or NA
+         Node 29: 1
+     Node 7: AGE_SAMPLING > 84.500000 or NA
+       Node 15: AGE <= 81.500000
+         Node 30: -1.4513837 * TUMOR_MEAN_COVERAGE + NORMAL_MEAN_COVERAGE <= -24.471990
+           Node 60: 0
+         Node 30: -1.4513837 * TUMOR_MEAN_COVERAGE + NORMAL_MEAN_COVERAGE > -24.471990 or NA
+           Node 61: 1
+       Node 15: AGE > 81.500000 or NA
+         Node 31: 1
+ 
+ ***************************************************************
+ Predictor means below are means of cases with no missing values.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if AGE_SAMPLING <= 74.500000
+ AGE_SAMPLING mean = 63.186508
+ Class      Number   Posterior
+ 0             844  0.8373E+00
+ 1             164  0.1627E+00
+ Number of training cases misclassified = 164
+ Predicted class is 0
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if X17p_status = "Loss"
+ X17p_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0             735  0.8698E+00
+ 1             110  0.1302E+00
+ Number of training cases misclassified = 110
+ Predicted class is 0
+ ----------------------------
+Node 4: Intermediate node
+ A case goes into Node 8 if EC_EXTENSION = "Yes"
+ EC_EXTENSION mode = "No"
+ Class      Number   Posterior
+ 0              36  0.5902E+00
+ 1              25  0.4098E+00
+ Number of training cases misclassified = 25
+ Predicted class is 0
+ ----------------------------
+Node 8: Terminal node
+ Class      Number   Posterior
+ 0               1  0.1429E+00
+ 1               6  0.8571E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 9: Intermediate node
+ A case goes into Node 18 if RAI_AT_DIAGNOSIS <= 0.50000000
+ RAI_AT_DIAGNOSIS mean = 0.48148148
+ Class      Number   Posterior
+ 0              35  0.6481E+00
+ 1              19  0.3519E+00
+ Number of training cases misclassified = 19
+ Predicted class is 0
+ ----------------------------
+Node 18: Intermediate node
+ A case goes into Node 36 if -3.4616797 * RAI_AT_SAMPLING + NORMAL_MEAN_COVERAGE <= 76.000000
+ Linear combination mean = 60.952870
+ Class      Number   Posterior
+ 0              30  0.7692E+00
+ 1               9  0.2308E+00
+ Number of training cases misclassified = 9
+ Predicted class is 0
+ ----------------------------
+Node 36: Intermediate node
+ A case goes into Node 72 if X17q_status = "Gain"
+ X17q_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0              29  0.8788E+00
+ 1               4  0.1212E+00
+ Number of training cases misclassified = 4
+ Predicted class is 0
+ ----------------------------
+Node 72: Intermediate node
+ A case goes into Node 144 if X8p_status = "Loss"
+ X8p_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0               3  0.6000E+00
+ 1               2  0.4000E+00
+ Number of training cases misclassified = 2
+ Predicted class is 0
+ ----------------------------
+Node 144: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 145: Terminal node
+ Class      Number   Posterior
+ 0               3  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 73: Terminal node
+ Class      Number   Posterior
+ 0              26  0.9286E+00
+ 1               2  0.7143E-01
+ Number of training cases misclassified = 2
+ Predicted class is 0
+ ----------------------------
+Node 37: Terminal node
+ Class      Number   Posterior
+ 0               1  0.1667E+00
+ 1               5  0.8333E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 19: Intermediate node
+ A case goes into Node 38 if FIRST_TREATMENT_AFTER_SAMPLING = "Ab__+__no__chemo", "BTK__inhibitor",
+ "CART__+__I"
+ FIRST_TREATMENT_AFTER_SAMPLING mode = "0"
+ Class      Number   Posterior
+ 0               5  0.3333E+00
+ 1              10  0.6667E+00
+ Number of training cases misclassified = 5
+ Predicted class is 1
+ ----------------------------
+Node 38: Terminal node
+ Class      Number   Posterior
+ 0               4  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 39: Terminal node
+ Class      Number   Posterior
+ 0               1  0.9091E-01
+ 1              10  0.9091E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 5: Intermediate node
+ A case goes into Node 10 if X8p_status = "Loss"
+ X8p_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0             699  0.8916E+00
+ 1              85  0.1084E+00
+ Number of training cases misclassified = 85
+ Predicted class is 0
+ ----------------------------
+Node 10: Intermediate node
+ A case goes into Node 20 if TUMOR_SAMPLE_PURITY <= 0.97500000 or NA
+ TUMOR_SAMPLE_PURITY mean = 0.97900000
+ Class      Number   Posterior
+ 0               7  0.5385E+00
+ 1               6  0.4615E+00
+ Number of training cases misclassified = 6
+ Predicted class is 0
+ ----------------------------
+Node 20: Terminal node
+ Class      Number   Posterior
+ 0               6  0.8571E+00
+ 1               1  0.1429E+00
+ Number of training cases misclassified = 1
+ Predicted class is 0
+ ----------------------------
+Node 21: Terminal node
+ Class      Number   Posterior
+ 0               1  0.1667E+00
+ 1               5  0.8333E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 11: Intermediate node
+ A case goes into Node 22 if CLL_EPITYPE = "n_CLL"
+ CLL_EPITYPE mode = "n_CLL"
+ Class      Number   Posterior
+ 0             692  0.8975E+00
+ 1              79  0.1025E+00
+ Number of training cases misclassified = 79
+ Predicted class is 0
+ ----------------------------
+Node 22: Intermediate node
+ A case goes into Node 44 if TUMOR_SAMPLE_PLOIDY <= 2.0050000 or NA
+ TUMOR_SAMPLE_PLOIDY mean = 2.0073592
+ Class      Number   Posterior
+ 0             250  0.8389E+00
+ 1              48  0.1611E+00
+ Number of training cases misclassified = 48
+ Predicted class is 0
+ ----------------------------
+Node 44: Intermediate node
+ A case goes into Node 88 if TUMOR_MOLECULAR_SUBTYPE = "M_CLL"
+ TUMOR_MOLECULAR_SUBTYPE mode = "M_CLL"
+ Class      Number   Posterior
+ 0             168  0.8000E+00
+ 1              42  0.2000E+00
+ Number of training cases misclassified = 42
+ Predicted class is 0
+ ----------------------------
+Node 88: Intermediate node
+ A case goes into Node 176 if -63.267146 * IGHV_IDENTITY_PERCENTAGE + AGE_SAMPLING <= -6253.6428
+ Linear combination mean = -6258.7762
+ Class      Number   Posterior
+ 0              89  0.8725E+00
+ 1              13  0.1275E+00
+ Number of training cases misclassified = 13
+ Predicted class is 0
+ ----------------------------
+Node 176: Terminal node
+ Class      Number   Posterior
+ 0              82  0.9213E+00
+ 1               7  0.7865E-01
+ Number of training cases misclassified = 7
+ Predicted class is 0
+ ----------------------------
+Node 177: Intermediate node
+ A case goes into Node 354 if TUMOR_MEAN_COVERAGE <= 59.250000
+ TUMOR_MEAN_COVERAGE mean = 77.000000
+ Class      Number   Posterior
+ 0               7  0.5385E+00
+ 1               6  0.4615E+00
+ Number of training cases misclassified = 6
+ Predicted class is 0
+ ----------------------------
+Node 354: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               4  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 355: Terminal node
+ Class      Number   Posterior
+ 0               7  0.7778E+00
+ 1               2  0.2222E+00
+ Number of training cases misclassified = 2
+ Predicted class is 0
+ ----------------------------
+Node 89: Intermediate node
+ A case goes into Node 178 if tri12_status = "Gain"
+ tri12_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0              79  0.7315E+00
+ 1              29  0.2685E+00
+ Number of training cases misclassified = 29
+ Predicted class is 0
+ ----------------------------
+Node 178: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 179: Terminal node
+ Class      Number   Posterior
+ 0              79  0.7453E+00
+ 1              27  0.2547E+00
+ Number of training cases misclassified = 27
+ Predicted class is 0
+ ----------------------------
+Node 45: Intermediate node
+ A case goes into Node 90 if RNA_SEQUENCING = "Yes"
+ RNA_SEQUENCING mode = "Yes"
+ Class      Number   Posterior
+ 0              82  0.9318E+00
+ 1               6  0.6818E-01
+ Number of training cases misclassified = 6
+ Predicted class is 0
+ ----------------------------
+Node 90: Intermediate node
+ A case goes into Node 180 if X18p_status = "Loss"
+ X18p_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0              44  0.8800E+00
+ 1               6  0.1200E+00
+ Number of training cases misclassified = 6
+ Predicted class is 0
+ ----------------------------
+Node 180: Intermediate node
+ A case goes into Node 360 if AGE_SAMPLING <= 66.000000
+ AGE_SAMPLING mean = 63.166667
+ Class      Number   Posterior
+ 0               4  0.6667E+00
+ 1               2  0.3333E+00
+ Number of training cases misclassified = 2
+ Predicted class is 0
+ ----------------------------
+Node 360: Terminal node
+ Class      Number   Posterior
+ 0               4  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 361: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 181: Terminal node
+ Class      Number   Posterior
+ 0              40  0.9091E+00
+ 1               4  0.9091E-01
+ Number of training cases misclassified = 4
+ Predicted class is 0
+ ----------------------------
+Node 91: Terminal node
+ Class      Number   Posterior
+ 0              38  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 23: Intermediate node
+ A case goes into Node 46 if -0.90578607E-03 * IGHV_IDENTITY_PERCENTAGE + TUMOR_SAMPLE_PLOIDY <= 1.9380400
+ Linear combination mean = 1.9195077
+ Class      Number   Posterior
+ 0             442  0.9345E+00
+ 1              31  0.6554E-01
+ Number of training cases misclassified = 31
+ Predicted class is 0
+ ----------------------------
+Node 46: Intermediate node
+ A case goes into Node 92 if SEX = "Male"
+ SEX mode = "Male"
+ Class      Number   Posterior
+ 0             396  0.9474E+00
+ 1              22  0.5263E-01
+ Number of training cases misclassified = 22
+ Predicted class is 0
+ ----------------------------
+Node 92: Intermediate node
+ A case goes into Node 184 if IGLV3_21_R110 = "NA"
+ IGLV3_21_R110 mode = "No"
+ Class      Number   Posterior
+ 0             248  0.9254E+00
+ 1              20  0.7463E-01
+ Number of training cases misclassified = 20
+ Predicted class is 0
+ ----------------------------
+Node 184: Intermediate node
+ A case goes into Node 368 if RNA_SEQUENCING = "No"
+ RNA_SEQUENCING mode = "Yes"
+ Class      Number   Posterior
+ 0               5  0.7143E+00
+ 1               2  0.2857E+00
+ Number of training cases misclassified = 2
+ Predicted class is 0
+ ----------------------------
+Node 368: Terminal node
+ Class      Number   Posterior
+ 0               1  0.3333E+00
+ 1               2  0.6667E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 369: Terminal node
+ Class      Number   Posterior
+ 0               4  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 185: Terminal node
+ Class      Number   Posterior
+ 0             243  0.9310E+00
+ 1              18  0.6897E-01
+ Number of training cases misclassified = 18
+ Predicted class is 0
+ ----------------------------
+Node 93: Terminal node
+ Class      Number   Posterior
+ 0             148  0.9867E+00
+ 1               2  0.1333E-01
+ Number of training cases misclassified = 2
+ Predicted class is 0
+ ----------------------------
+Node 47: Intermediate node
+ A case goes into Node 94 if TREATMENT_STATUS = "Post_treatment"
+ TREATMENT_STATUS mode = "Pre_treatment"
+ Class      Number   Posterior
+ 0              46  0.8364E+00
+ 1               9  0.1636E+00
+ Number of training cases misclassified = 9
+ Predicted class is 0
+ ----------------------------
+Node 94: Terminal node
+ Class      Number   Posterior
+ 0               1  0.3333E+00
+ 1               2  0.6667E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 95: Intermediate node
+ A case goes into Node 190 if IGHV_IDENTITY_PERCENTAGE <= 88.150000
+ IGHV_IDENTITY_PERCENTAGE mean = 95.120769
+ Class      Number   Posterior
+ 0              45  0.8654E+00
+ 1               7  0.1346E+00
+ Number of training cases misclassified = 7
+ Predicted class is 0
+ ----------------------------
+Node 190: Terminal node
+ Class      Number   Posterior
+ 0               1  0.3333E+00
+ 1               2  0.6667E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 191: Terminal node
+ Class      Number   Posterior
+ 0              44  0.8980E+00
+ 1               5  0.1020E+00
+ Number of training cases misclassified = 5
+ Predicted class is 0
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if IGHV_MUTATION_STATUS = "unmutated"
+ IGHV_MUTATION_STATUS mode = "mutated"
+ Class      Number   Posterior
+ 0             109  0.6687E+00
+ 1              54  0.3313E+00
+ Number of training cases misclassified = 54
+ Predicted class is 0
+ ----------------------------
+Node 6: Intermediate node
+ A case goes into Node 12 if ARRAY450K = "Yes"
+ ARRAY450K mode = "Yes"
+ Class      Number   Posterior
+ 0              26  0.4643E+00
+ 1              30  0.5357E+00
+ Number of training cases misclassified = 26
+ Predicted class is 1
+ ----------------------------
+Node 12: Intermediate node
+ A case goes into Node 24 if TUMOR_MOLECULAR_SUBTYPE = "U_CLL"
+ TUMOR_MOLECULAR_SUBTYPE mode = "M_CLL"
+ Class      Number   Posterior
+ 0              12  0.3243E+00
+ 1              25  0.6757E+00
+ Number of training cases misclassified = 12
+ Predicted class is 1
+ ----------------------------
+Node 24: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1              13  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 25: Intermediate node
+ A case goes into Node 50 if U1_STATUS = "WT"
+ U1_STATUS mode = "NA"
+ Class      Number   Posterior
+ 0              12  0.5000E+00
+ 1              12  0.5000E+00
+ Number of training cases misclassified = 12
+ Predicted class is 1
+ ----------------------------
+Node 50: Terminal node
+ Class      Number   Posterior
+ 0               1  0.1667E+00
+ 1               5  0.8333E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 51: Intermediate node
+ A case goes into Node 102 if U.CLL_WES = "No"
+ U.CLL_WES mode = "Yes"
+ Class      Number   Posterior
+ 0              11  0.6111E+00
+ 1               7  0.3889E+00
+ Number of training cases misclassified = 7
+ Predicted class is 0
+ ----------------------------
+Node 102: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 103: Intermediate node
+ A case goes into Node 206 if TUMOR_SAMPLE_PURITY <= 0.97000000
+ TUMOR_SAMPLE_PURITY mean = 0.91375000
+ Class      Number   Posterior
+ 0              11  0.6875E+00
+ 1               5  0.3125E+00
+ Number of training cases misclassified = 5
+ Predicted class is 0
+ ----------------------------
+Node 206: Intermediate node
+ A case goes into Node 412 if RNA_SEQUENCING = "Yes"
+ RNA_SEQUENCING mode = "Yes"
+ Class      Number   Posterior
+ 0               6  0.5455E+00
+ 1               5  0.4545E+00
+ Number of training cases misclassified = 5
+ Predicted class is 0
+ ----------------------------
+Node 412: Terminal node
+ Class      Number   Posterior
+ 0               2  0.2857E+00
+ 1               5  0.7143E+00
+ Number of training cases misclassified = 2
+ Predicted class is 1
+ ----------------------------
+Node 413: Terminal node
+ Class      Number   Posterior
+ 0               4  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 207: Terminal node
+ Class      Number   Posterior
+ 0               5  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 13: Intermediate node
+ A case goes into Node 26 if SEX = "Male"
+ SEX mode = "Male"
+ Class      Number   Posterior
+ 0              14  0.7368E+00
+ 1               5  0.2632E+00
+ Number of training cases misclassified = 5
+ Predicted class is 0
+ ----------------------------
+Node 26: Intermediate node
+ A case goes into Node 52 if EXPRESSION_CLUSTER = "EC_u1"
+ EXPRESSION_CLUSTER mode = "0"
+ Class      Number   Posterior
+ 0               7  0.5833E+00
+ 1               5  0.4167E+00
+ Number of training cases misclassified = 5
+ Predicted class is 0
+ ----------------------------
+Node 52: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 53: Intermediate node
+ A case goes into Node 106 if tri12_status = "Gain"
+ tri12_status mode = "Unchanged"
+ Class      Number   Posterior
+ 0               7  0.7000E+00
+ 1               3  0.3000E+00
+ Number of training cases misclassified = 3
+ Predicted class is 0
+ ----------------------------
+Node 106: Terminal node
+ Class      Number   Posterior
+ 0               1  0.3333E+00
+ 1               2  0.6667E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+Node 107: Terminal node
+ Class      Number   Posterior
+ 0               6  0.8571E+00
+ 1               1  0.1429E+00
+ Number of training cases misclassified = 1
+ Predicted class is 0
+ ----------------------------
+Node 27: Terminal node
+ Class      Number   Posterior
+ 0               7  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 7: Intermediate node
+ A case goes into Node 14 if AGE_SAMPLING <= 84.500000
+ AGE_SAMPLING mean = 80.457944
+ Class      Number   Posterior
+ 0              83  0.7757E+00
+ 1              24  0.2243E+00
+ Number of training cases misclassified = 24
+ Predicted class is 0
+ ----------------------------
+Node 14: Intermediate node
+ A case goes into Node 28 if RAI_AT_DIAGNOSIS <= 0.50000000
+ RAI_AT_DIAGNOSIS mean = 0.34883721E-01
+ Class      Number   Posterior
+ 0              73  0.8488E+00
+ 1              13  0.1512E+00
+ Number of training cases misclassified = 13
+ Predicted class is 0
+ ----------------------------
+Node 28: Intermediate node
+ A case goes into Node 56 if RRBS = "No"
+ RRBS mode = "No"
+ Class      Number   Posterior
+ 0              73  0.8690E+00
+ 1              11  0.1310E+00
+ Number of training cases misclassified = 11
+ Predicted class is 0
+ ----------------------------
+Node 56: Intermediate node
+ A case goes into Node 112 if CLL_EPITYPE = "i_CLL"
+ CLL_EPITYPE mode = "m_CLL"
+ Class      Number   Posterior
+ 0              56  0.8358E+00
+ 1              11  0.1642E+00
+ Number of training cases misclassified = 11
+ Predicted class is 0
+ ----------------------------
+Node 112: Intermediate node
+ A case goes into Node 224 if FIRST_TREATMENT_AFTER_SAMPLING = "Chemo__+__no__Ab"
+ FIRST_TREATMENT_AFTER_SAMPLING mode = "NA"
+ Class      Number   Posterior
+ 0               3  0.5000E+00
+ 1               3  0.5000E+00
+ Number of training cases misclassified = 3
+ Predicted class is 1
+ ----------------------------
+Node 224: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 225: Terminal node
+ Class      Number   Posterior
+ 0               3  0.7500E+00
+ 1               1  0.2500E+00
+ Number of training cases misclassified = 1
+ Predicted class is 0
+ ----------------------------
+Node 113: Terminal node
+ Class      Number   Posterior
+ 0              53  0.8689E+00
+ 1               8  0.1311E+00
+ Number of training cases misclassified = 8
+ Predicted class is 0
+ ----------------------------
+Node 57: Terminal node
+ Class      Number   Posterior
+ 0              17  0.9998E+00
+ 1               0  0.1612E-03
+ Number of training cases misclassified = 0
+ Predicted class is 0
+ ----------------------------
+Node 29: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               2  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 15: Intermediate node
+ A case goes into Node 30 if AGE <= 81.500000
+ AGE mean = 76.000000
+ Class      Number   Posterior
+ 0              10  0.4762E+00
+ 1              11  0.5238E+00
+ Number of training cases misclassified = 10
+ Predicted class is 1
+ ----------------------------
+Node 30: Intermediate node
+ A case goes into Node 60 if -1.4513837 * TUMOR_MEAN_COVERAGE + NORMAL_MEAN_COVERAGE <= -24.471990
+ Linear combination mean = -34.637326
+ Class      Number   Posterior
+ 0               9  0.6923E+00
+ 1               4  0.3077E+00
+ Number of training cases misclassified = 4
+ Predicted class is 0
+ ----------------------------
+Node 60: Terminal node
+ Class      Number   Posterior
+ 0               9  0.9000E+00
+ 1               1  0.1000E+00
+ Number of training cases misclassified = 1
+ Predicted class is 0
+ ----------------------------
+Node 61: Terminal node
+ Class      Number   Posterior
+ 0               0  0.8298E-03
+ 1               3  0.9992E+00
+ Number of training cases misclassified = 0
+ Predicted class is 1
+ ----------------------------
+Node 31: Terminal node
+ Class      Number   Posterior
+ 0               1  0.1250E+00
+ 1               7  0.8750E+00
+ Number of training cases misclassified = 1
+ Predicted class is 1
+ ----------------------------
+ ******************************************************
+ Variables used for splitting:
+ AGE
+ AGE_SAMPLING
+ ARRAY450K
+ CLL_EPITYPE
+ EC_EXTENSION
+ EXPRESSION_CLUSTER
+ FIRST_TREATMENT_AFTER_SAMPLING
+ IGHV_IDENTITY_PERCENTAGE
+ IGHV_MUTATION_STATUS
+ IGLV3_21_R110
+ NORMAL_MEAN_COVERAGE
+ RAI_AT_DIAGNOSIS
+ RAI_AT_SAMPLING
+ RNA_SEQUENCING
+ RRBS
+ SEX
+ TREATMENT_STATUS
+ TUMOR_MEAN_COVERAGE
+ TUMOR_MOLECULAR_SUBTYPE
+ TUMOR_SAMPLE_PLOIDY
+ TUMOR_SAMPLE_PURITY
+ U.CLL_WES
+ U1_STATUS
+ X17p_status
+ X17q_status
+ X18p_status
+ X8p_status
+ tri12_status
+ 
+ Number of terminal nodes: 43
+ 
+ Scaled importance scores of predictor variables
+      Score     Rank  Variable
+  2.586E+00     1.00  X17p_status
+  1.972E+00     2.00  X8p_status
+  1.790E+00     3.00  IGHV_MUTATION_STATUS
+  1.759E+00     4.00  CLL_EPITYPE
+  1.672E+00     5.00  M.CLL_WES
+  1.672E+00     6.00  U.CLL_WES
+  1.664E+00     7.00  AGE_SAMPLING
+  1.129E+00     8.00  COHORT
+  1.106E+00     9.00  TREATMENT_STATUS_AT_SAMPLING
+  1.085E+00    10.00  EXPRESSION_CLUSTER
+  1.036E+00    11.00  TREATMENT_STATUS
+  9.638E-01    12.00  CANCER_TYPE_DETAILED
+  9.379E-01    13.00  RRBS
+  9.258E-01    14.00  FIRST_TREATMENT_AFTER_SAMPLING
+  9.170E-01    15.00  EC_EXTENSION
+  8.742E-01    16.00  PRIOR_TREATMENT_CATEGORY
+  8.429E-01    17.00  TMB_NONSYNONYMOUS
+  8.165E-01    18.00  IGHV_IDENTITY_PERCENTAGE
+  7.555E-01    19.00  AGE
+  6.304E-01    20.00  TREATMENT_AFTER_SAMPLING
+  6.134E-01    21.00  RAI_AT_DIAGNOSIS
+  6.049E-01    22.00  X17q_status
+  5.203E-01    23.00  X4p_status
+  5.055E-01    24.00  TUMOR_MOLECULAR_SUBTYPE
+  4.715E-01    25.00  ARRAY450K
+  4.247E-01    26.00  X11q_status
+  4.060E-01    27.00  X20p_status
+  3.676E-01    28.00  SEQUENCING_PLATFORM
+  3.675E-01    29.00  RAI_AT_SAMPLING
+  3.481E-01    30.00  X8q_status
+  3.445E-01    31.00  IGLV3_21_R110
+  3.437E-01    32.00  tri12_status
+  3.437E-01    33.00  NORMAL_MEAN_COVERAGE
+  2.720E-01    34.00  X19q_status
+  2.586E-01    35.00  SEX
+  2.405E-01    36.00  X6q_status
+  2.295E-01    37.00  TUMOR_SAMPLE_PLOIDY
+  1.641E-01    38.00  X18p_status
+  1.385E-01    39.00  TUMOR_MEAN_COVERAGE
+  1.330E-01    40.00  X2p_status
+  1.322E-01    41.00  RNA_SEQUENCING
+  9.272E-02    42.00  U1_STATUS
+  7.457E-02    43.00  EC_DISCOVERY
+  7.420E-02    44.00  TUMOR_SAMPLE_PURITY
+ 99% threshold is 1.1176
+ 95% threshold is 1.0000
+ 90% threshold is 0.8297
+ 80% threshold is 0.6219
+ 50% threshold is 0.4885
+ Number of variables above 99% threshold is 8
+ Number of variables between 95% and 99% thresholds is 3
+ Number of variables between 90% and 95% thresholds is 6
+ Number of variables between 80% and 90% thresholds is 3
+ Number of variables between 50% and 80% thresholds is 4
+ Number of variables below 50% threshold (excluding F, I and R variables) is 22
+ LaTeX code for tree is in tree.tex
+ Importance scores are stored in imp_scr.txt
+ Elapsed time in seconds: 30.074

@@ -1,0 +1,134 @@
+---
+title: "exploration_datasets"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Exploratory Data Analysis of Datasets used
+
+Import required library
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+library(ggplot2)
+```
+
+Global path variable to the data set 
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/raw/cll_broad_2022"
+```
+
+Read in data files
+```{r}
+data_clinical_patient <- read.table(file.path(dataset_path,"data_clinical_patient.txt"),header=TRUE, sep="\t")
+data_clinical_sample <- read.table(file.path(dataset_path, "data_clinical_sample.txt"), header=TRUE, sep="\t")
+data_mutations <- read.table(file.path(dataset_path,"data_mutations.txt"),header=TRUE, sep="\t")
+```
+
+Number of patients with MBL and CLL respectively - data_clinical_sample
+```{r}
+ggplot(data_clinical_sample, aes(x=DISEASE_TYPE)) +
+         geom_bar() + 
+  geom_text(stat = 'count', aes(label = after_stat(count)), vjust = -0.5, size=3.5) + 
+  # using a color palette 
+  scale_fill_viridis_d(option="mako", begin =0.2, end=0.8) + 
+  theme_minimal(base_size = 14) + 
+  labs(
+    title = "Distribution of Disease Types",
+    subtitle = "Sorted by prevalence in clinical samples",
+    x = NULL, # Removes the redundant 'DISEASE_TYPE' label
+    y = "Number of Cases"
+  ) +
+  # Clean up the grid and rotate labels if they are long
+  theme(
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+library(ggplot2)
+library(forcats) # This is key for the sorting "magic"
+
+ggplot(data_clinical_sample, aes(y = fct_rev(fct_infreq(DISEASE_TYPE)), fill = DISEASE_TYPE)) +
+  geom_bar(show.legend = FALSE) +
+  # Adds the actual numbers inside/at the end of the bars
+  geom_text(stat = 'count', aes(label = after_stat(count)), hjust = -0.2, size = 4) +
+  # A sleek, professional color palette
+  scale_fill_viridis_d(option = "mako", begin = 0.3, end = 0.7) +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Disease Type Distribution",
+    subtitle = "Sorted by frequency",
+    x = "Number of Cases",
+    y = NULL
+  ) +
+  # Extra clean-up
+  theme(panel.grid.minor = element_blank())
+  
+  
+  
+library(ggplot2)
+
+ggplot(data_clinical_sample, aes(x = DISEASE_TYPE)) +
+  geom_bar(fill = "#4C78A8", width = 0.65) +
+  labs(
+    title = "Disease Distribution",
+    x = "Disease Type",
+    y = "Count"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+
+
+
+
+```
+
+Drawing plots again 
+```{r}
+# 1. Open a PNG file "device" with high resolution (300 DPI)
+# Note: I've increased the pixel dimensions to account for the higher resolution
+png("disease_plot.png", width = 2400, height = 1800, res = 300)
+
+# 2. Increase margins (6,6,6,6) as you requested
+par(mar = c(6, 6, 6, 6))
+
+# 3. Summarize the data
+disease_counts <- table(data_clinical_sample$DISEASE_TYPE)
+
+# 4. Basic barplot 
+my_bar <- barplot(disease_counts, 
+                  border = FALSE, 
+                  las = 2, 
+                  main = "Frequency of Disease Types", 
+                  col = "skyblue")
+# 1. Allow drawing in the margins
+par(xpd = TRUE)
+
+# 5. Legend
+legend("topright",
+       legend = c("CLL", "MBL"), 
+       fill = "skyblue", # Added fill to match your bars
+       bty = "o", 
+       inset = c(0.00, -0.20))
+
+# 6. Save the file
+dev.off()
+```
+
+
+```{r}
+(table(data_clinical_sample$DISEASE_TYPE))
+```
+
+
+
+

@@ -1,0 +1,224 @@
+---
+title: "01_univariate_model"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Univariate approach for KM
+
+Import Required Library 
+```{r}
+library(survival)
+library(survminer)
+library(dplyr)
+library(mice) 
+```
+
+```{r}
+dataset_path <- "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai"
+```
+
+```{r}
+data <- read.table(file.path(dataset_path,"patient_file_cna_rai.txt"),header=TRUE, sep=" ")
+```
+
+Missing Data
+```{r}
+summary(as.factor(data$OS_STATUS))
+```
+
+```{r}
+summary(as.factor(data$IGHV_MUTATION_STATUS))
+```
+
+```{r}
+data$death_5yr_status_num <- ifelse(data$OS_STATUS == "DECEASED" & data$OS_MONTHS <= 60, 1, 0)
+data$os_months_5yr <- pmin(data$OS_MONTHS, 60)
+```
+
+
+IGHV survival 
+```{r}
+impute_data <- data[, c("IGHV_MUTATION_STATUS","X11q_status", "X17p_status", "X18p_status", "X19q_status", "X20p_status", "X2p_status", "X4p_status", "X6q_status", "X8p_status", "X8q_status", "tri12_status", "RAI_AT_DIAGNOSIS", "RAI_AT_SAMPLING", "surv_5yrs", "death_5yr", "AGE", "AGE_SAMPLING", "SEX", "OS_STATUS", "OS_MONTHS", "DEATH_DAYS" )]
+
+impute_data$IGHV_MUTATION_STATUS <- as.factor(impute_data$IGHV_MUTATION_STATUS)
+impute_data$X11q_status <- as.factor(impute_data$X11q_status)
+impute_data$X17p_status <- as.factor(impute_data$X17p_status)
+impute_data$X18p_status <- as.factor(impute_data$X18p_status)
+impute_data$X19q_status <- as.factor(impute_data$X19q_status)
+impute_data$X20p_status <- as.factor(impute_data$X20p_status)
+impute_data$X2p_status <- as.factor(impute_data$X2p_status)
+impute_data$X4p_status <- as.factor(impute_data$X4p_status)
+impute_data$X6q_status <- as.factor(impute_data$X6q_status)
+impute_data$X8p_status <- as.factor(impute_data$X8p_status)
+impute_data$tri12_status <- as.factor(impute_data$tri12_status)
+impute_data$RAI_AT_DIAGNOSIS <- as.factor(impute_data$RAI_AT_DIAGNOSIS)
+impute_data$RAI_AT_SAMPLING <- as.factor(impute_data$RAI_AT_SAMPLING)
+impute_data$surv_5yrs <- as.numeric(impute_data$surv_5yrs)
+impute_data$death_5yr <- as.factor(impute_data$death_5yr)
+impute_data$AGE <- as.numeric(impute_data$AGE)
+impute_data$AGE_SAMPLING <- as.numeric(impute_data$AGE_SAMPLING)
+impute_data$SEX <- as.factor(impute_data$SEX)
+impute_data$OS_STATUS <- as.factor(impute_data$OS_STATUS)
+impute_data$OS_MONTHS <- as.numeric(impute_data$OS_MONTHS)
+impute_data$DEATH_DAYS <- as.numeric(impute_data$DEATH_DAYS)
+
+imputed_out <- mice(impute_data, m = 5, seed = 500)
+
+data_complete <- complete(imputed_out, 1)
+
+data$IGHV_MUTATION_STATUS_IMPUTED <- data_complete$IGHV_MUTATION_STATUS
+
+summary(as.factor(data$IGHV_MUTATION_STATUS_IMPUTED))
+
+fit_5yr <- survfit(Surv(os_months_5yr, death_5yr_status_num) ~ IGHV_MUTATION_STATUS_IMPUTED, data = data)
+
+ggsurvplot(
+  fit_5yr, 
+  data = data, 
+  pval = TRUE,              
+  risk.table = TRUE,        
+  conf.int = TRUE,           
+  xlim = c(0, 60),          
+  break.time.by = 12,        
+  palette = c("#2E9FDF", "#E7B800"), 
+  title = "5-Year Overall Survival: IGHV Imputed",
+  legend.labs = c("Mutated", "Unmutated"),
+  xlab = "Months from Sampling",
+  ylab = "Survival Probability"
+)
+```
+
+```{r}
+cox_ighv <- coxph(Surv(os_months_5yr, death_5yr_status_num) ~ IGHV_MUTATION_STATUS_IMPUTED, data = data)
+summary(cox_ighv)
+```
+
+
+X17p_status survival 
+```{r}
+summary(as.factor(data$X17p_status))
+```
+
+
+```{r}
+impute_data <- data[, c("IGHV_MUTATION_STATUS","X11q_status", "X17p_status", "X18p_status", "X19q_status", "X20p_status", "X2p_status", "X4p_status", "X6q_status", "X8p_status", "X8q_status", "tri12_status", "RAI_AT_DIAGNOSIS", "RAI_AT_SAMPLING", "surv_5yrs", "death_5yr", "AGE", "AGE_SAMPLING", "SEX", "OS_STATUS", "OS_MONTHS", "DEATH_DAYS" )]
+
+impute_data$IGHV_MUTATION_STATUS <- as.factor(impute_data$IGHV_MUTATION_STATUS)
+impute_data$X11q_status <- as.factor(impute_data$X11q_status)
+impute_data$X17p_status <- as.factor(impute_data$X17p_status)
+impute_data$X18p_status <- as.factor(impute_data$X18p_status)
+impute_data$X19q_status <- as.factor(impute_data$X19q_status)
+impute_data$X20p_status <- as.factor(impute_data$X20p_status)
+impute_data$X2p_status <- as.factor(impute_data$X2p_status)
+impute_data$X4p_status <- as.factor(impute_data$X4p_status)
+impute_data$X6q_status <- as.factor(impute_data$X6q_status)
+impute_data$X8p_status <- as.factor(impute_data$X8p_status)
+impute_data$tri12_status <- as.factor(impute_data$tri12_status)
+impute_data$RAI_AT_DIAGNOSIS <- as.factor(impute_data$RAI_AT_DIAGNOSIS)
+impute_data$RAI_AT_SAMPLING <- as.factor(impute_data$RAI_AT_SAMPLING)
+impute_data$surv_5yrs <- as.numeric(impute_data$surv_5yrs)
+impute_data$death_5yr <- as.factor(impute_data$death_5yr)
+impute_data$AGE <- as.numeric(impute_data$AGE)
+impute_data$AGE_SAMPLING <- as.numeric(impute_data$AGE_SAMPLING)
+impute_data$SEX <- as.factor(impute_data$SEX)
+impute_data$OS_STATUS <- as.factor(impute_data$OS_STATUS)
+impute_data$OS_MONTHS <- as.numeric(impute_data$OS_MONTHS)
+impute_data$DEATH_DAYS <- as.numeric(impute_data$DEATH_DAYS)
+
+imputed_out <- mice(impute_data, m = 5, seed = 500)
+
+data_complete <- complete(imputed_out, 3)
+
+data$X17p_status_complete <- data_complete$X17p_status
+
+summary(as.factor(data$X17p_status_complete))
+
+
+fit_5yr <- survfit(Surv(os_months_5yr, death_5yr_status_num) ~ X17p_status_complete, data = data)
+
+ggsurvplot(
+  fit_5yr, 
+  data = data, 
+  pval = TRUE,              
+  risk.table = TRUE,        
+  conf.int = TRUE,           
+  xlim = c(0, 60),          
+  break.time.by = 12,        
+  palette = c("#2E9FDF", "#E7B800"), 
+  title = "5-Year Overall Survival: X17p_status",
+  legend.labs = c("Mutated", "Unmutated"),
+  xlab = "Months from Sampling",
+  ylab = "Survival Probability"
+)
+```
+
+```{r}
+cox_x17p <- coxph(Surv(os_months_5yr, death_5yr_status_num) ~ X17p_status_complete, data = data)
+summary(cox_x17p)
+```
+
+RAI_AT_DIAGNOSIS
+```{r}
+summary(as.factor(data$RAI_AT_DIAGNOSIS))
+impute_data <- data[, c("RAI_AT_DIAGNOSIS","IGHV_MUTATION_STATUS","X11q_status", "X17p_status", "X18p_status", "X19q_status", "X20p_status", "X2p_status", "X4p_status", "X6q_status", "X8p_status", "X8q_status", "tri12_status", "RAI_AT_SAMPLING", "surv_5yrs", "death_5yr", "AGE", "AGE_SAMPLING", "SEX", "OS_STATUS", "OS_MONTHS", "DEATH_DAYS")]
+
+impute_data$IGHV_MUTATION_STATUS <- as.factor(impute_data$IGHV_MUTATION_STATUS)
+impute_data$X11q_status <- as.factor(impute_data$X11q_status)
+impute_data$X17p_status <- as.factor(impute_data$X17p_status)
+impute_data$X18p_status <- as.factor(impute_data$X18p_status)
+impute_data$X19q_status <- as.factor(impute_data$X19q_status)
+impute_data$X20p_status <- as.factor(impute_data$X20p_status)
+impute_data$X2p_status <- as.factor(impute_data$X2p_status)
+impute_data$X4p_status <- as.factor(impute_data$X4p_status)
+impute_data$X6q_status <- as.factor(impute_data$X6q_status)
+impute_data$X8p_status <- as.factor(impute_data$X8p_status)
+impute_data$tri12_status <- as.factor(impute_data$tri12_status)
+impute_data$RAI_AT_DIAGNOSIS <- as.factor(impute_data$RAI_AT_DIAGNOSIS)
+impute_data$RAI_AT_SAMPLING <- as.factor(impute_data$RAI_AT_SAMPLING)
+impute_data$surv_5yrs <- as.numeric(impute_data$surv_5yrs)
+impute_data$death_5yr <- as.factor(impute_data$death_5yr)
+impute_data$AGE <- as.numeric(impute_data$AGE)
+impute_data$AGE_SAMPLING <- as.numeric(impute_data$AGE_SAMPLING)
+impute_data$SEX <- as.factor(impute_data$SEX)
+impute_data$OS_STATUS <- as.factor(impute_data$OS_STATUS)
+impute_data$OS_MONTHS <- as.numeric(impute_data$OS_MONTHS)
+impute_data$DEATH_DAYS <- as.numeric(impute_data$DEATH_DAYS)
+
+imputed_out <- mice(impute_data, m = 5, maxit = 5, seed = 500)
+
+data_complete <- complete(imputed_out, 1)
+
+data$RAI_AT_DIAGNOSIS_COMPLETE <- data_complete$RAI_AT_DIAGNOSIS
+
+summary(as.factor(data_complete$RAI_AT_DIAGNOSIS))
+
+
+fit_5yr <- survfit(Surv(os_months_5yr, death_5yr_status_num) ~ RAI_AT_DIAGNOSIS_COMPLETE, data = data)
+
+ggsurvplot(
+  fit_5yr, 
+  data = data, 
+  pval = TRUE,              
+  risk.table = TRUE,        
+  conf.int = TRUE,           
+  xlim = c(0, 60),          
+  break.time.by = 12,        
+  palette = c("#2E9FDF", "#E7B800", "#27ae60", "#c0392b", "#8e44ad"),
+  title = "5-Year Overall Survival: RAI_AT_DIAGNOSIS",
+  legend.labs = c("0", "1", "2", "3", "4"),
+  xlab = "Months from Sampling",
+  ylab = "Survival Probability"
+)
+
+```
+
+```{r}
+cox_rai <- coxph(Surv(os_months_5yr, death_5yr_status_num) ~ RAI_AT_DIAGNOSIS, data = data)
+summary(cox_rai)
+```
+
+
+
+

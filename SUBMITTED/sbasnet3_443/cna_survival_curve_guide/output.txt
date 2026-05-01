@@ -1,0 +1,191 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 04/30/26 at 10:10
+  
+ Proportional hazards regression tree for censored response
+ Pruning by cross-validation
+ DSC file: dsc_patient_file_cna_rai.txt
+ Training sample file: patient_file_cna_rai.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ D variable is death_5yr
+ Piecewise constant model
+ Number of records in data file: 1148
+ Length of longest entry in data file: 59
+ Missing values found in D variable
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Number of cases dropped due to missing D or T or censored T < smallest uncensored T: 6
+ Number of complete cases excluding censored T < smallest uncensored T: 1002
+ Number of cases used to compute baseline hazard: 1002
+ Number of cases with D=1 and T >= smallest uncensored: 164
+ Smallest uncensored surv_5yrs:  0.7000E-01
+ Largest uncensored and censored surv_5yrs with positive weight: 59.6000 60.0000
+ Cases with missing T variable values are excluded.
+  
+ Summary information for training sample of size 1002 (excluding observations
+  with non-positive weight or missing values in d, e, t, r or z variables)
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight,
+ t=survival time variable
+                                                                       #Codes/           
+                                                                       Levels/           
+  Column  Name                                 Minimum      Maximum    Periods   #Missing
+      40  X11q_status                     c                                  2
+      41  X17p_status                     c                                  2
+      42  X17q_status                     c                                  2
+      43  X18p_status                     c                                  2
+      44  X19q_status                     c                                  2
+      45  X20p_status                     c                                  2
+      46  X2p_status                      c                                  2
+      47  X4p_status                      c                                  2
+      48  X6q_status                      c                                  2
+      49  X8p_status                      c                                  2
+      50  X8q_status                      c                                  2
+      51  tri12_status                    c                                  2
+      56  surv_5yrs                       t   0.7000E-01    60.00    
+      57  death_5yr                       d    0.000        1.000    
+   =================== Constructed variables ===================
+      58  lnbasehaz0                      z   -6.910       -1.663    
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       1148        140          0       43        0        0        0
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       12        0
+ Survival time variable in column: 56
+ Event indicator variable in column: 57
+ Proportion uncensored among nonmissing T and D variables: 0.164
+ Number of cases used for training: 1002
+ Number of cases excluded due to 0 W or missing D or T variables: 146
+  
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Nodewise interaction tests on all variables
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 2
+ Number of iterations for fitting: 20
+ Ranks of variables and their 1-df chi-squared values at root node
+      1  0.3348E+02   X17p_status
+      2  0.1963E+02   X8p_status
+      3  0.7234E+01   X20p_status
+      4  0.3303E+01   X8q_status
+      5  0.2978E+01   tri12_status
+      6  0.2771E+01   X17q_status
+      7  0.1874E+01   X19q_status
+      8  0.1628E+01   X6q_status
+      9  0.1080E+01   X4p_status
+     10  0.1072E+01   X11q_status
+     11  0.2582E+00   X2p_status
+     12  0.1775E-04   X18p_status
+
+ Size and CV Loss and SE of subtrees:
+  Tree   #Tnodes  Mean Loss   SE(Mean)   BSE(Mean)  Median Loss  BSE(Median)
+    1       26   8.849E-01   4.745E-02   2.671E-02   8.724E-01   4.195E-02
+    2       25   8.849E-01   4.745E-02   2.671E-02   8.724E-01   4.195E-02
+    3       23   8.848E-01   4.745E-02   2.676E-02   8.724E-01   4.211E-02
+    4       22   8.843E-01   4.740E-02   2.641E-02   8.712E-01   4.088E-02
+    5       21   8.837E-01   4.739E-02   2.653E-02   8.712E-01   4.156E-02
+    6       18   8.830E-01   4.710E-02   2.658E-02   8.670E-01   4.311E-02
+    7       17   8.819E-01   4.703E-02   2.524E-02   8.677E-01   4.085E-02
+    8       16   8.769E-01   4.677E-02   2.489E-02   8.467E-01   3.463E-02
+    9       13   8.771E-01   4.676E-02   2.489E-02   8.474E-01   3.468E-02
+   10       12   8.755E-01   4.666E-02   2.497E-02   8.474E-01   3.549E-02
+   11       11   8.750E-01   4.646E-02   2.474E-02   8.530E-01   3.140E-02
+   12       10   8.745E-01   4.644E-02   2.458E-02   8.530E-01   3.126E-02
+   13        9   8.737E-01   4.642E-02   2.478E-02   8.535E-01   3.155E-02
+   14        7   8.770E-01   4.636E-02   2.494E-02   8.601E-01   3.054E-02
+   15        6   8.814E-01   4.663E-02   2.472E-02   8.677E-01   2.841E-02
+   16        5   8.871E-01   4.682E-02   2.469E-02   8.677E-01   3.063E-02
+   17        3   8.762E-01   4.580E-02   2.273E-02   8.558E-01   3.574E-02
+   18**      2   8.673E-01   4.508E-02   2.118E-02   8.372E-01   3.124E-02
+   19        1   8.957E-01   4.553E-02   1.627E-02   8.620E-01   3.240E-02
+  
+ 0-SE tree based on mean is marked with * and has 2 terminal nodes
+ 0-SE tree based on median is marked with + and has 2 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree, ** tree, + tree, and ++ tree all the same
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ Cases fit give the number of cases used to fit node
+ Deviance is mean residual deviance for all cases in node
+        Node    Total    Cases Matrix   Median      Node    Split          Other
+        label   cases      fit  rank   survtime   deviance  variable       variables
+           1     1002     1002     1  6.000E+01+ 8.965E-01  X17p_status 
+           2T      70       70     1  6.000E+01+ 1.486E+00  X8p_status 
+           3T     932      932     1  6.000E+01+ 8.220E-01  X8p_status 
+  
+ Number of terminal nodes of final tree: 2
+ Total number of nodes of final tree: 3
+ Second best split variable (based on curvature test) at root node is X8p_status
+  
+ Regression tree:
+ For categorical variable splits, values not in training data go to the right
+  
+ Node 1: X17p_status = "Loss"
+   Node 2: Median survival time = 60.000000+
+ Node 1: X17p_status /= "Loss"
+   Node 3: Median survival time = 60.000000+
+ 
+ ***************************************************************
+  
+ WARNING: p-values below not adjusted for split search. For a bootstrap solution see:
+  
+ 1. Loh et al. (2016), "Identification of subgroups with differential treatment effects
+ for longitudinal and multiresponse variables", Statistics in Medicine, v.35, 4837-4855.
+  
+ 2. Loh et al. (2019), "Subgroups from regression trees with adjustment for prognostic
+ effects and post-selection inference", Statistics in Medicine, v.38, 545-557.
+  
+ 3. Loh and Zhou (2020), "The GUIDE approach to subgroup identification",
+ in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if X17p_status = "Loss"
+ X17p_status mode = "Unchanged"
+ Coefficients of log-relative hazard function (relative to baseline hazard):
+ Regressor                         Coefficient  t-stat      p-value
+ Constant                           0.000    
+ Predicted log-relative hazard = -60.000000
+ ----------------------------
+Node 2: Terminal node
+ Coefficients of log-relative hazard function (relative to baseline hazard):
+ Regressor                         Coefficient  t-stat      p-value
+ Constant                           1.174    
+ Predicted log-relative hazard = -60.000000
+ ----------------------------
+Node 3: Terminal node
+ Coefficients of log-relative hazard function (relative to baseline hazard):
+ Regressor                         Coefficient  t-stat      p-value
+ Constant                         -0.1330    
+ Predicted log-relative hazard = -60.000000
+ ----------------------------
+ Observed and fitted values are stored in fit.txt
+ LaTeX code for tree is in tree.tex
+ Elapsed time in seconds: 0.97643

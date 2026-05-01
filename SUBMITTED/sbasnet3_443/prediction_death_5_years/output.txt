@@ -1,0 +1,318 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 04/30/26 at 10:26
+  
+ Classification tree
+ Pruning by cross-validation
+ DSC file: dsc_patient_file_cna_rai.txt
+ Training sample file: patient_file_cna_rai.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ 10 N variables changed to S
+ D variable is death_5yr
+ Number of records in data file: 1148
+ Length of longest entry in data file: 59
+ Missing values found in D variable
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Missing values found among non-categorical variables
+ Number of classes: 2
+ Warning: C variable CANCER_TYPE takes only 1 value
+ Warning: C variable SOMATIC_STATUS takes only 1 value
+ Training sample class proportions of D variable death_5yr:
+ Class  #Cases     Proportion
+ 0         844     0.83730159
+ 1         164     0.16269841
+  
+ Summary information for training sample of size 1008 (excluding observations
+  with non-positive weight or missing values in d, e, t, r or z variables)
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                                       #Codes/           
+                                                                       Levels/           
+  Column  Name                                 Minimum      Maximum    Periods   #Missing
+       5  NORMAL_MEAN_COVERAGE            s    16.10        360.7                    83
+       6  TUMOR_MEAN_COVERAGE             s    11.40        406.9                    83
+       7  TUMOR_SAMPLE_PURITY             s   0.3300        1.000                    83
+       8  TUMOR_SAMPLE_PLOIDY             s    1.920        2.130                    83
+       9  CANCER_TYPE                     c                                  1
+      10  CANCER_TYPE_DETAILED            c                                  2
+      11  SOMATIC_STATUS                  c                                  1
+      12  CLL_EPITYPE                     c                                  6
+      13  TUMOR_MOLECULAR_SUBTYPE         c                                  2      144
+      14  SEQUENCING_PLATFORM             c                                  3
+      15  RNA_SEQUENCING                  c                                  2
+      16  RRBS                            c                                  2
+      17  ARRAY450K                       c                                  2
+      18  M.CLL_WES                       c                                  2
+      19  U.CLL_WES                       c                                  2
+      20  EC_DISCOVERY                    c                                  2
+      21  EC_EXTENSION                    c                                  2
+      22  IGLV3_21_R110                   c                                  2       26
+      23  U1_STATUS                       c                                  2      197
+      24  TMB_NONSYNONYMOUS               s   0.1333        18.57                    83
+      25  AGE                             s    18.00        93.00                    50
+      26  AGE_SAMPLING                    s    19.00        94.00    
+      27  SEX                             c                                  2
+      31  COHORT                          c                                  6
+      32  IGHV_MUTATION_STATUS            c                                  2       15
+      33  IGHV_IDENTITY_PERCENTAGE        s    84.72        100.0                    18
+      34  TREATMENT_STATUS                c                                  2
+      35  PRIOR_TREATMENT_CATEGORY        c                                  6
+      36  TREATMENT_AFTER_SAMPLING        c                                 19      612
+      37  EXPRESSION_CLUSTER              c                                 10
+      40  X11q_status                     c                                  2
+      41  X17p_status                     c                                  2
+      42  X17q_status                     c                                  2
+      43  X18p_status                     c                                  2
+      44  X19q_status                     c                                  2
+      45  X20p_status                     c                                  2
+      46  X2p_status                      c                                  2
+      47  X4p_status                      c                                  2
+      48  X6q_status                      c                                  2
+      49  X8p_status                      c                                  2
+      50  X8q_status                      c                                  2
+      51  tri12_status                    c                                  2
+      52  RAI_AT_DIAGNOSIS                s    0.000        4.000    
+      53  TREATMENT_STATUS_AT_SAMPLING    c                                  2      291
+      54  RAI_AT_SAMPLING                 s    0.000        4.000                   291
+      55  FIRST_TREATMENT_AFTER_SAMPLING  c                                 20      291
+      57  death_5yr                       d                                  2
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       1148        140        526       10        0        0       10
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       36        0
+ Number of cases used for training: 1008
+ Number of cases excluded due to 0 W or missing D variable: 140
+  
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Simple node models
+ Estimated priors
+ Unit misclassification costs
+ Univariate split highest priority
+ Interaction and linear splits 2nd and 3rd priorities
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 2
+ Ranks of variables and their 1-df chi-squared values at root node
+      1  0.3691E+02   AGE_SAMPLING
+      2  0.3110E+02   X17p_status
+      3  0.2422E+02   X8p_status
+      4  0.2236E+02   IGHV_MUTATION_STATUS
+      5  0.2100E+02   M.CLL_WES
+      6  0.1912E+02   U.CLL_WES
+      7  0.1846E+02   CLL_EPITYPE
+      8  0.1497E+02   AGE
+      9  0.1305E+02   EXPRESSION_CLUSTER
+     10  0.1282E+02   TMB_NONSYNONYMOUS
+     11  0.1201E+02   TREATMENT_STATUS
+     12  0.1073E+02   EC_EXTENSION
+     13  0.9726E+01   TREATMENT_STATUS_AT_SAMPLING
+     14  0.8815E+01   PRIOR_TREATMENT_CATEGORY
+     15  0.7289E+01   IGHV_IDENTITY_PERCENTAGE
+     16  0.6294E+01   X17q_status
+     17  0.5934E+01   FIRST_TREATMENT_AFTER_SAMPLING
+     18  0.5406E+01   TREATMENT_AFTER_SAMPLING
+     19  0.5379E+01   X20p_status
+     20  0.3479E+01   tri12_status
+     21  0.3274E+01   COHORT
+     22  0.3254E+01   X4p_status
+     23  0.3002E+01   X8q_status
+     24  0.2513E+01   RAI_AT_DIAGNOSIS
+     25  0.2453E+01   X11q_status
+     26  0.2377E+01   SEQUENCING_PLATFORM
+     27  0.2230E+01   TUMOR_MOLECULAR_SUBTYPE
+     28  0.1392E+01   RAI_AT_SAMPLING
+     29  0.1357E+01   X6q_status
+     30  0.1285E+01   NORMAL_MEAN_COVERAGE
+     31  0.1124E+01   RNA_SEQUENCING
+     32  0.8681E+00   X19q_status
+     33  0.7757E+00   RRBS
+     34  0.5092E+00   U1_STATUS
+     35  0.4356E+00   TUMOR_SAMPLE_PLOIDY
+     36  0.3839E+00   IGLV3_21_R110
+     37  0.3771E+00   SEX
+     38  0.1030E+00   X18p_status
+     39  0.7198E-01   X2p_status
+     40  0.5691E-01   TUMOR_SAMPLE_PURITY
+     41  0.3497E-01   EC_DISCOVERY
+     42  0.2932E-01   TUMOR_MEAN_COVERAGE
+     43  0.9042E-02   ARRAY450K
+
+ Size and CV mean cost and SE of subtrees:
+  Tree   #Tnodes  Mean Cost   SE(Mean)   BSE(Mean)  Median Cost  BSE(Median)
+    1      101   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    2      100   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    3       99   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    4       98   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    5       97   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    6       96   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    7       95   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    8       94   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+    9       93   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+   10       92   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+   11       90   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+   12       89   1.895E-01   1.234E-02   8.967E-03   1.881E-01   7.635E-03
+   13       85   1.915E-01   1.239E-02   1.038E-02   1.931E-01   9.295E-03
+   14       80   1.905E-01   1.237E-02   1.024E-02   1.931E-01   7.858E-03
+   15       76   1.905E-01   1.237E-02   1.024E-02   1.931E-01   7.858E-03
+   16       74   1.905E-01   1.237E-02   1.024E-02   1.931E-01   7.858E-03
+   17       64   1.855E-01   1.224E-02   9.696E-03   1.881E-01   6.984E-03
+   18       58   1.855E-01   1.224E-02   9.696E-03   1.881E-01   6.984E-03
+   19       55   1.855E-01   1.224E-02   9.696E-03   1.881E-01   6.984E-03
+   20       52   1.855E-01   1.224E-02   9.727E-03   1.881E-01   6.931E-03
+   21       44   1.865E-01   1.227E-02   1.018E-02   1.841E-01   8.733E-03
+   22       41   1.855E-01   1.224E-02   9.910E-03   1.841E-01   8.191E-03
+   23       39   1.855E-01   1.224E-02   9.910E-03   1.841E-01   8.191E-03
+   24       38   1.855E-01   1.224E-02   9.910E-03   1.841E-01   8.191E-03
+   25       36   1.855E-01   1.224E-02   9.910E-03   1.841E-01   8.191E-03
+   26       34   1.855E-01   1.224E-02   9.910E-03   1.841E-01   8.191E-03
+   27       33   1.786E-01   1.206E-02   8.473E-03   1.791E-01   5.280E-03
+   28       20   1.736E-01   1.193E-02   8.767E-03   1.733E-01   8.910E-03
+   29       18   1.677E-01   1.177E-02   9.214E-03   1.683E-01   9.508E-03
+   30       16   1.607E-01   1.157E-02   6.448E-03   1.683E-01   8.069E-03
+   31       15   1.607E-01   1.157E-02   6.448E-03   1.683E-01   8.069E-03
+   32       13   1.607E-01   1.157E-02   6.448E-03   1.683E-01   8.069E-03
+   33       12   1.597E-01   1.154E-02   5.784E-03   1.584E-01   5.394E-03
+   34       11   1.597E-01   1.154E-02   5.755E-03   1.584E-01   5.441E-03
+   35*       9   1.597E-01   1.154E-02   5.755E-03   1.584E-01   5.441E-03
+   36**      4   1.607E-01   1.157E-02   4.515E-03   1.592E-01   4.673E-03
+   37++      1   1.627E-01   1.163E-02   1.583E-03   1.592E-01   3.694E-03
+  
+ 0-SE tree based on mean is marked with * and has 9 terminal nodes
+ 0-SE tree based on median is marked with + and has 9 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree same as + tree
+ ** tree same as -- tree
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ Node cost is node misclassification cost divided by number of cases in node
+        Node    Total    Train    Predicted        Node    Split          Interacting
+       label    cases    cases    class            cost    variables      variable
+           1     1008     1008    0              1.429E-01 AGE_SAMPLING 
+           2T     845      845    0              1.143E-01 X17p_status 
+           3      163      163    0              2.909E-01 IGHV_MUTATION_STATUS 
+           6       56       56    1              4.077E-01 ARRAY450K 
+          12T      37       37    1              2.848E-01 TUMOR_MOLECULAR_SUBTYPE 
+          13T      19       19    0              2.311E-01 SEX 
+           7T     107      107    0              1.969E-01 AGE_SAMPLING 
+  
+ Number of terminal nodes of final tree: 4
+ Total number of nodes of final tree: 7
+ Second best split variable (based on curvature test) at root node is X17p_status
+  
+ Classification tree:
+ For categorical variable splits, values not in training data go to the right
+  
+ Node 1: AGE_SAMPLING <= 74.500000
+   Node 2: 0
+ Node 1: AGE_SAMPLING > 74.500000 or NA
+   Node 3: IGHV_MUTATION_STATUS = "unmutated"
+     Node 6: ARRAY450K = "Yes"
+       Node 12: 1
+     Node 6: ARRAY450K /= "Yes"
+       Node 13: 0
+   Node 3: IGHV_MUTATION_STATUS /= "unmutated"
+     Node 7: 0
+ 
+ ***************************************************************
+ Predictor means below are means of cases with no missing values.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if AGE_SAMPLING <= 74.500000
+ AGE_SAMPLING mean = 63.186508
+ Class      Number   Posterior
+ 0             844  0.8373E+00
+ 1             164  0.1627E+00
+ Number of training cases misclassified = 164
+ Predicted class is 0
+ ----------------------------
+Node 2: Terminal node
+ Class      Number   Posterior
+ 0             735  0.8698E+00
+ 1             110  0.1302E+00
+ Number of training cases misclassified = 110
+ Predicted class is 0
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if IGHV_MUTATION_STATUS = "unmutated"
+ IGHV_MUTATION_STATUS mode = "mutated"
+ Class      Number   Posterior
+ 0             109  0.6687E+00
+ 1              54  0.3313E+00
+ Number of training cases misclassified = 54
+ Predicted class is 0
+ ----------------------------
+Node 6: Intermediate node
+ A case goes into Node 12 if ARRAY450K = "Yes"
+ ARRAY450K mode = "Yes"
+ Class      Number   Posterior
+ 0              26  0.4643E+00
+ 1              30  0.5357E+00
+ Number of training cases misclassified = 26
+ Predicted class is 1
+ ----------------------------
+Node 12: Terminal node
+ Class      Number   Posterior
+ 0              12  0.3243E+00
+ 1              25  0.6757E+00
+ Number of training cases misclassified = 12
+ Predicted class is 1
+ ----------------------------
+Node 13: Terminal node
+ Class      Number   Posterior
+ 0              14  0.7368E+00
+ 1               5  0.2632E+00
+ Number of training cases misclassified = 5
+ Predicted class is 0
+ ----------------------------
+Node 7: Terminal node
+ Class      Number   Posterior
+ 0              83  0.7757E+00
+ 1              24  0.2243E+00
+ Number of training cases misclassified = 24
+ Predicted class is 0
+ ----------------------------
+ 
+ Classification matrix for training sample:
+ Predicted      True class
+ class              0         1
+ 0                832       139
+ 1                 12        25
+ Total            844       164
+ 
+ Number of cases used for tree construction: 1008
+ Number misclassified: 151
+ Resubstitution estimate of mean misclassification cost: 0.14980159
+ 
+ Observed and fitted values are stored in fit.txt
+ LaTeX code for tree is in tree.tex
+ Elapsed time in seconds: 1.1853

@@ -1,0 +1,122 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 04/25/26 at 14:13
+  
+ Proportional hazards regression tree for censored response
+ Pruning by cross-validation
+ DSC file: dsc_patient_file_cna_rai.txt
+ Training sample file: patient_file_cna_rai.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ 9 N variables changed to S
+ D variable is death_5yr
+ Piecewise constant model
+ Number of records in data file: 1148
+ Length of longest entry in data file: 59
+ Missing values found in D variable
+ Missing values found among categorical variables
+ Separate categories will be created for missing categorical variables
+ Missing values found among non-categorical variables
+ Number of cases dropped due to missing D or T or censored T < smallest uncensored T: 6
+ Number of complete cases excluding censored T < smallest uncensored T: 1002
+ Number of cases used to compute baseline hazard: 1002
+ Number of cases with D=1 and T >= smallest uncensored: 164
+ Smallest uncensored surv_5yrs:  0.7000E-01
+ Largest uncensored and censored surv_5yrs with positive weight: 59.6000 60.0000
+ Warning: C variable CANCER_TYPE takes only 1 value
+ Warning: C variable SOMATIC_STATUS takes only 1 value
+ Cases with missing T variable values are excluded.
+  
+ Summary information for training sample of size 1002 (excluding observations
+  with non-positive weight or missing values in d, e, t, r or z variables)
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight,
+ t=survival time variable
+                                                                       #Codes/           
+                                                                       Levels/           
+  Column  Name                                 Minimum      Maximum    Periods   #Missing
+       3  ONCOTREE_CODE                   c                                  2
+       4  DISEASE_TYPE                    c                                  2
+       5  NORMAL_MEAN_COVERAGE            s    16.10        360.7                    83
+       6  TUMOR_MEAN_COVERAGE             s    11.40        406.9                    83
+       7  TUMOR_SAMPLE_PURITY             s   0.3300        1.000                    83
+       8  TUMOR_SAMPLE_PLOIDY             s    1.920        2.130                    83
+       9  CANCER_TYPE                     c                                  1
+      11  SOMATIC_STATUS                  c                                  1
+      12  CLL_EPITYPE                     c                                  6
+      13  TUMOR_MOLECULAR_SUBTYPE         c                                  2      141
+      14  SEQUENCING_PLATFORM             c                                  3
+      15  RNA_SEQUENCING                  c                                  2
+      16  RRBS                            c                                  2
+      17  ARRAY450K                       c                                  2
+      18  M.CLL_WES                       c                                  2
+      19  U.CLL_WES                       c                                  2
+      20  EC_DISCOVERY                    c                                  2
+      21  EC_EXTENSION                    c                                  2
+      22  IGLV3_21_R110                   c                                  2       25
+      23  U1_STATUS                       c                                  2      194
+      24  TMB_NONSYNONYMOUS               c                                 92       83
+      25  AGE                             s    18.00        93.00                    50
+      26  AGE_SAMPLING                    s    19.00        94.00    
+      27  SEX                             c                                  2
+      32  IGHV_MUTATION_STATUS            c                                  2       15
+      33  IGHV_IDENTITY_PERCENTAGE        s    84.72        100.0                    18
+      37  EXPRESSION_CLUSTER              c                                 10
+      40  X11q_status                     c                                  2
+      41  X17p_status                     c                                  2
+      42  X17q_status                     c                                  2
+      43  X18p_status                     c                                  2
+      44  X19q_status                     c                                  2
+      45  X20p_status                     c                                  2
+      46  X2p_status                      c                                  2
+      47  X4p_status                      c                                  2
+      48  X6q_status                      c                                  2
+      49  X8p_status                      c                                  2
+      50  X8q_status                      c                                  2
+      51  tri12_status                    c                                  2
+      52  RAI_AT_DIAGNOSIS                s    0.000        4.000    
+      54  RAI_AT_SAMPLING                 s    0.000        4.000                   285
+      56  surv_5yrs                       t   0.7000E-01    60.00    
+      57  death_5yr                       d    0.000        1.000    
+   =================== Constructed variables ===================
+      58  lnbasehaz0                      z   -6.910       -1.663    
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+       1148        140        526       14        0        0        9
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0       32        0
+ Survival time variable in column: 56
+ Event indicator variable in column: 57
+ Proportion uncensored among nonmissing T and D variables: 0.164
+ Number of cases used for training: 1002
+ Number of cases excluded due to 0 W or missing D or T variables: 146
+  
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Nodewise interaction tests on all variables
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 2
+ Number of iterations for fitting: 20
+ Error in computation of MEDIANCENSORED: i1 = 0

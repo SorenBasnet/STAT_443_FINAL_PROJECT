@@ -1,0 +1,56 @@
+---
+title: "data_file_eda"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+Import required library
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(gtsummary)
+library(kableExtra)
+library(ggplot2)
+```
+
+Global path variable to the data set 
+```{r}
+dataset_path <- read.table(
+  "/Users/sorenbasnet/Documents/Github/STAT_443_FINAL_PROJECT/data/data_patient_file_cna_rai/patient_file_cna_rai.txt",
+  header = TRUE,
+  sep = " "
+)
+```
+
+```{r}
+factor_cols <- c(
+  "ONCOTREE_CODE", "DISEASE_TYPE",
+  "CANCER_TYPE", "CANCER_TYPE_DETAILED",
+  "SOMATIC_STATUS", "CLL_EPITYPE",
+  "TUMOR_MOLECULAR_SUBTYPE", "SEQUENCING_PLATFORM",
+  "RNA_SEQUENCING", "RRBS", "ARRAY450K",
+  "M.CLL_WES", "U.CLL_WES",
+  "EC_DISCOVERY", "EC_EXTENSION",
+  "IGLV3_21_R110", "U1_STATUS",
+  "SEX", "OS_STATUS",
+  "COHORT", "IGHV_MUTATION_STATUS",
+  "TREATMENT_STATUS", "PRIOR_TREATMENT_CATEGORY",
+  "TREATMENT_AFTER_SAMPLING",
+  "EXPRESSION_CLUSTER", "FFS_STATUS",
+  "X11q_status", "X17p_status", "X17q_status",
+  "X18p_status", "X19q_status", "X20p_status",
+  "X2p_status", "X4p_status", "X6q_status",
+  "X8p_status", "X8q_status", "tri12_status",
+  "TREATMENT_STATUS_AT_SAMPLING",
+  "FIRST_TREATMENT_AFTER_SAMPLING"
+)
+
+dataset_path[factor_cols] <- lapply(dataset_path[factor_cols], as.factor)
+
+summary(dataset_path)
+```
+
+
+
+
