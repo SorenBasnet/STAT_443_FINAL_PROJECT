@@ -1,0 +1,62 @@
+---
+title: "y_sum"
+output: html_document
+---
+
+```{r}
+library(readr)
+data <- read.csv("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/guide_dataset/datafiles/ce2021.txt",header=TRUE, sep=" ")
+
+mean(data$INTRDVX)
+mean(data$INTRDVX, na.rm=TRUE)
+
+data$EARNCOMP
+
+
+na_y <- data %>% filter(is.na(data$INTRDVX))
+
+
+m1 <- lm ( data$INTRDVX ~ data$AGE_REF)
+p <- predict(m1)
+table(p,data$INTRDVX)
+
+summary(m1)
+
+z <- read.table("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/Data_files_export/bodydata.txt",header=TRUE)
+lda.model <- lda(Gender ~ .,data=z)
+m1<- lm(Gender ~ .,data=z)
+ldapredicted <- predict(lda.model,newdata=z)$class
+table(ldapredicted,z$Gender)
+
+```
+
+
+```{r}
+weighted.mean(data$INTRDVX, data$FINLWT21, na.rm = TRUE)
+```
+
+
+
+```{r}
+y_hat <- read.table("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/guide_dataset/datafiles/fit_ce2021reg_feb_19.txt", header=TRUE)
+
+na_y <- y_hat %>% filter(is.na(y_hat$observed))
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+

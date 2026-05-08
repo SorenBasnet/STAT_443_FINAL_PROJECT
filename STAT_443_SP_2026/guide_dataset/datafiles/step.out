@@ -1,0 +1,188 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 03/17/26 at 12:10
+  
+ Least squares regression tree
+ Predictions truncated at global min. and max. of D sample values
+ Pruning by cross-validation
+ DSC file: fat.dsc
+ Training sample file: fat.dat
+ Missing value code: NA
+ Records in data file start on line 1
+ D variable is BodyfatB
+ Piecewise forward stepwise regression
+ Using as many variables as needed
+ Univariate and linear combination splits
+ Number of records in data file: 252
+ Length of longest entry in data file: 6
+  
+ Summary information for training sample of size 252
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                  #Codes/           
+                                                  Levels/           
+  Column  Name            Minimum      Maximum    Periods   #Missing
+       2  BodyfatB   d    0.000        45.10    
+       5  Age        n    22.00        81.00    
+       6  Weight     n    118.5        363.1    
+       7  Height     n    64.00        77.75    
+      10  Neck       n    31.10        51.20    
+      11  Chest      n    79.30        136.2    
+      12  Abdomen    n    69.40        148.1    
+      13  Hip        n    85.00        147.7    
+      14  Thigh      n    47.20        87.30    
+      15  Knee       n    33.00        49.10    
+      16  Ankle      n    19.10        33.90    
+      17  Biceps     n    24.80        45.00    
+      18  Forearm    n    21.00        34.90    
+      19  Wrist      n    15.80        21.40    
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+        252          0          0        5       13        0        0
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0        0        0
+ No weight variable in data file
+ Number of cases used for training: 252
+  
+ Constant fitted to cases with missing values in regressor variables
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Nodewise interaction tests on all variables
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 8
+ Minimum node sample size: 2
+ Size and CV MSE and SE of subtrees:
+  Tree   #Tnodes  Mean MSE   SE(Mean)    BSE(Mean)  Median MSE  BSE(Median)
+    1       68   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    2       67   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    3       66   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    4       65   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    5       63   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    6       62   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    7       61   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    8       60   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+    9       58   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+   10       56   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+   11       55   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+   12       53   3.037E+01   2.632E+00   1.595E+00   3.219E+01   1.930E+00
+   13       52   3.336E+01   3.129E+00   1.639E+00   3.459E+01   2.577E+00
+   14       50   3.433E+01   3.153E+00   1.968E+00   3.459E+01   2.984E+00
+   15       48   3.517E+01   3.204E+00   1.952E+00   3.670E+01   2.840E+00
+   16       47   3.517E+01   3.204E+00   1.952E+00   3.670E+01   2.840E+00
+   17       46   3.517E+01   3.208E+00   1.944E+00   3.670E+01   2.718E+00
+   18       45   3.521E+01   3.220E+00   1.943E+00   3.693E+01   2.700E+00
+   19       43   3.511E+01   3.215E+00   1.947E+00   3.658E+01   2.757E+00
+   20       41   3.546E+01   3.393E+00   2.030E+00   3.836E+01   3.058E+00
+   21       40   3.554E+01   3.428E+00   2.116E+00   3.742E+01   3.070E+00
+   22       39   3.426E+01   3.144E+00   1.908E+00   3.478E+01   2.844E+00
+   23       38   3.401E+01   3.146E+00   2.043E+00   3.478E+01   2.848E+00
+   24       37   3.486E+01   3.230E+00   2.283E+00   3.477E+01   2.136E+00
+   25       36   3.434E+01   3.228E+00   2.230E+00   3.368E+01   2.195E+00
+   26       34   3.552E+01   3.371E+00   1.639E+00   3.368E+01   2.155E+00
+   27       32   3.552E+01   3.371E+00   1.639E+00   3.368E+01   2.155E+00
+   28       31   3.525E+01   3.355E+00   1.633E+00   3.368E+01   1.878E+00
+   29       29   3.385E+01   3.108E+00   2.245E+00   3.292E+01   1.599E+00
+   30       27   3.424E+01   3.132E+00   1.861E+00   3.292E+01   1.393E+00
+   31       26   3.444E+01   3.142E+00   1.844E+00   3.368E+01   1.335E+00
+   32       20   3.430E+01   3.136E+00   1.868E+00   3.368E+01   1.449E+00
+   33       12   3.406E+01   3.070E+00   1.953E+00   3.348E+01   1.810E+00
+   34       11   3.251E+01   3.002E+00   2.051E+00   3.460E+01   3.131E+00
+   35        8   2.737E+01   2.518E+00   2.022E+00   2.790E+01   3.236E+00
+   36**      2   1.709E+01   1.397E+00   1.226E+00   1.562E+01   1.002E+00
+   37        1   1.774E+01   1.336E+00   1.243E+00   1.671E+01   1.105E+00
+  
+ 0-SE tree based on mean is marked with * and has 2 terminal nodes
+ 0-SE tree based on median is marked with + and has 2 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree, ** tree, + tree, and ++ tree all the same
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ D-mean is mean of BodyfatB in the node
+ Cases fit give the number of cases used to fit node
+ MSE and R^2 are based on all cases in node
+        Node    Total    Cases Matrix    Node      Node      Node  Split           Other
+        label   cases      fit  rank    D-mean     MSE       R^2   variable        variables
+           1      252      252     4  1.894E+01  1.657E+01  0.7276 L1 :
+           2T     123      123     3  1.324E+01  1.629E+01  0.4143 L2 :
+           3T     129      129     4  2.437E+01  1.465E+01  0.5364 L3 :
+  
+ Number of terminal nodes of final tree: 2
+ Total number of nodes of final tree: 3
+  
+ Regression tree:
+  
+ Node 1: L1 <= 43.013955
+   Node 2: BodyfatB-mean = 13.243902
+ Node 1: L1 > 43.013955
+   Node 3: BodyfatB-mean = 24.368217
+ 
+ ***************************************************************
+  
+ WARNING: p-values below not adjusted for split search. For a bootstrap solution see:
+  
+ 1. Loh et al. (2016), "Identification of subgroups with differential treatment effects
+ for longitudinal and multiresponse variables", Statistics in Medicine, v.35, 4837-4855.
+  
+ 2. Loh et al. (2019), "Subgroups from regression trees with adjustment for prognostic
+ effects and post-selection inference", Statistics in Medicine, v.38, 545-557.
+  
+ 3. Loh and Zhou (2020), "The GUIDE approach to subgroup identification",
+ in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if L1 <= 43.013955 where the coefficients of L1 are:
+ Weight      -0.1056                                         
+ Abdomen      0.9019                                         
+ Wrist        -1.146                                         
+ ----------------------------
+Node 2: Terminal node
+ Coefficients of least squares regression function:
+ Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant     -16.66       -2.364       0.1968E-01
+ Neck        -0.8924       -3.736       0.2872E-03    31.10        36.71        42.10    
+ Abdomen      0.7422        8.916       0.6641E-14    69.40        84.43        99.20    
+ BodyfatB mean = 13.2439
+ Predicted values truncated at 0.00000 & 45.1000
+ ----------------------------
+Node 3: Terminal node
+ Coefficients of least squares regression function:
+ Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant     -10.10       -1.217       0.2260    
+ Weight      -0.1117       -4.056       0.8710E-04    148.0        194.7        363.1    
+ Abdomen      0.7996        9.755        0.000        87.90        100.3        148.1    
+ Wrist        -1.293       -2.711       0.7660E-02    16.60        18.54        21.40    
+ BodyfatB mean = 24.3682
+ Predicted values truncated at 0.00000 & 45.1000
+ ----------------------------
+ Proportion of variance (R-squared) explained by tree model: 0.7489
+ 
+ Observed and fitted values are stored in step.fit
+ Regressor names and coefficients are stored in step.var
+ LaTeX code for tree is in step.tex
+ Elapsed time in seconds: 0.35314

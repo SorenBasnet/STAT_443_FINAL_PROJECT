@@ -1,0 +1,16 @@
+---
+title: "body_data_dsc_generation"
+output: html_document
+---
+
+```{r}
+
+z <- read.table("bodydata.txt",header=TRUE)
+nvars <- ncol(z)
+write("bodydata.txt",file="dsc.txt")
+write("NA",file="dsc.txt",append=TRUE)
+write("2",file="dsc.txt",append=TRUE)
+roles <- rep("n",nvars)
+write.table(cbind(1:nvars,names(z),roles),file="dsc.txt",
+col.names=FALSE,row.names=FALSE,append=TRUE,quote=FALSE)
+```

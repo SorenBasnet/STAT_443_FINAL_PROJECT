@@ -1,0 +1,13 @@
+fishdata_converted.csv
+NA
+2
+1 species d
+2 weight n
+3 length1 n
+4 length2 n
+5 length3 n
+6 heightpc x
+7 widthpc x
+8 sex c
+9 height n
+10 weight n

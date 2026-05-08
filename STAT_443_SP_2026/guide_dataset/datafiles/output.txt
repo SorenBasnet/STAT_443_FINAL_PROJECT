@@ -1,0 +1,407 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.1 (Build date: January 23, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 02/03/26 at 11:31
+  
+ Classification tree
+ Pruning by cross-validation
+ DSC file: body.dsc
+ Training sample file: bodydata.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ 24 N variables changed to S
+ D variable is Gender
+ Number of records in data file: 507
+ Length of longest entry in data file: 5
+ Number of classes: 2
+ Training sample class proportions of D variable Gender:
+ Class  #Cases     Proportion
+ F         260     0.51282051
+ M         247     0.48717949
+  
+ Summary information for training sample of size 507
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                           #Codes/           
+                                                           Levels/           
+  Column  Name                     Minimum      Maximum    Periods   #Missing
+       1  Biacromialdiam      s    32.40        47.40    
+       2  Biiliacdiam         s    18.70        34.70    
+       3  Bitrochantericdiam  s    24.70        38.00    
+       4  Chestdepth          s    14.30        27.50    
+       5  Chestdiam           s    22.20        35.60    
+       6  Elbowdiam           s    9.900        16.70    
+       7  Wristdiam           s    8.100        13.30    
+       8  Kneediam            s    15.70        24.30    
+       9  Anklediam           s    9.900        17.20    
+      10  Shouldergirth       s    85.90        134.8    
+      11  Chestgirth          s    72.60        118.7    
+      12  Waistgirth          s    57.90        113.2    
+      13  Navelgirth          s    64.00        121.1    
+      14  Hipgirth            s    78.80        128.3    
+      15  Thighgirth          s    46.30        75.70    
+      16  Bicepgirth          s    22.40        42.40    
+      17  Forearmgirth        s    19.60        32.50    
+      18  Kneegirth           s    29.00        49.00    
+      19  Calfmaxgirth        s    28.40        47.70    
+      20  Anklemingirth       s    16.40        29.30    
+      21  Wristmingirth       s    13.00        19.60    
+      22  Age                 s    18.00        67.00    
+      23  Weight              s    42.00        116.4    
+      24  Height              s    147.2        198.1    
+      25  Gender              d                                  2
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+        507          0          0        0        0        0       24
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0        0        0
+ Number of cases used for training: 507
+  
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Simple node models
+ Estimated priors
+ Unit misclassification costs
+ Univariate split highest priority
+ Interaction and linear splits 2nd and 3rd priorities
+ Split values for N and S variables based on exhaustive search
+ Max number of interaction splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 2
+ Rank of top variable to split root node is 2
+ Ranks of variables and their 1-df chi-squared values at root node
+      1  0.3097E+03   Forearmgirth
+      2  0.2976E+03   Shouldergirth
+      3  0.2947E+03   Biacromialdiam
+      4  0.2937E+03   Wristmingirth
+      5  0.2849E+03   Elbowdiam
+      6  0.2639E+03   Bicepgirth
+      7  0.2632E+03   Chestgirth
+      8  0.2551E+03   Wristdiam
+      9  0.2444E+03   Chestdiam
+     10  0.2286E+03   Waistgirth
+     11  0.2282E+03   Anklediam
+     12  0.2216E+03   Height
+     13  0.2038E+03   Weight
+     14  0.1924E+03   Chestdepth
+     15  0.1525E+03   Kneediam
+     16  0.1270E+03   Anklemingirth
+     17  0.7178E+02   Kneegirth
+     18  0.6342E+02   Calfmaxgirth
+     19  0.2113E+02   Bitrochantericdiam
+     20  0.2034E+02   Navelgirth
+     21  0.9759E+01   Hipgirth
+     22  0.4872E+01   Age
+     23  0.4461E+01   Biiliacdiam
+     24  0.1457E+00   Thighgirth
+
+ Size and CV mean cost and SE of subtrees:
+  Tree   #Tnodes  Mean Cost   SE(Mean)   BSE(Mean)  Median Cost  BSE(Median)
+    1       18   6.903E-02   1.126E-02   1.303E-02   6.922E-02   1.611E-02
+    2       16   6.903E-02   1.126E-02   1.303E-02   6.922E-02   1.611E-02
+    3       14   7.101E-02   1.141E-02   1.368E-02   6.922E-02   1.897E-02
+    4**     12   6.706E-02   1.111E-02   1.275E-02   6.922E-02   1.425E-02
+    5       10   8.284E-02   1.224E-02   1.033E-02   8.000E-02   1.345E-02
+    6        8   8.284E-02   1.224E-02   1.033E-02   8.000E-02   1.345E-02
+    7        5   8.679E-02   1.250E-02   1.026E-02   8.000E-02   1.428E-02
+    8        4   8.679E-02   1.250E-02   1.135E-02   7.902E-02   2.268E-02
+    9        2   1.302E-01   1.494E-02   1.430E-02   1.186E-01   2.956E-02
+   10        1   4.872E-01   2.220E-02   3.629E-03   4.902E-01   5.896E-03
+  
+ 0-SE tree based on mean is marked with * and has 12 terminal nodes
+ 0-SE tree based on median is marked with + and has 12 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree, ** tree, + tree, and ++ tree all the same
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ Node cost is node misclassification cost divided by number of cases in node
+        Node    Total    Train    Predicted        Node    Split          Interacting
+       label    cases    cases    class            cost    variables      variable
+           1      507      507    F              4.872E-01 Shouldergirth 
+           2      242      242    F              6.612E-02 Elbowdiam 
+           4      231      231    F              3.896E-02 Thighgirth 
+           8       17       17    F              4.118E-01 Wristdiam 
+          16T      10       10    F              0.000E+00 - 
+          17T       7        7    M              0.000E+00 - 
+           9T     214      214    F              9.346E-03 Thighgirth :Weight
+           5       11       11    M              3.636E-01 Weight 
+          10T       4        4    M              0.000E+00 - 
+          11        7        7    F              4.286E-01 Anklediam 
+          22T       4        4    F              0.000E+00 - 
+          23T       3        3    M              0.000E+00 - 
+           3      265      265    M              1.283E-01 Biacromialdiam 
+           6       45       45    F              4.667E-01 Hipgirth 
+          12T      21       21    M              1.905E-01 Wristmingirth 
+          13       24       24    F              1.667E-01 Thighgirth +Forearmgirth
+          26T       4        4    M              0.000E+00 - 
+          27T      20       20    F              0.000E+00 - 
+           7      220      220    M              4.545E-02 Biacromialdiam 
+          14       40       40    M              2.250E-01 Wristmingirth 
+          28T       9        9    F              2.222E-01 Waistgirth 
+          29T      31       31    M              6.452E-02 Kneegirth :Anklediam
+          15T     180      180    M              5.556E-03 - 
+  
+ Number of terminal nodes of final tree: 12
+ Total number of nodes of final tree: 23
+  
+ Classification tree:
+  
+ Node 1: Shouldergirth <= 107.40000
+   Node 2: Elbowdiam <= 13.450000
+     Node 4: Thighgirth <= 50.900000
+       Node 8: Wristdiam <= 9.7500000
+         Node 16: F
+       Node 8: Wristdiam > 9.7500000 or NA
+         Node 17: M
+     Node 4: Thighgirth > 50.900000 or NA
+       Node 9: F
+   Node 2: Elbowdiam > 13.450000 or NA
+     Node 5: Weight <= 65.050000
+       Node 10: M
+     Node 5: Weight > 65.050000 or NA
+       Node 11: Anklediam <= 14.500000
+         Node 22: F
+       Node 11: Anklediam > 14.500000 or NA
+         Node 23: M
+ Node 1: Shouldergirth > 107.40000 or NA
+   Node 3: Biacromialdiam <= 38.850000
+     Node 6: Hipgirth <= 98.000000
+       Node 12: M
+     Node 6: Hipgirth > 98.000000 or NA
+       Node 13: -3.1839763 * Forearmgirth + Thighgirth <= -25.328933
+         Node 26: M
+       Node 13: -3.1839763 * Forearmgirth + Thighgirth > -25.328933 or NA
+         Node 27: F
+   Node 3: Biacromialdiam > 38.850000 or NA
+     Node 7: Biacromialdiam <= 40.050000
+       Node 14: Wristmingirth <= 16.450000
+         Node 28: F
+       Node 14: Wristmingirth > 16.450000 or NA
+         Node 29: M
+     Node 7: Biacromialdiam > 40.050000 or NA
+       Node 15: M
+ 
+ ***************************************************************
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if Shouldergirth <= 107.40000
+ Shouldergirth mean = 108.19507
+ Class      Number   Posterior
+ F             260  0.5128E+00
+ M             247  0.4872E+00
+ Number of training cases misclassified = 247
+ Predicted class is F
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if Elbowdiam <= 13.450000
+ Elbowdiam mean = 12.322727
+ Class      Number   Posterior
+ F             226  0.9339E+00
+ M              16  0.6612E-01
+ Number of training cases misclassified = 16
+ Predicted class is F
+ ----------------------------
+Node 4: Intermediate node
+ A case goes into Node 8 if Thighgirth <= 50.900000
+ Thighgirth mean = 56.133333
+ Class      Number   Posterior
+ F             222  0.9610E+00
+ M               9  0.3896E-01
+ Number of training cases misclassified = 9
+ Predicted class is F
+ ----------------------------
+Node 8: Intermediate node
+ A case goes into Node 16 if Wristdiam <= 9.7500000
+ Wristdiam mean = 9.6529412
+ Class      Number   Posterior
+ F              10  0.5882E+00
+ M               7  0.4118E+00
+ Number of training cases misclassified = 7
+ Predicted class is F
+ ----------------------------
+Node 16: Terminal node
+ Class      Number   Posterior
+ F              10  0.9990E+00
+ M               0  0.9590E-03
+ Number of training cases misclassified = 0
+ Predicted class is F
+ ----------------------------
+Node 17: Terminal node
+ Class      Number   Posterior
+ F               0  0.1009E-02
+ M               7  0.9990E+00
+ Number of training cases misclassified = 0
+ Predicted class is M
+ ----------------------------
+Node 9: Terminal node
+ Class      Number   Posterior
+ F             212  0.9907E+00
+ M               2  0.9346E-02
+ Number of training cases misclassified = 2
+ Predicted class is F
+ ----------------------------
+Node 5: Intermediate node
+ A case goes into Node 10 if Weight <= 65.050000
+ Weight mean = 67.245455
+ Class      Number   Posterior
+ F               4  0.3636E+00
+ M               7  0.6364E+00
+ Number of training cases misclassified = 4
+ Predicted class is M
+ ----------------------------
+Node 10: Terminal node
+ Class      Number   Posterior
+ F               0  0.1009E-02
+ M               4  0.9990E+00
+ Number of training cases misclassified = 0
+ Predicted class is M
+ ----------------------------
+Node 11: Intermediate node
+ A case goes into Node 22 if Anklediam <= 14.500000
+ Anklediam mean = 14.342857
+ Class      Number   Posterior
+ F               4  0.5714E+00
+ M               3  0.4286E+00
+ Number of training cases misclassified = 3
+ Predicted class is F
+ ----------------------------
+Node 22: Terminal node
+ Class      Number   Posterior
+ F               4  0.9990E+00
+ M               0  0.9590E-03
+ Number of training cases misclassified = 0
+ Predicted class is F
+ ----------------------------
+Node 23: Terminal node
+ Class      Number   Posterior
+ F               0  0.1009E-02
+ M               3  0.9990E+00
+ Number of training cases misclassified = 0
+ Predicted class is M
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if Biacromialdiam <= 38.850000
+ Biacromialdiam mean = 40.963019
+ Class      Number   Posterior
+ F              34  0.1283E+00
+ M             231  0.8717E+00
+ Number of training cases misclassified = 34
+ Predicted class is M
+ ----------------------------
+Node 6: Intermediate node
+ A case goes into Node 12 if Hipgirth <= 98.000000
+ Hipgirth mean = 99.828889
+ Class      Number   Posterior
+ F              24  0.5333E+00
+ M              21  0.4667E+00
+ Number of training cases misclassified = 21
+ Predicted class is F
+ ----------------------------
+Node 12: Terminal node
+ Class      Number   Posterior
+ F               4  0.1905E+00
+ M              17  0.8095E+00
+ Number of training cases misclassified = 4
+ Predicted class is M
+ ----------------------------
+Node 13: Intermediate node
+ A case goes into Node 26 if -3.1839763 * Forearmgirth + Thighgirth <= -25.328933
+ Linear combination mean = -21.757272
+ Class      Number   Posterior
+ F              20  0.8333E+00
+ M               4  0.1667E+00
+ Number of training cases misclassified = 4
+ Predicted class is F
+ ----------------------------
+Node 26: Terminal node
+ Class      Number   Posterior
+ F               0  0.1009E-02
+ M               4  0.9990E+00
+ Number of training cases misclassified = 0
+ Predicted class is M
+ ----------------------------
+Node 27: Terminal node
+ Class      Number   Posterior
+ F              20  0.9990E+00
+ M               0  0.9590E-03
+ Number of training cases misclassified = 0
+ Predicted class is F
+ ----------------------------
+Node 7: Intermediate node
+ A case goes into Node 14 if Biacromialdiam <= 40.050000
+ Biacromialdiam mean = 41.655455
+ Class      Number   Posterior
+ F              10  0.4545E-01
+ M             210  0.9545E+00
+ Number of training cases misclassified = 10
+ Predicted class is M
+ ----------------------------
+Node 14: Intermediate node
+ A case goes into Node 28 if Wristmingirth <= 16.450000
+ Wristmingirth mean = 17.015000
+ Class      Number   Posterior
+ F               9  0.2250E+00
+ M              31  0.7750E+00
+ Number of training cases misclassified = 9
+ Predicted class is M
+ ----------------------------
+Node 28: Terminal node
+ Class      Number   Posterior
+ F               7  0.7778E+00
+ M               2  0.2222E+00
+ Number of training cases misclassified = 2
+ Predicted class is F
+ ----------------------------
+Node 29: Terminal node
+ Class      Number   Posterior
+ F               2  0.6452E-01
+ M              29  0.9355E+00
+ Number of training cases misclassified = 2
+ Predicted class is M
+ ----------------------------
+Node 15: Terminal node
+ Class      Number   Posterior
+ F               1  0.5556E-02
+ M             179  0.9944E+00
+ Number of training cases misclassified = 1
+ Predicted class is M
+ ----------------------------
+ 
+ Classification matrix for training sample:
+ Predicted      True class
+ class              F         M
+ F                253         4
+ M                  7       243
+ Total            260       247
+ 
+ Number of cases used for tree construction: 507
+ Number misclassified: 11
+ Resubstitution estimate of mean misclassification cost: 0.21696252E-01
+ 
+ Observed and fitted values are stored in classfit.txt
+ LaTeX code for tree is in class.tex
+ Elapsed time in seconds: 0.37629

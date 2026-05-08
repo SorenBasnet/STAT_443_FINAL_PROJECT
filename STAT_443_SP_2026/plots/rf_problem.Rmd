@@ -1,0 +1,16 @@
+---
+title: "rf_problem"
+output: html_document
+---
+
+```{r}
+library(randomForest)
+z <- read.table("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/plots/realdata.txt", header=TRUE)
+colnames(z)
+z$Abdomen_1 <- z$Abdomen
+z$Abdomen_2 <- z$Abdomen
+z$Abdomen_3 <- z$Abdomen
+z$Abdomen_4 <- z$Abdomen
+rf <- randomForest(y ~ .,data=z,keep.forest=FALSE,importance=TRUE)
+varImpPlot(rf)
+```

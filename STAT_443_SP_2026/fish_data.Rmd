@@ -1,0 +1,36 @@
+
+---
+title: "LDA_body_mass"
+output: html_document
+---
+
+```{r}
+library(MASS)
+
+```
+
+```{r}
+z <- read.table("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/guide_dataset/datafiles/fishdata.txt",header=TRUE)
+
+```
+
+```{r}
+
+summary(z)
+```
+
+```{r}
+z$height <- (z$heightpc / 100) * z$length3
+z$width  <- (z$widthpc  /100) * z$length3
+```
+
+
+
+```{r}
+head(z)
+write.csv(z, "/Users/sorenbasnet/Desktop/STAT_443_SP_2026/guide_dataset/datafiles/fishdata_converted.csv", row.names = FALSE)
+
+```
+
+
+
