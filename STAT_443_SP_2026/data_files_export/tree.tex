@@ -1,0 +1,101 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 46.0 on 01/27/26 at 14:43
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+ \usepackage[dvipsnames]{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ \begin{landscape}
+ \begin{center} \footnotesize
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=.5cm,levelsep=59pt,radius=8pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Forearmgirth}}\\$\leq$\texttt{25.65}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Forearmgirth}}\\$\leq$\texttt{24.75}}}
+ }{
+ \Tcircle[fillcolor=red]{ 4 }
+    ~[tnpos=l]{\shortstack[r]{0.98\\0.02}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{201}}}
+  \pstree[treemode=D]{\Tcircle{ 5 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Thighgirth}}\\$\leq$\texttt{56.05}}}
+ }{
+ \Tcircle[fillcolor=green]{\small 10}
+    ~[tnpos=l]{\shortstack[r]{0.07\\0.93}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{15}}}
+ \Tcircle[fillcolor=red]{\small 11}
+    ~[tnpos=r]{\shortstack[r]{1.00\\0.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{32}}}
+   }
+   }
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V1}}\\$\leq$\texttt{39.15}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 6 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V2}}\\$\leq$\texttt{33.35}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=brown]{\small 12}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Calfmaxgirth}}\\$\leq$\texttt{36.35}}}
+ }{
+ \Tcircle[fillcolor=green]{\small 24}
+    ~[tnpos=l]{\shortstack[r]{0.06\\0.94}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{17}}}
+  \pstree[treemode=D]{\Tcircle{\small 25}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Shouldergirth}}\\$\leq$\texttt{112.50}}}
+ }{
+ \Tcircle[fillcolor=red]{\small 50}
+    ~[tnpos=l]{\shortstack[r]{0.83\\0.17}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{6}}}
+ \Tcircle[fillcolor=green]{\small 51}
+    ~[tnpos=r]{\shortstack[r]{0.00\\1.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{10}}}
+   }
+   }
+ \Tcircle[fillcolor=red]{\small 13}
+    ~[tnpos=r]{\shortstack[r]{0.95\\0.05}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{19}}}
+   }
+  \pstree[treemode=D]{\Tcircle[linecolor=brown]{ 7 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Weight}}\\$\leq$\texttt{77.50}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linecolor=blue]{\small 14}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{Hipgirth}}\\ \texttt{+\detokenize{Weight}}}}
+ }{
+ \Tcircle[fillcolor=green]{\small 28}
+    ~[tnpos=l]{\shortstack[r]{0.00\\1.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{87}}}
+ \Tcircle[fillcolor=red]{\small 29}
+    ~[tnpos=r]{\shortstack[r]{1.00\\0.00}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{3}}}
+   }
+ \Tcircle[fillcolor=green]{\small 15}
+    ~[tnpos=r]{\shortstack[r]{0.03\\0.97}}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{117}}}
+ }
+ }
+ }
+ \end{center}
+GUIDE v.46.0 0.250-SE
+classification tree for predicting \texttt{\detokenize{Gender}} using
+estimated priors
+and unit misclassification costs.
+ % Tree constructed from 507 observations
+ % and pruned from a tree with 15 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+\texttt{\detokenize{V1}} = \texttt{\detokenize{Biacromialdiam}}.
+\texttt{\detokenize{V2}} = \texttt{\detokenize{Bitrochantericdiam}}.
+ Splits at nodes drawn with \textbf{\textcolor{brown}{brown}} circles are interaction splits.
+ Splits at nodes drawn with \textbf{\textcolor{blue}{blue}} circles are linear splits.
+Predicted class and sample size (in \emph{italics}) printed below each terminal node;
+class posterior probabilities for \texttt{\detokenize{Gender}} =
+ \texttt{\detokenize{F}} and \texttt{\detokenize{M}} beside node.
+ Second best split variable at root node is \texttt{\detokenize{Shouldergirth}}.
+ \end{landscape}
+ \end{document}

@@ -1,0 +1,75 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 46.2 on 03/10/26 at 10:14
+ %%%% Usage: latex propen.tex, dvips propen.tex, ps2pdf propen.tex
+ %%%% or: xelatex propen.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape propen.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.0cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{STATE}}\\in $S_{1}$}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{INCLASS2}}\\=\texttt{\detokenize{NA}}}}
+ }{
+    \Tcircle[fillcolor=skyblue]{ 4 }~{\shortstack[c]{\emph{65}\\ 0.30}}  
+    \Tcircle[fillcolor=yellow]{ 5 }~{\shortstack[c]{\emph{1360}\\ 0.80}}  
+   }
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{RETS_RVX}}=
+\texttt{\detokenize{A}}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 6 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{FINDRETX}}\\$\leq$\texttt{391.50}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 12}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{ERANKH}}\\$\leq$\texttt{0.6527}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 24}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{STATE}}\\in $S_{2}$}}
+ }{
+    \Tcircle[fillcolor=skyblue]{\small 48}~{\shortstack[c]{\emph{85}\\ 0.17}}  
+    \Tcircle[fillcolor=skyblue]{\small 49}~{\shortstack[c]{\emph{550}\\ 0.61}}  
+   }
+    \Tcircle[fillcolor=skyblue]{\small 25}~{\shortstack[c]{\emph{529}\\ 0.35}}  
+   }
+    \Tcircle[fillcolor=yellow]{\small 13}~{\shortstack[c]{\emph{674}\\ 0.68}}  
+   }
+  \pstree[treemode=D]{\Tcircle{ 7 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{RETSURVX}}\\=\texttt{\detokenize{NA}}}}
+ }{
+    \Tcircle[fillcolor=skyblue]{\small 14}~{\shortstack[c]{\emph{129}\\ 0.10}}  
+    \Tcircle[fillcolor=yellow]{\small 15}~{\shortstack[c]{\emph{573}\\ 0.65}}  
+ }
+ }
+ }
+ \end{center}
+GUIDE v.46.2 0.250-SE
+tree for estimating propensity scores of \texttt{\detokenize{INTRDVXnonmiss}}.
+ % Tree constructed from 3965 observations
+ % and pruned from a tree with 65 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 3.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ $S_{1}$ = \{\texttt{\detokenize{2}}, \texttt{\detokenize{6}},
+ \texttt{\detokenize{10}}, \texttt{\detokenize{11}}, \texttt{\detokenize{21}},
+ \texttt{\detokenize{24}}, \texttt{\detokenize{25}}, \texttt{\detokenize{27}},
+ \texttt{\detokenize{31}}, \texttt{\detokenize{40}}, \texttt{\detokenize{41}},
+ \texttt{\detokenize{47}}, \texttt{\detokenize{48}}, \texttt{\detokenize{49}}\}.
+ $S_{2}$ = \{\texttt{\detokenize{13}}, \texttt{\detokenize{15}},
+ \texttt{\detokenize{19}}, \texttt{\detokenize{22}}, \texttt{\detokenize{28}},
+ \texttt{\detokenize{32}}, \texttt{\detokenize{45}}\}.
+Sample size (in \emph{italics}) and estimated propensity score printed below nodes.
+ Terminal nodes with propensity scores above and below value of  0.622  at root node are painted \colorbox{yellow}{yellow} and \colorbox{skyblue}{skyblue} respectively.
+ Second best split variable at root node is \texttt{\detokenize{INCLASS2}}.
+ %\end{landscape}
+ \end{document}

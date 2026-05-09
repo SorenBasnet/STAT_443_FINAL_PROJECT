@@ -1,0 +1,86 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 46.2 on 02/12/26 at 11:31
+ %%%% Usage: latex fish_feb12_modify.tex, dvips fish_feb12_modify.tex, ps2pdf fish_feb12_modify.tex
+ %%%% or: xelatex fish_feb12_modify.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape fish_feb12_modify.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=.5cm,levelsep=50pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{heightpc}}\\$\leq$\texttt{33.90}}}
+    ~{\em 159}}{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{heightpc}}\\$\leq$\texttt{20.10}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 4 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{weight}}\\$\leq$\texttt{109.95}}}
+ }{
+ \Tcircle[fillcolor=orange]{ 8 }
+    ~[tnpos=l]{1.00}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{smelt}}}\\\emph{14}}}
+ \Tcircle[fillcolor=aqua]{ 9 }
+    ~[tnpos=r]{1.00}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{pike}}}\\\emph{17}}}
+   }
+  \pstree[treemode=D]{\Tcircle{ 5 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{weight}}\\$\leq_*$\texttt{452}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 10}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{heightpc}}\\$\leq$\texttt{25.25}}}
+ }{
+ \Tcircle[fillcolor=skyblue]{\small 20}
+    ~[tnpos=l]{0.95}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{perch}}}\\\emph{22}}}
+  \pstree[treemode=D]{\Tcircle[linecolor=blue]{\small 21}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{length2}}\\ \texttt{+\detokenize{length3}}}}
+ }{
+ \Tcircle[fillcolor=magenta]{\small 42}
+    ~[tnpos=l]{0.86}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{roach}}}\\\emph{22}}}
+ \Tcircle[fillcolor=skyblue]{\small 43}
+    ~[tnpos=r]{1.00}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{perch}}}\\\emph{16}}}
+   }
+   }
+ \Tcircle[fillcolor=skyblue]{\small 11}
+    ~[tnpos=r]{0.86}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{perch}}}\\\emph{22}}}
+   }
+   }
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{length3}}\\$\leq$\texttt{29.50}}}
+ }{
+ \Tcircle[fillcolor=green]{ 6 }
+    ~[tnpos=l]{1.00}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{parkki}}}\\\emph{11}}}
+ \Tcircle[fillcolor=red]{ 7 }
+    ~[tnpos=r]{1.00}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{bream}}}\\\emph{35}}}
+ }
+ }
+ \end{center}
+GUIDE v.46.2 0.250-SE
+classification tree for predicting \texttt{\detokenize{species}} using
+estimated priors
+and unit misclassification costs.
+ % Tree constructed from 159 observations
+ % and pruned from a tree with 13 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 2.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Symbol `$\leq_*$' stands for `$\leq$ or missing'.
+ Splits at nodes drawn with \textbf{\textcolor{blue}{blue}} circles are linear splits.
+ Predicted class and total sample size (in \emph{italics}) printed below each terminal node;
+ highest class posterior probability beside node.
+ Second best split variable at root node is \texttt{\detokenize{heightpc*length3}}.
+ %\end{landscape}
+ \end{document}

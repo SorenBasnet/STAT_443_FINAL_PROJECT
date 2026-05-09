@@ -1,0 +1,58 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 46.2 on 02/12/26 at 09:26
+ %%%% Usage: latex lda_tree.tex, dvips lda_tree.tex, ps2pdf lda_tree.tex
+ %%%% or: xelatex lda_tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape lda_tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{xcolor}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.5cm,levelsep=61pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{D1}}\\$\leq$\texttt{-0.3892}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{D2}}\\$\leq$\texttt{0.4677}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 4 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{D4}}\\$\leq$\texttt{4.69}}}
+ }{
+ \Tcircle[fillcolor=red]{ 8 }
+    ~[tnpos=l]{.0000}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{7}}}
+ \Tcircle[fillcolor=green]{ 9 }
+    ~[tnpos=r]{.0000}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{7}}}
+   }
+ \Tcircle[fillcolor=green]{ 5 }
+    ~[tnpos=r]{.0000}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{M}}}\\\emph{241}}}
+   }
+ \Tcircle[fillcolor=red]{ 3 }
+    ~[tnpos=r]{.0000}
+    ~{\shortstack{\makebox[\width][c]{\texttt{\detokenize{F}}}\\\emph{252}}}
+ }
+ \end{center}
+GUIDE v.46.2 0.250-SE
+classification tree for predicting \texttt{\detokenize{Gender}} using linear discriminant splits and linear discriminant node models.
+ % Tree constructed from 507 observations
+ % and pruned from a tree with 4 terminal nodes.
+ % Maximum number of split levels is 15 and minimum node sample size is 5.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+Class minimizing misclassification cost
+and sample size (in \emph{italics}) printed below each terminal node;
+  mean misclassification cost beside node.
+ %\end{landscape}
+ \end{document}

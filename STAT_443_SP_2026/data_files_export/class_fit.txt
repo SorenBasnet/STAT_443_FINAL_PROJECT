@@ -1,0 +1,19 @@
+         1 s Forearmgirth Forearmgirth        1   0.2565000000E+02
+         2 s Forearmgirth Forearmgirth        1   0.2475000000E+02
+         4 t Wristdiam Wristdiam "F"
+         5 s Thighgirth Thighgirth        1   0.5605000000E+02
+        10 t NONE NONE "M"
+        11 t NONE NONE "F"
+         3 s Biacromialdiam Biacromialdiam        1   0.3915000000E+02
+         6 s Bitrochantericdiam Bitrochantericdiam        1   0.3335000000E+02
+        12 s Calfmaxgirth Wristdiam        1   0.3635000000E+02
+        24 t NONE NONE "M"
+        25 s Shouldergirth Shouldergirth        1   0.1125000000E+03
+        50 t NONE NONE "F"
+        51 t NONE NONE "M"
+        13 t NONE NONE "F"
+         7 s Weight Hipgirth        1   0.7750000000E+02
+        14 1 Hipgirth Weight        2  -0.4078799704E+00   0.7240042818E+02
+        28 t NONE NONE "M"
+        29 t NONE NONE "F"
+        15 t Elbowdiam Biiliacdiam "M"

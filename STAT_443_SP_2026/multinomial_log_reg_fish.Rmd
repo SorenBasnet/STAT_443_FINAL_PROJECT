@@ -1,0 +1,28 @@
+---
+title: "multinomial_log_reg_fish"
+output: html_document
+---
+
+
+```{r}
+library(nnet)
+```
+
+```{r}
+z <- read.table("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/Data_files_export/fishdata.txt", header=TRUE)
+
+mult.model <- multinom(species ~ . , data=z)
+```
+```{r}
+mult.model
+```
+
+```{r}
+predicted <- predict(mult.model, newdata=z, type="class")
+table(predicted, z$species)
+```
+
+
+
+
+

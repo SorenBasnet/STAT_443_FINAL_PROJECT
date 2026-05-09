@@ -1,0 +1,16 @@
+---
+title: "linear_reg_body_data"
+output: html_document
+---
+
+```{r}
+z <- read.table("/Users/sorenbasnet/Desktop/STAT_443_SP_2026/Data_files_export/bodydata.txt",header=TRUE)
+tmp <- rep(0,nrow(z))
+tmp[z$Gender == "M"] <- 1
+z$Gender <- tmp
+lm.model <- lm(Gender ~ ., data=z)
+resid(lm.model)
+fitted <- predict(lm.model,data=z)
+predicted <- ifelse(fitted > 0.5,"M","F")
+table(predicted,z$Gender)
+```

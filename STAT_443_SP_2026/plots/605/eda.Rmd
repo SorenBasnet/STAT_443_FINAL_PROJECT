@@ -1,0 +1,111 @@
+---
+title: "eda"
+output: html_document
+---
+
+Import required library
+```{r}
+library(dplyr)
+library(arrow)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(sf)   
+library(scales)
+```
+
+```{r}
+data <- read.csv("/Users/sorenbasnet/Desktop/data/2021/fhvhv_tripdata_2021-12.csv", header=TRUE, sep=",")
+
+```
+
+```{r}
+colnames(data)
+
+df <- data %>%
+  select(
+    pickup_datetime, 
+    dropoff_datetime,
+    PULocationID, 
+    DOLocationID,
+    trip_miles, 
+    trip_time, 
+    base_passenger_fare,
+    tips
+  )
+```
+
+
+```{r}
+# Convert the character string into a formal POSIXct date-time object
+df$pickup_datetime <- ymd_hms(df$pickup_datetime)
+```
+
+
+```{r}
+monthly_demand <- df %>%
+  mutate(
+    year = year(pickup_datetime),
+    month = month(pickup_datetime)
+  ) %>%
+  group_by(year, month) %>%
+  summarize(total_trips = n(), .groups = "drop") %>%
+  mutate(date = make_date(year, month, 1))
+
+ggplot(monthly_demand, aes(x = date, y = total_trips)) +
+  geom_line(color = "#2c3e50", linewidth = 1) +
+  geom_point() +
+  scale_y_continuous(labels = label_comma()) +
+  labs(
+    title = "Monthly Ride Demand Trend (2021–2025)",
+    subtitle = "Total HVFHV Trips in NYC",
+    x = "Time",
+    y = "Number of Trips"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+# ---------------------------- #
+# 2. Peak Hours vs Day of Week
+# ---------------------------- #
+
+hourly_patterns <- df %>%
+  mutate(
+    hour = hour(pickup_datetime),
+    wday = wday(pickup_datetime, label = TRUE)
+  ) %>%
+  group_by(wday, hour) %>%
+  summarize(total_trips = n(), .groups = "drop")
+
+ggplot(hourly_patterns, aes(x = hour, y = wday, fill = total_trips)) +
+  geom_tile() +
+  scale_fill_viridis_c(option = "magma", labels = label_comma()) +
+  labs(
+    title = "Weekly Demand Heatmap",
+    subtitle = "Trips by Hour and Day of Week",
+    x = "Hour of Day (24h)",
+    y = "Day of Week",
+    fill = "Trips"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+library(ranger)
+rf_model <- ranger(trip_time ~ ., data = df, importance = 'impurity')
+print(rf_model$variable.importance)
+```
+
+
+```{r}
+# Aggregating by hour and location first
+hourly_data <- df %>%
+  mutate(hour = hour(pickup_datetime), day = wday(pickup_datetime)) %>%
+  group_by(hour, day, PULocationID) %>%
+  summarize(trip_count = n(), .groups = "drop")
+
+# Fit a Poisson model
+model_poisson <- glm(trip_count ~ hour + day + PULocationID, 
+                     family = "poisson", data = hourly_data)
+```

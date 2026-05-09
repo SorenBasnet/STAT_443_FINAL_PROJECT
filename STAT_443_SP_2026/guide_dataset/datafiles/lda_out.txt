@@ -1,0 +1,213 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 02/12/26 at 09:26
+  
+ Classification tree
+ Linear discriminant splits and LDA node models
+ Pruning by cross-validation
+ DSC file: body.dsc
+ Training sample file: bodydata.txt
+ Missing value code: NA
+ Records in data file start on line 2
+ D variable is Gender
+ Number of records in data file: 507
+ Length of longest entry in data file: 5
+ Number of classes: 2
+ Training sample class proportions of D variable Gender:
+ Class  #Cases     Proportion
+ F         260     0.51282051
+ M         247     0.48717949
+  
+ Summary information for training sample of size 507
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                           #Codes/           
+                                                           Levels/           
+  Column  Name                     Minimum      Maximum    Periods   #Missing
+       1  Biacromialdiam      n    32.40        47.40    
+       2  Biiliacdiam         n    18.70        34.70    
+       3  Bitrochantericdiam  n    24.70        38.00    
+       4  Chestdepth          n    14.30        27.50    
+       5  Chestdiam           n    22.20        35.60    
+       6  Elbowdiam           n    9.900        16.70    
+       7  Wristdiam           n    8.100        13.30    
+       8  Kneediam            n    15.70        24.30    
+       9  Anklediam           n    9.900        17.20    
+      10  Shouldergirth       n    85.90        134.8    
+      11  Chestgirth          n    72.60        118.7    
+      12  Waistgirth          n    57.90        113.2    
+      13  Navelgirth          n    64.00        121.1    
+      14  Hipgirth            n    78.80        128.3    
+      15  Thighgirth          n    46.30        75.70    
+      16  Bicepgirth          n    22.40        42.40    
+      17  Forearmgirth        n    19.60        32.50    
+      18  Kneegirth           n    29.00        49.00    
+      19  Calfmaxgirth        n    28.40        47.70    
+      20  Anklemingirth       n    16.40        29.30    
+      21  Wristmingirth       n    13.00        19.60    
+      22  Age                 n    18.00        67.00    
+      23  Weight              n    42.00        116.4    
+      24  Height              n    147.2        198.1    
+      25  Gender              d                                  2
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+        507          0          0        0       24        0        0
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0        0        0
+ Number of cases used for training: 507
+  
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: 0.2500
+  
+ Estimated priors
+ Unit misclassification costs
+ Max number of splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 5
+ Size and CV mean cost and SE of subtrees:
+  Tree   #Tnodes  Mean Cost   SE(Mean)   BSE(Mean)  Median Cost  BSE(Median)
+    0**      4   9.862E-03   4.389E-03   2.970E-03   9.804E-03   8.755E-03
+    1        3   1.381E-02   5.182E-03   3.911E-03   1.961E-02   7.750E-03
+    2        2   1.381E-02   5.182E-03   3.911E-03   1.961E-02   7.750E-03
+    3        1   1.183E-02   4.803E-03   2.723E-03   1.961E-02   7.222E-03
+  
+ 0-SE tree based on mean is marked with * and has 4 terminal nodes
+ 0-SE tree based on median is marked with + and has 4 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree, ** tree, + tree, and ++ tree all the same
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ Node cost is node misclassification cost divided by number of cases in node
+        Node    Total  Misclassification
+       label    cases  cost
+           1      507  9.862E-03
+           2      255  1.176E-02
+           4       14  7.143E-02
+           8T       7  0.000E+00
+           9T       7  0.000E+00
+           5T     241  0.000E+00
+           3T     252  0.000E+00
+  
+ Number of terminal nodes of final tree: 4
+ Total number of nodes of final tree: 7
+  
+ Classification tree with linear discriminant splits and LDA node models
+  
+ Node 1: D1 <= -0.38918089
+   Node 2: D2 <= 0.46770884
+     Node 4: D4 <= 4.6926770
+       Node 8: 0/7 misclassified
+     Node 4: D4 > 4.6926770
+       Node 9: 0/7 misclassified
+   Node 2: D2 > 0.46770884
+     Node 5: 0/241 misclassified
+ Node 1: D1 > -0.38918089
+   Node 3: 0/252 misclassified
+ 
+ ***************************************************************
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if D1 <= -0.38918089 where the coefficients of D1 are:
+ Variable                   Mean           Crimcoefs1
+ Biacromialdiam         38.811440      -0.23118757E-02       
+ Bitrochantericdiam     31.980473       0.78797271E-03       
+ Chestdepth             19.226036      -0.10177809E-02       
+ Chestdiam              27.973767       0.54261910E-03       
+ Elbowdiam              13.385207      -0.37748827E-02       
+ Wristdiam              10.542604       0.49622373E-03       
+ Kneediam               18.810651      -0.12285427E-02       
+ Anklediam              13.863314      -0.40174727E-02       
+ Shouldergirth          108.19507      -0.58468755E-03       
+ Chestgirth             93.333531       0.36060805E-03       
+ Waistgirth             76.979487      -0.29298639E-02       
+ Navelgirth             85.653846       0.12561773E-02       
+ Hipgirth               96.680868       0.14250649E-02       
+ Bicepgirth             31.169625      -0.16404960E-02       
+ Forearmgirth           25.942998      -0.47009101E-02       
+ Kneegirth              36.202959       0.91518335E-03       
+ Calfmaxgirth           36.078304       0.76905993E-03       
+ Anklemingirth          22.157396      -0.39121515E-03       
+ Wristmingirth          16.097436       0.28272795E-03       
+ Age                    30.181460       0.24389430E-04       
+ Weight                 69.147535       0.14404389E-02       
+ Height                 171.14379      -0.10742746E-02       
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if D2 <= 0.46770884 where the coefficients of D2 are:
+ Variable                   Mean           Crimcoefs1
+ Elbowdiam              14.413725       0.21954897E-01       
+ Wristdiam              11.223137       0.14900607E-01       
+ Anklediam              14.689804       0.27476370E-01       
+ Hipgirth               97.969412      -0.55823191E-02       
+ Thighgirth             56.656863      -0.38955616E-02       
+ Height                 177.40510       0.26944025E-02       
+ ----------------------------
+Node 4: Intermediate node
+ A case goes into Node 8 if D4 <= 4.6926770 where the coefficients of D4 are:
+ Variable                   Mean           Crimcoefs1
+ Anklediam              13.457143       0.15324284           
+ Chestgirth             101.68571       0.25721830E-01       
+ ----------------------------
+Node 8: Terminal node
+ All cases classified as "F"
+ ----------------------------
+Node 9: Terminal node
+ Cases classified by LDA using 1st crimcoord with coefs below:
+ Variable               Mean          Crimcoefs1
+ Kneediam              20.2714        0.114202    
+ Weight                91.1286        0.287161E-01
+  
+ Class    Crimmean1        Prior
+ F         5.79605         0.14286
+ M         4.78788         0.85714
+ Variance  0.257577E-01
+ ----------------------------
+Node 5: Terminal node
+ All cases classified as "M"
+ ----------------------------
+Node 3: Terminal node
+ All cases classified as "F"
+ ----------------------------
+ 
+ Classification matrix for training sample:
+ Predicted      True class
+ class              F         M
+ F                260         0
+ M                  0       247
+ Total            260       247
+ 
+ Number of cases used for tree construction: 507
+ Number misclassified: 0
+ Resubstitution estimate of mean misclassification cost: 0.0000000
+ 
+ Observed and fitted values are stored in lda_fit.txt
+ LaTeX code for tree is in lda_tree.tex
+ R code is stored in lda.r
+ Discriminant coefficients are stored in lda_coefs.txt
+ R function for plotting data are stored in lda_plot.r
+ Plot data are stored in lda_data.txt
+ Elapsed time in seconds: 0.58491

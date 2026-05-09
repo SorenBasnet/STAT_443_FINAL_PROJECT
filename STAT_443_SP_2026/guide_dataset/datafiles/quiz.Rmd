@@ -1,0 +1,35 @@
+---
+title: "quiz"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+x <- c(1:7,NA)
+x1 <- ifelse(is.na(x),1,0)
+x1
+
+y <- c(1.29, 2.35, 2.95, 3.77, 5.30, 5.09, 4, 4.5)
+cbind(x,y)
+
+
+# IMpute
+x[is.na(x)] <- sum(1  +2  +3  +4  +5  +6  +7)/8
+
+x
+
+# fit regression 
+
+m1 <- lm(y ~ x + x1)
+summary(m1)
+plot(m1)
+m1$fitted.values
+m1$residuals
+
+
+
+
+plot(x,y)
+abline(x,y)
+```

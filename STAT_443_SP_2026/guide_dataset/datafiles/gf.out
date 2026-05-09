@@ -1,0 +1,79 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 46.2 (Build date: February 9, 2026)       
+ Compiled with NAG Fortran 7.2 on macOS Sequoia 15.6.1 for Apple ARM processors  
+ Copyright (c) 1997-2023 Wei-Yin Loh. All rights reserved.
+ This software is based upon work partially supported by the U.S. Army Research Office,
+ National Science Foundation, National Institutes of Health,
+ Bureau of Labor Statistics, USDA Economic Research Service, and Eli Lilly.
+  
+ This job was started on 03/19/26 at 11:58
+  
+ Random forest of GUIDE least-squares regression trees
+ No pruning
+ DSC file: fat.dsc
+ Training sample file: fat.dat
+ Missing value code: NA
+ Records in data file start on line 1
+ 13 N variables changed to S
+ D variable is BodyfatB
+ Piecewise constant model
+ Number of records in data file: 252
+ Length of longest entry in data file: 6
+  
+ Summary information for training sample of size 252
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                  #Codes/           
+                                                  Levels/           
+  Column  Name            Minimum      Maximum    Periods   #Missing
+       2  BodyfatB   d    0.000        45.10    
+       5  Age        s    22.00        81.00    
+       6  Weight     s    118.5        363.1    
+       7  Height     s    64.00        77.75    
+      10  Neck       s    31.10        51.20    
+      11  Chest      s    79.30        136.2    
+      12  Abdomen    s    69.40        148.1    
+      13  Hip        s    85.00        147.7    
+      14  Thigh      s    47.20        87.30    
+      15  Knee       s    33.00        49.10    
+      16  Ankle      s    19.10        33.90    
+      17  Biceps     s    24.80        45.00    
+      18  Forearm    s    21.00        34.90    
+      19  Wrist      s    15.80        21.40    
+  
+ Numbers of N, F, S, and P below exclude constant variables
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+        252          0          0        5        0        0       13
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0        0        0
+ No weight variable in data file
+ Number of cases used for training: 252
+  
+ Number of trees in ensemble: 1000
+ Number of variables used for splitting: 5
+ No nodewise interaction tests
+ Max number of non-categorical splits: 100
+ Maximum number of split levels: 15
+ Minimum node sample size: 5
+ Mean number of terminal nodes:    18.78    
+ Resubstitution estimate of root mean squared error (RMSE): 3.4892
+ based on number of training cases: 252
+ Proportion of variance (R-squared) explained by ensemble model: 0.7965
+ 
+ Number of OOB cases: 252
+ OOB estimate of root mean squared error: 4.5551
+ Mean number of trees per OOB observation: 367.68
+ 
+ Observed and fitted values are stored in gf.fit
+ Elapsed time in seconds: 1.4675
